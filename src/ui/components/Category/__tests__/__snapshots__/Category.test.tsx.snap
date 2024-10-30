@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Category Component Should match snapshot 1`] = `
+<div>
+  <ul
+    class="className my-5 flex xl:gap-10 gap-5 justify-center text-dark"
+  >
+    <li
+      class="relative capitalize cursor-pointer hover:text-second"
+    >
+      Category1
+    </li>
+    <li
+      class="relative capitalize cursor-pointer hover:text-second"
+    >
+      Category2
+    </li>
+    <li
+      class="relative capitalize cursor-pointer hover:text-second"
+    >
+      Category3
+    </li>
+  </ul>
+</div>
+`;

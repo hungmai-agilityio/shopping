@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart checkout component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="className w-cart-md h-cart-md bg-gray-light p-6 text-lg"
+  >
+    <p
+      class="font-bold text-black lg:text-lg text-sm mb-1"
+    >
+      Coupon Code
+    </p>
+    <div
+      class="mb-3"
+    >
+      <div
+        class="relative"
+      >
+        <input
+          class="w-full mt-1.5 font-bold outline-none font-lg text-dark-gray px-2 focus:border focus:border-green-300 h-12"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="flex justify-end"
+    >
+      <button
+        class="truncate md:h-12 h-8 md:text-lg md:w-btn-md w-28 text-xs bg-gradient-primary text-white font-bold cursor-not-allowed"
+        disabled=""
+      >
+        Check
+      </button>
+    </div>
+    <div
+      class="mt-9 flex justify-between"
+    >
+      <div>
+        <p
+          class="font-bold text-black lg:text-lg text-sm mb-1"
+        >
+          Subtotal
+        </p>
+        <span
+          class="font-thin text-gray-400 lg:text-lg text-sm mb-1"
+        >
+          4
+           Product
+        </span>
+      </div>
+      <p
+        class="font-thin text-black lg:text-lg text-sm mb-1"
+      >
+        $ 
+        160
+         USD
+      </p>
+    </div>
+    <hr
+      class="border-t-2 border-dashed border-gray-300 my-6"
+    />
+    <div
+      class="flex justify-between"
+    >
+      <p
+        class="font-bold text-black lg:text-lg text-sm mb-1"
+      >
+        Total
+      </p>
+      <p
+        class="font-thin text-black lg:text-lg text-sm mb-1"
+      >
+        $ 
+        160
+         USD
+      </p>
+    </div>
+    <div
+      class="flex justify-end mt-5"
+    >
+      <button
+        class="truncate md:h-12 h-8 md:text-lg md:w-btn-md w-28 text-xs bg-gradient-primary text-white font-bold"
+      >
+        Checkout
+      </button>
+    </div>
+  </div>
+</div>
+`;

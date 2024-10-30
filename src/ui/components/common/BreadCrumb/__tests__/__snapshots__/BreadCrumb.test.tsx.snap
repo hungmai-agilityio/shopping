@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreadCrumb component should be render match to snapshot 1`] = `
+<div>
+  <nav
+    aria-label="breadcrumb"
+    class="flex items-center space-x-2 text-black"
+  >
+    <span
+      class="flex items-center"
+    >
+      <a
+        class="hover:underline"
+        href="/"
+      >
+        Home
+      </a>
+      <span
+        class="mx-2 text-black"
+      >
+        /
+      </span>
+    </span>
+    <span
+      class="flex items-center"
+    >
+      <a
+        class="hover:underline"
+        href="/products"
+      >
+        Products
+      </a>
+      <span
+        class="mx-2 text-black"
+      >
+        /
+      </span>
+    </span>
+    <span
+      class="flex items-center"
+    >
+      <span
+        class="font-bold text-black"
+      >
+        Phones
+      </span>
+    </span>
+  </nav>
+</div>
+`;

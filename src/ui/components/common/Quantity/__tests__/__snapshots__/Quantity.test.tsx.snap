@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Quantity component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="flex items-center gap-4 font-bold bg-white w-36 h-12 justify-center className"
+  >
+    <button
+      class="relative inline-flex items-center justify-center"
+    >
+      <img
+        alt="minus icon"
+        data-nimg="1"
+        decoding="async"
+        fetchpriority="high"
+        height="24"
+        src="/minus.svg"
+        style="color: transparent;"
+        width="24"
+      />
+    </button>
+    <span
+      class="px-2"
+    >
+      3
+    </span>
+    <button
+      class="relative inline-flex items-center justify-center"
+    >
+      <img
+        alt="plus icon"
+        data-nimg="1"
+        decoding="async"
+        fetchpriority="high"
+        height="24"
+        src="/plus.svg"
+        style="color: transparent;"
+        width="24"
+      />
+    </button>
+  </div>
+</div>
+`;

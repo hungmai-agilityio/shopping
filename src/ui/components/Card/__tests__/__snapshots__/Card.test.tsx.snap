@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card component matches snapshot for comment variant 1`] = `
+<div>
+  <div
+    class="className bg-white shadow-card p-10 w-card-sm h-card-sm overflow-hidden relative"
+  >
+    <span
+      class="absolute top-0 right-0 w-0 h-0 border-t-md border-l-md border-t-gray-100 border-l-transparent"
+    />
+    <div
+      class="flex gap-4"
+    >
+      <img
+        alt="account123"
+        class="rounded-full w-12 h-12"
+        data-nimg="1"
+        decoding="async"
+        height="32"
+        loading="lazy"
+        src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2Ff9kLWFd%2Fcomment-2.webp&w=64&q=75"
+        srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2Ff9kLWFd%2Fcomment-2.webp&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2Ff9kLWFd%2Fcomment-2.webp&w=64&q=75 2x"
+        style="color: transparent; object-fit: cover;"
+        width="32"
+      />
+      <div>
+        <p
+          class="font-bold text-lg capitalize"
+        >
+          account123
+        </p>
+        <span
+          class="text-gray-500 capitalize mt-1 text-sm"
+        >
+          client
+        </span>
+      </div>
+    </div>
+    <img
+      alt="star"
+      class="mt-5"
+      data-nimg="1"
+      decoding="async"
+      height="24"
+      loading="lazy"
+      src="/star.svg"
+      style="color: transparent; object-fit: cover;"
+      width="152"
+    />
+    <p
+      class="font-thin text-black text-sm mt-5"
+    >
+      " 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+       "
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Card component matches snapshot for contact variant 1`] = `
+<div>
+  <div
+    class="className bg-white shadow-card p-10 w-card-sm h-card-sm overflow-hidden relative"
+  >
+    <div
+      class="flex gap-4 block"
+    >
+      <img
+        alt="Jane Smith"
+        class="rounded-full w-12 h-12 p-1 bg-blue-700"
+        data-nimg="1"
+        decoding="async"
+        height="32"
+        loading="lazy"
+        src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FJv5m9bT%2Fcontact.webp&w=64&q=75"
+        srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FJv5m9bT%2Fcontact.webp&w=32&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2FJv5m9bT%2Fcontact.webp&w=64&q=75 2x"
+        style="color: transparent; object-fit: cover;"
+        width="32"
+      />
+      <div>
+        <p
+          class="font-bold text-lg capitalize mt-5"
+        >
+          Jane Smith
+        </p>
+      </div>
+    </div>
+    <p
+      class="font-thin text-gray-400 text-sm mt-4"
+    >
+      Project Manager at XYZ Company
+    </p>
+    <p
+      class="font-thin text-gray-400 text-sm mt-4"
+    >
+      jane.smith@xyz.com
+    </p>
+    <p
+      class="font-thin text-gray-400 text-sm mt-4"
+    >
+      +123456789
+    </p>
+  </div>
+</div>
+`;

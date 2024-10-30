@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should render match to snapshot 1`] = `
+<div>
+  <div
+    class="mb-3"
+  >
+    <label
+      class="font-bold leading-2-xs capitalize"
+    >
+      Text Input
+    </label>
+    <div
+      class="relative"
+    >
+      <input
+        class="w-full mt-1.5 font-bold outline-none font-lg text-dark-gray px-2 focus:border focus:border-green-300 h-12"
+        placeholder="Enter some text"
+        type="text"
+        value="test value"
+      />
+    </div>
+    <span
+      class="text-red-500 mr-1 visible text-xs"
+    >
+      This is an error message
+    </span>
+  </div>
+</div>
+`;

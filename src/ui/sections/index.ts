@@ -1,0 +1,10 @@
+export { default as Header } from '@/ui/sections/Header';
+export { default as Footer } from '@/ui/sections/Footer';
+export { default as CategorySection } from '@/ui/sections/Category';
+export { default as ProductSection } from '@/ui/sections/Product';
+export { default as ProductList } from '@/ui/sections/Product/List';
+export { default as ProductDetail } from '@/ui/sections/ProductDetail';
+export { default as Description } from '@/ui/sections/Description';
+export { default as CheckoutSection } from '@/ui/sections/Checkout';
+export { default as ProfileForm } from '@/ui/sections/Profile/Form';
+export { default as CardUpload } from '@/ui/sections/Profile/CardUpload';

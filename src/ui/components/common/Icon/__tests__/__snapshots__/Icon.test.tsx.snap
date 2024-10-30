@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon component should be render match to snapshot 1`] = `
+<div>
+  <button
+    class="relative inline-flex items-center justify-center"
+  >
+    <img
+      alt="Cart Icon"
+      data-nimg="1"
+      decoding="async"
+      height="24"
+      loading="lazy"
+      src="/user.svg"
+      style="color: transparent;"
+      width="24"
+    />
+  </button>
+</div>
+`;

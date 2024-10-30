@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioButton component should be render match to snapshot 1`] = `
+<div>
+  <label
+    class="className flex items-center font-bold text-xs cursor-pointer"
+    for="1"
+  >
+    <input
+      class="accent-second h-4 w-4 cursor-pointer mr-2"
+      id="1"
+      name=""
+      type="radio"
+      value=""
+    />
+    radio button
+  </label>
+</div>
+`;

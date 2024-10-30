@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography component should be render match to snapshot 1`] = `
+<div>
+  <p
+    class="font-normal text-black text-2xl"
+  >
+    This is a default paragraph text.
+  </p>
+</div>
+`;
