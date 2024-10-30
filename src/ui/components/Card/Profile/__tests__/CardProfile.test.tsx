@@ -8,7 +8,7 @@ jest.mock('next/image', () => {
 describe('CardProfile component', () => {
   const defaultProps = {
     useName: 'John Doe',
-    photo: null,
+    photo: '',
     detail: 'Software Engineer',
     onButtonClick: jest.fn()
   };

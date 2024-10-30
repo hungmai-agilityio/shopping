@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TYPE } from '@/constants';
 
-// Component cần sử dụng trong Storybook
 import Card from '@/ui/components/Card';
 
-// Meta thông tin cấu hình cho Storybook
 const meta: Meta<typeof Card> = {
   component: Card,
   tags: ['autodocs'],

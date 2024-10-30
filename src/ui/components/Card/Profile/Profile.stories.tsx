@@ -34,13 +34,13 @@ type Story = StoryObj<typeof CardProfile>;
 export const DefaultProfile: Story = {
   args: {
     photo: 'https://i.ibb.co/h1pRWGY/jacke2wwwt-5-2.webp',
-    useName: 'John Doe',
+    useName: 'John Doe'
   }
 };
 
 export const EmptyImage: Story = {
   args: {
-    photo: null,
+    photo: '',
     useName: 'Jane Smith',
     detail: 'Designer at ABC Inc.'
   }

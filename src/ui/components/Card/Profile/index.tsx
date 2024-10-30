@@ -10,7 +10,7 @@ import CardImage from '@/ui/components/Card/Image';
 
 interface CardProfileProps {
   useName: string;
-  photo: string | StaticImport | null;
+  photo?: string | StaticImport;
   detail?: ReactNode;
   onButtonClick?: (file?: File) => void;
 }
