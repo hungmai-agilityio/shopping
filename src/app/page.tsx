@@ -22,6 +22,7 @@ import { fetchData } from '@/libs';
 
 // Components
 import {
+  Brand,
   Button,
   Card,
   CardImage,
@@ -53,18 +54,18 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
     <div className={`${popping.className}`}>
       <Hero>
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 container">
-          <div className="my-36 max-w-card-sm lg:text-left text-center">
+          <div className="my-36 lg:max-w-card-sm lg:text-left text-center">
             <Typography
               fontWeight={FONT_WEIGHT.BOLD}
               color="text-white"
               tag={TAG.H1}
-              className={`${mada.className} capitalize lg:text-5xl text-4xl my-5`}
+              className={`${mada.className} capitalize lg:text-5xl text-xl my-5`}
             >
               get the latest dress models from us
             </Typography>
             <Typography
               color="text-gray-300"
-              className="my-8"
+              className="my-8 md:block hidden"
               size={FONT_SIZE.X_SMALL}
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget
@@ -115,46 +116,11 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
       </Hero>
       <section className="md:block hidden bg-gray-light h-28">
         <div className="container flex items-center justify-between p-5 gap-5">
-          <Image
-            src="/brand-1.svg"
-            alt="brand-1"
-            width={180}
-            height={70}
-            className="lg:w-44 lg:h-16 w-20 h-16"
-            priority
-          />
-          <Image
-            src="/brand-2.svg"
-            alt="brand-1"
-            width={180}
-            height={70}
-            className="lg:w-44 lg:h-16 w-20 h-16"
-            priority
-          />
-          <Image
-            src="/brand-3.svg"
-            alt="brand-1"
-            width={180}
-            height={70}
-            className="lg:w-44 lg:h-16 w-20 h-16"
-            priority
-          />
-          <Image
-            src="/brand-4.svg"
-            alt="brand-1"
-            width={180}
-            height={70}
-            className="lg:w-44 lg:h-16 w-20 h-16"
-            priority
-          />
-          <Image
-            src="/brand-5.svg"
-            alt="brand-1"
-            width={180}
-            height={70}
-            className="lg:w-44 lg:h-16 w-16 h-6"
-            priority
-          />
+          <Brand src="/brand-1.svg" alt="brand-1" />
+          <Brand src="/brand-2.svg" alt="brand-1" />
+          <Brand src="/brand-3.svg" alt="brand-1" />
+          <Brand src="/brand-4.svg" alt="brand-1" />
+          <Brand src="/brand-5.svg" alt="brand-1" />
         </div>
       </section>
       <section className="my-20">

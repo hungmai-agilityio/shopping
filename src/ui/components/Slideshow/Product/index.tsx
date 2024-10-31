@@ -35,9 +35,9 @@ const SlideProduct = ({ products, onOrder }: SlideProductProps) => {
 
   return (
     <div
-      className={`${popping.className} w-full h-full bg-gradient-primary lg:flex block justify-between py-20 pr-32`}
+      className={`${popping.className} w-full h-full bg-gradient-primary lg:flex block justify-between py-20 xl:pr-32 pr-5`}
     >
-      <div className="flex flex-1">
+      <div className="flex">
         <div className="w-full flex items-center justify-center">
           {products.map(
             (product, index) =>
@@ -115,12 +115,11 @@ const SlideProduct = ({ products, onOrder }: SlideProductProps) => {
           color="text-white"
           fontWeight={FONT_WEIGHT.BOLD}
           tag={TAG.H2}
-          className={`${mada.className} lg:text-5xl text-4xl`}
+          className={`${mada.className} xl:text-5xl text-4xl`}
         >
           {currentProduct.name}
         </Typography>
-
-        <div className="flex justify-between">
+        <div className="flex justify-between mb-6">
           <ColorPicker
             isTitle
             colors={currentProduct.colors}
@@ -140,7 +139,6 @@ const SlideProduct = ({ products, onOrder }: SlideProductProps) => {
             </div>
           )}
         </div>
-
         <div className="flex justify-between items-center mb-4">
           <div className="mb-6">
             <Typography
@@ -166,12 +164,11 @@ const SlideProduct = ({ products, onOrder }: SlideProductProps) => {
             color="text-white"
             fontWeight={FONT_WEIGHT.SEMIBOLD}
             tag={TAG.SPAN}
-            className={`${mada.className} lg:text-5xl text-4xl`}
+            className={`${mada.className} xl:text-heading text-4xl`}
           >
             {currentProduct.price}$
           </Typography>
         </div>
-
         {currentProduct.description && (
           <Typography
             color="text-gray-200"

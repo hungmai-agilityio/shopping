@@ -16,18 +16,17 @@ import {
   fetchDataId,
   useUserStore,
   postData,
-  updateData,
+  updateData
 } from '@/libs';
 
 // Components
-import { Modal, WishList } from '@/ui/components';
-import ToastMessage from '@/ui/components/common/ToastMessage';
+import { Modal, WishList, ToastMessage } from '@/ui/components';
 
 interface WishListSectionProps {
   products: IProduct[];
 }
 
-const WishListSection = ({products}: WishListSectionProps) => {
+const WishListSection = ({ products }: WishListSectionProps) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
   const [toast, setToast] = useState<{

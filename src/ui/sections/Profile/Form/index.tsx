@@ -30,7 +30,8 @@ import {
   Typography,
   RadioButton,
   InputController,
-  ToastMessage
+  ToastMessage,
+  Spinner
 } from '@/ui/components';
 
 // Interfaces
@@ -126,7 +127,7 @@ const ProfileForm = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Spinner/>
       ) : (
         <form className="container mb-28" onSubmit={handleSubmit(onSubmit)}>
           <div className="md:flex justify-between items-center gap-10 mb-4">

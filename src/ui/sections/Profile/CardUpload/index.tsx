@@ -1,5 +1,6 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 // Libs
@@ -18,8 +19,7 @@ import {
 import { IUser } from '@/interfaces';
 
 // Components
-import { CardProfile, ToastMessage } from '@/ui/components';
-import { useQuery } from '@tanstack/react-query';
+import { CardProfile, Spinner, ToastMessage } from '@/ui/components';
 
 const CardUpload = () => {
   const [uploadImage, setUploadImage] = useState<string>('');
@@ -94,7 +94,7 @@ const CardUpload = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Spinner/>
       ) : (
         <CardProfile
           photo={uploadImage || data?.avatar}

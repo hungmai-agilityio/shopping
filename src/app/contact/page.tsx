@@ -26,7 +26,7 @@ const ContactPage = () => {
 
   return (
     <div className={`${popping.className}`}>
-      <Hero isBreadCrumb items={breadCrumb} styles="!h-card-lg">
+      <Hero isBreadCrumb items={breadCrumb} styles="md:h-card-lg">
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 container">
           <div className="max-w-card-sm lg:text-left text-center">
             <Typography
@@ -39,7 +39,7 @@ const ContactPage = () => {
             </Typography>
             <Typography
               color="text-white"
-              className="my-8"
+              className="my-8 md:block hidden"
               size={FONT_SIZE.X_SMALL}
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget
@@ -49,8 +49,8 @@ const ContactPage = () => {
           </div>
         </div>
       </Hero>
-      <div className="flex justify-center items-center z-20 -mt-28">
-        <div className="container flex justify-center gap-10">
+      <div className="-mt-28 md:flex hidden">
+        <div className="container flex justify-center gap-10 ">
           <Card
             name="Location"
             photo="/location.svg"

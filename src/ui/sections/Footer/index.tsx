@@ -25,7 +25,7 @@ const ButtonRedirect = dynamic(
 const Footer = () => {
   return (
     <footer className="bg-dark  text-white">
-      <div className="lg:container grid lg:grid-cols-2 grid-cols-1 py-20 px-32 gap-10">
+      <div className="container grid lg:grid-cols-2 grid-cols-1 py-20 px-32 gap-10">
         <div className="max-w-block-text">
           <Logo
             src="/logo.svg"

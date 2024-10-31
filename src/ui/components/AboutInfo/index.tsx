@@ -30,7 +30,7 @@ const AboutInfo = ({
         styles
       )}
     >
-      <div className="max-w-card-sm lg:text-left text-center">
+      <div className="lg:max-w-card-sm lg:text-left text-center">
         <Typography
           fontWeight={FONT_WEIGHT.BOLD}
           tag={TAG.H2}
@@ -43,15 +43,17 @@ const AboutInfo = ({
           {desc}
         </Typography>
       </div>
-      <CardImage
-        src={src}
-        alt={aboutName}
-        width={590}
-        height={349}
-        title={aboutName}
-        isTitleLeft={isReverse}
-        className="w-card-sm h-96"
-      />
+      <div className="flex justify-center">
+        <CardImage
+          src={src}
+          alt={aboutName}
+          width={590}
+          height={349}
+          title={aboutName}
+          isTitleLeft={isReverse}
+          className="w-full h-96"
+        />
+      </div>
     </div>
   );
 };

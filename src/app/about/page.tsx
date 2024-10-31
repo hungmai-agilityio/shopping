@@ -53,7 +53,7 @@ const AboutPage = () => {
           </div>
         </div>
       </Hero>
-      <section className="container my-20">
+      <section className="xl:container my-20 px-10">
         <AboutInfo
           aboutName="Mangcoding Store"
           desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget gravida leo, nec iaculis diam. Nam bibendum mi sed sem finibus ullamcorper. Klara is an AI powered automated Solution Builder of Growth Strategy, Branding and Digital marketing planning for your business."
