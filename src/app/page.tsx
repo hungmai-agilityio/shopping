@@ -51,7 +51,7 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
     <div className={`${popping.className}`}>
       <Hero>
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 container">
-          <div className="my-36 lg:max-w-card-sm lg:text-left text-center">
+          <div className="my-32 lg:max-w-card-sm lg:text-left text-center">
             <Heading>get the latest dress models from us</Heading>
             <Typography
               color="text-gray-300"
