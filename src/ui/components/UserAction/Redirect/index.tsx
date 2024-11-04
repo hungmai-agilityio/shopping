@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { TYPE } from '@/constants';
 import { Button } from '@/ui/components';
 
-// Libs
-import { useUserStore } from '@/libs';
+// Libs + stores
+import { useUserStore } from '@/stores';
 
 interface RedirectProps {
   url: string;

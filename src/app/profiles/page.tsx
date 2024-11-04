@@ -2,10 +2,10 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 // Constants
-import { FONT_SIZE, FONT_WEIGHT, TAG, mada, popping } from '@/constants';
+import { FONT_SIZE, popping } from '@/constants';
 
 // Components
-import { Hero, Typography } from '@/ui/components';
+import { Heading, Hero, Typography } from '@/ui/components';
 
 // Lazy load the CardUpload and ProfileForm components
 const CardUpload = dynamic(() => import('@/ui/sections/Profile/CardUpload'), {
@@ -30,15 +30,7 @@ const ProfilePage = () => {
       <Hero isBreadCrumb isHeroSecond items={breadCrumb}>
         <div className="lg:flex justify-between gap-10 container">
           <div className="max-w-card-sm lg:text-left text-center">
-            <Typography
-              fontWeight={FONT_WEIGHT.BOLD}
-              color="text-white"
-              tag={TAG.H1}
-              size={FONT_SIZE.MEDIUM}
-              className={`${mada.className} capitalize my-5`}
-            >
-              My Account
-            </Typography>
+            <Heading>My Account</Heading>
             <Typography
               color="text-white"
               className="my-8"

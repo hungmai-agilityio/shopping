@@ -14,5 +14,5 @@ export const MESSAGE_API = {
   UPDATE_PROFILE_SUCCESS: 'Update profile success',
   UPDATE_PROFILE_ERROR: 'Update profile error',
   UPDATE_CART_ERROR: 'Update cart error',
-  UPDATE_CART_SUCCESS: 'Update cart success'
+  UPDATE_CART_SUCCESS: 'Update cart success',
 };

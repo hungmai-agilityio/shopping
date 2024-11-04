@@ -19,8 +19,9 @@ import {
 // Components
 import { Button, InputController, ToastMessage } from '@/ui/components';
 
-// Libs
-import { postData, signUpSchema, getUserByEmail, useUserStore } from '@/libs';
+// Libs + stores
+import { postData, signUpSchema, checkUserByEmail, addUser } from '@/libs';
+import { useUserStore } from '@/stores';
 
 // Interfaces
 import { IUser } from '@/interfaces';
@@ -66,7 +67,7 @@ const SignUpForm = () => {
 
   // Handle form submission
   const onSubmit = async (data: IUser) => {
-    const userExists = await getUserByEmail(data.email);
+    const userExists = await checkUserByEmail(data.email);
     if (userExists) {
       setError('email', { type: 'manual', message: MESSAGE_VALID.EMAIL_EXIST });
       return;
@@ -90,10 +91,7 @@ const SignUpForm = () => {
 
     setFormData(newData);
 
-    const newUser = await postData({
-      endpoint: END_POINT.USERS,
-      data: newData
-    });
+    const newUser = await addUser(newData);
 
     if (newUser.data) {
       setFormData(formData);

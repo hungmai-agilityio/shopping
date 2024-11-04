@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 
 // Constants
-import { END_POINT, FONT_SIZE, FONT_WEIGHT, mada, TAG } from '@/constants';
+import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 
 // Libs
-import { fetchData } from '@/libs';
+import { getProducts } from '@/libs';
 
 // Components
-import { Hero, Typography } from '@/ui/components';
+import { Heading, Hero, Typography } from '@/ui/components';
 
 // Sections
 import CartSection from '@/ui/sections/Cart';
@@ -22,21 +22,14 @@ const CartPage = async () => {
     { label: 'Cart', href: '' }
   ];
 
-  const { data, error } = await fetchData({ endpoint: END_POINT.PRODUCTS });
+  const { data, error } = await getProducts();
 
   return (
     <>
       <Hero isBreadCrumb items={breadCrumb}>
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 container">
           <div className="max-w-card-sm lg:text-left text-center">
-            <Typography
-              fontWeight={FONT_WEIGHT.BOLD}
-              color="text-white"
-              tag={TAG.H1}
-              className={`${mada.className} capitalize lg:text-5xl text-4xl mt-10 mb-6`}
-            >
-              Cart
-            </Typography>
+            <Heading>Cart</Heading>
             <Typography
               color="text-white"
               className="my-8"
@@ -58,7 +51,7 @@ const CartPage = async () => {
           Unable to load cart data, try again later
         </Typography>
       ) : (
-        <CartSection productData={data} />
+        <CartSection productData={data!} />
       )}
     </>
   );

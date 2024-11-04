@@ -1,8 +1,5 @@
-// Constants
-import { END_POINT } from '@/constants';
-
 // Libs
-import { fetchData } from '@/libs';
+import { getProducts } from '@/libs';
 
 // Components
 import { Typography } from '@/ui/components';
@@ -17,9 +14,7 @@ interface ProductListProps {
 const ProductList = async ({ query, isShowMore }: ProductListProps) => {
   const param = query ? query : '';
 
-  const { data, error } = await fetchData({
-    endpoint: `${END_POINT.PRODUCTS}${param}`
-  });
+  const { data, error } = await getProducts(param);
 
   return (
     <>
@@ -28,7 +23,7 @@ const ProductList = async ({ query, isShowMore }: ProductListProps) => {
           Unable to load products! Try later
         </Typography>
       ) : (
-        <CardProductList products={data} isShowMore={isShowMore} />
+        <CardProductList products={data!} isShowMore={isShowMore} />
       )}
     </>
   );

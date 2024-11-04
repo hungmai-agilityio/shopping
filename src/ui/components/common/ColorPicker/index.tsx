@@ -1,35 +1,38 @@
 'use client';
+
 import { clsx } from 'clsx';
-import { useEffect, useState, memo } from 'react';
+import { memo, useEffect } from 'react';
 
 // Constants
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 
 // Components
-import Button from '@/ui/components/common/Button';
-import Typography from '@/ui/components/common/Typography';
+import { Button, Typography } from '@/ui/components';
 
 interface IProps {
   isTitle?: boolean;
   colors: string[];
   onClick?: (color: string) => void;
   titleColor?: string;
+  selectedColor?: string;
 }
 
 const ColorPicker = memo(
-  ({ isTitle, colors, onClick, titleColor = 'text-black' }: IProps) => {
-    const [selectedColor, setSelectedColor] = useState<string>(colors[0]);
-
+  ({
+    isTitle,
+    colors,
+    onClick,
+    titleColor = 'text-black',
+    selectedColor
+  }: IProps) => {
     useEffect(() => {
       if (colors.length > 0) {
-        setSelectedColor(colors[0]);
         onClick?.(colors[0]);
       }
     }, [colors, onClick]);
 
     // Handler for color selection
     const handleColorClick = (color: string) => {
-      setSelectedColor(color);
       onClick?.(color);
     };
 

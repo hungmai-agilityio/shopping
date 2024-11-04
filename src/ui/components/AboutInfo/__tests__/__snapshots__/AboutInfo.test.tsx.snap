@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About info component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="lg:flex block justify-between w-full gap-10"
+  >
+    <div
+      class="lg:max-w-card-sm lg:text-left text-center"
+    >
+      <h2
+        class="font-bold text-black text-4xl className capitalize my-5"
+      >
+        Product
+      </h2>
+      <p
+        class="font-normal text-black lg:text-lg text-sm my-6 text-dark-md"
+      >
+        description
+      </p>
+    </div>
+    <div
+      class="flex justify-center"
+    >
+      <div
+        class="relative inline-flex items-center justify-center"
+      >
+        <img
+          alt="Card about"
+          class="w-full h-96"
+          data-nimg="1"
+          decoding="async"
+          height="349"
+          loading="lazy"
+          src="/_next/image?url=%2Fstore-1.webp&w=1200&q=75"
+          srcset="/_next/image?url=%2Fstore-1.webp&w=640&q=75 1x, /_next/image?url=%2Fstore-1.webp&w=1200&q=75 2x"
+          style="color: transparent; object-fit: cover;"
+          width="590"
+        />
+        <div
+          class="absolute bg-white h-14 w-11/12 text-2xl font-bold text-purple-500 right-0 p-2 overflow-hidden truncate bottom-10"
+        >
+          Card about
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

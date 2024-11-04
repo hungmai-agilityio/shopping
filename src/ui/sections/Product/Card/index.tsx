@@ -1,54 +1,55 @@
 'use client';
 
+import { useState } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 
 // Constants
-import { END_POINT, FONT_SIZE } from '@/constants';
+import { END_POINT, FONT_SIZE, QUERY } from '@/constants';
 
 // Interfaces
 import { IProduct, IWishlist } from '@/interfaces';
 
-// Libs
-import { postData, deleteData, fetchDataId, useUserStore } from '@/libs';
+// Libs + stores
+import { useUserStore } from '@/stores';
+import { postData, deleteData, getUserWishList } from '@/libs';
 
 // Components
 import { Button, CardProduct, Modal, Typography } from '@/ui/components';
-import { useState } from 'react';
-import Image from 'next/image';
+
+// Hooks
+import { useModal } from '@/hooks';
 
 interface CardProductListProps {
   products: IProduct[];
   isShowMore?: boolean;
 }
 const CardProductList = ({ products, isShowMore }: CardProductListProps) => {
-  const [showModal, setShowModal] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState<number>(8);
 
   const { push } = useRouter();
   const queryClient = useQueryClient();
 
   const { user } = useUserStore();
-
+  const { isOpen, closeModal, openModal } = useModal();
   // Get Data Wishlist
   const { data: wishlist = [] } = useQuery<IWishlist[]>({
-    queryKey: ['wishlist'],
-    queryFn: () =>
-      fetchDataId({ endpoint: `${END_POINT.WISHLIST}?userId=`, id: user?.id }),
-    staleTime: 1000 * 60 * 5,
+    queryKey: [QUERY.WISHLIST],
+    queryFn: () => getUserWishList(user!.id),
     enabled: !!user
   });
 
   /**
    * Calling function adds data to wishlist and mutation
-   * React Query will automatically refetch the query ['wishlist'] data to ensure the data is always up to date.
+   * React Query will automatically refetch the query [QUERY.WISHLIST] data to ensure the data is always up to date.
    */
   const addToWishlist = useMutation({
     mutationFn: (item: IWishlist) =>
       postData({ endpoint: END_POINT.WISHLIST, data: item }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['wishlist'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY.WISHLIST] });
     }
   });
 
@@ -57,7 +58,7 @@ const CardProductList = ({ products, isShowMore }: CardProductListProps) => {
     mutationFn: (id: string) =>
       deleteData({ endpoint: END_POINT.WISHLIST, id }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['wishlist'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY.WISHLIST] });
     }
   });
 
@@ -74,7 +75,7 @@ const CardProductList = ({ products, isShowMore }: CardProductListProps) => {
    */
   const handleToggleFavorite = (product: IProduct) => {
     if (!user) {
-      setShowModal(true);
+      openModal();
       return;
     }
     if (isProductInWishlist(product.id)) {
@@ -97,11 +98,9 @@ const CardProductList = ({ products, isShowMore }: CardProductListProps) => {
     addToWishlist.mutate(newItem);
   };
 
-  const handleCloseModal = () => setShowModal(false);
-
   const handleRedirectSignIn = () => {
     push(END_POINT.SIGN_IN);
-    handleCloseModal();
+    closeModal();
   };
 
   const handleRedirectPreview = (id: string) => {
@@ -133,8 +132,8 @@ const CardProductList = ({ products, isShowMore }: CardProductListProps) => {
           />
         ))}
         <Modal
-          isOpen={showModal}
-          onClose={handleCloseModal}
+          isOpen={isOpen}
+          onClose={closeModal}
           title="Authentication request"
           buttonName="Yes"
           isConfirm

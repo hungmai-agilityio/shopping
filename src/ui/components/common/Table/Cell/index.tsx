@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { ReactNode } from 'react';
 
 // Constants
-import { CELL, SIZE } from '@/constants';
+import { CELL, cellSizeClasses, SIZE } from '@/constants';
 
 interface IProps {
   children?: ReactNode;
@@ -14,13 +14,7 @@ interface IProps {
 export const Cell = ({ children, type, size, styles }: IProps) => {
   const TagName = type;
 
-  const sizeClasses = {
-    [SIZE.SMALL]: 'w-tb-sm',
-    [SIZE.MEDIUM]: 'w-tb-md',
-    [SIZE.LARGE]: 'w-tb-xl'
-  };
-
-  const sizeClass = sizeClasses[size || SIZE.SMALL];
+  const sizeClass = cellSizeClasses[size || SIZE.SMALL];
 
   return (
     <TagName

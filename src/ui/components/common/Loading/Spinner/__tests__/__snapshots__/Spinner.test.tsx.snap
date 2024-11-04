@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="border-gray-300 h-10 w-10 animate-spin rounded-full border-4 border-t-blue-400 flex"
+  />
+</div>
+`;

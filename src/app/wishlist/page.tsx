@@ -2,18 +2,11 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 // Constants
-import {
-  END_POINT,
-  FONT_SIZE,
-  FONT_WEIGHT,
-  mada,
-  popping,
-  TAG
-} from '@/constants';
+import { FONT_SIZE, FONT_WEIGHT, popping } from '@/constants';
 
 // Components
-import { Hero, Typography } from '@/ui/components';
-import { fetchData } from '@/libs';
+import { Heading, Hero, Typography } from '@/ui/components';
+import { getProducts } from '@/libs';
 
 export const metadata: Metadata = {
   title: 'Whish list'
@@ -24,7 +17,7 @@ const WishListSection = dynamic(() => import('@/ui/sections/Wishlist'), {
 });
 
 const WishListPage = async () => {
-  const { data, error } = await fetchData({ endpoint: END_POINT.PRODUCTS });
+  const { data, error } = await getProducts();
 
   const breadCrumb = [
     { label: 'Home', href: '/' },
@@ -36,14 +29,7 @@ const WishListPage = async () => {
       <Hero isBreadCrumb items={breadCrumb}>
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 container">
           <div className="max-w-card-sm lg:text-left text-center">
-            <Typography
-              fontWeight={FONT_WEIGHT.BOLD}
-              color="text-white"
-              tag={TAG.H1}
-              className={`${mada.className} capitalize lg:text-5xl text-4xl mt-10 mb-6`}
-            >
-              Wishlist
-            </Typography>
+            <Heading>Wishlist</Heading>
             <Typography
               color="text-white"
               className="my-8"

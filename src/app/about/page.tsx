@@ -2,17 +2,10 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 
 // Constants
-import {
-  END_POINT,
-  FONT_SIZE,
-  FONT_WEIGHT,
-  mada,
-  popping,
-  TAG
-} from '@/constants';
+import { END_POINT, FONT_SIZE, popping } from '@/constants';
 
 // Components
-import { AboutInfo, Hero, Typography } from '@/ui/components';
+import { AboutInfo, Heading, Hero, Typography } from '@/ui/components';
 
 export const metadata: Metadata = {
   title: 'About'
@@ -29,15 +22,7 @@ const AboutPage = () => {
       <Hero isBreadCrumb isHeroSecond items={breadCrumb}>
         <div className="lg:flex justify-between gap-10 container">
           <div className=" max-w-card-sm lg:text-left text-center">
-            <Typography
-              fontWeight={FONT_WEIGHT.BOLD}
-              color="text-white"
-              tag={TAG.H1}
-              size={FONT_SIZE.MEDIUM}
-              className={`${mada.className} capitalize my-5`}
-            >
-              About us
-            </Typography>
+            <Heading>About us</Heading>
             <Typography
               color="text-white"
               className="my-8 md:block hidden"

@@ -5,11 +5,8 @@ import { memo, useState } from 'react';
 // Constants
 import { CELL, FONT_WEIGHT, SIZE, TAG, TYPE } from '@/constants';
 
-// Images
-import CardImage from '@/ui/components/Card/Image';
-
 // Components
-import { Dropdown } from '@/ui/components';
+import { Dropdown, CardImage } from '@/ui/components';
 import {
   Button,
   Cell,

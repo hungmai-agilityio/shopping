@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card product component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="group w-full h-card-product bg-white shadow-card cursor-pointer relative"
+  >
+    <img
+      alt="Product name"
+      class="w-full h-card-img"
+      data-nimg="1"
+      decoding="async"
+      height="248"
+      loading="lazy"
+      src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2F3d7b9SB%2Fjean-2.webp&w=750&q=75"
+      srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2F3d7b9SB%2Fjean-2.webp&w=384&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2F3d7b9SB%2Fjean-2.webp&w=750&q=75 2x"
+      style="color: transparent; object-fit: cover; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+      width="334"
+    />
+    <div
+      class="absolute bg-dark opacity-50 w-full h-10 bottom-product-icon px-3 pt-1 group-hover:block hidden"
+    >
+      <img
+        alt="heart icon"
+        class="float-right cursor-pointer"
+        data-nimg="1"
+        decoding="async"
+        fetchpriority="high"
+        height="32"
+        src="/heart-white.svg"
+        style="color: transparent; object-fit: cover;"
+        width="32"
+      />
+    </div>
+    <div
+      class="flex justify-between p-4"
+    >
+      <div
+        class="text-left"
+      >
+        <p
+          class="font-bold text-sm capitalize"
+        >
+          Product name
+        </p>
+        <span
+          class="text-dark-gray text-xs"
+        >
+          Best seller
+        </span>
+        <div
+          class="flex items-end gap-3"
+        >
+          <img
+            alt="star"
+            class="mt-2"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="18"
+            src="/star.svg"
+            style="color: transparent; object-fit: cover;"
+            width="106"
+          />
+          <span
+            class="text-xs text-gray-400"
+          >
+            (10k)
+          </span>
+        </div>
+      </div>
+      <p
+        class="font-bold text-sm"
+      >
+        23$
+      </p>
+    </div>
+  </div>
+</div>
+`;

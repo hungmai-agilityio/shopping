@@ -6,5 +6,6 @@ export { default as ProductList } from '@/ui/sections/Product/List';
 export { default as ProductDetail } from '@/ui/sections/ProductDetail';
 export { default as Description } from '@/ui/sections/Description';
 export { default as CheckoutSection } from '@/ui/sections/Checkout';
+export { default as ProductPayment } from '@/ui/sections/ProductPayment';
 export { default as ProfileForm } from '@/ui/sections/Profile/Form';
 export { default as CardUpload } from '@/ui/sections/Profile/CardUpload';

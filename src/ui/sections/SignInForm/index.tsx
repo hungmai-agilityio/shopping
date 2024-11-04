@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 
-// Libs
-import { login, loginSchema, useUserStore } from '@/libs';
+// Libs + store
+import { handleSignIn, loginSchema } from '@/libs';
+import { useUserStore } from '@/stores';
 
 // Constants
 import { END_POINT, FONT_SIZE, FONT_WEIGHT, STATUS, TYPE } from '@/constants';
@@ -41,7 +42,7 @@ const SignInForm = () => {
   });
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    const { data: user, error } = await login(data.email, data.password);
+    const { data: user, error } = await handleSignIn(data.email, data.password);
 
     if (error) {
       setToast({

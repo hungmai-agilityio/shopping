@@ -4,7 +4,7 @@ import { clsx } from 'clsx';
 import { useEffect, useState } from 'react';
 
 // Constants
-import { STATUS } from '@/constants';
+import { STATUS, toastStyles } from '@/constants';
 
 interface ToastProps {
   status: STATUS.SUCCESS | STATUS.ERROR | STATUS.WARNING;
@@ -14,11 +14,7 @@ interface ToastProps {
 const ToastMessage = ({ status, message }: ToastProps) => {
   const [visible, setVisible] = useState<boolean>(true);
 
-  const toastStyles = {
-    [STATUS.SUCCESS]: 'bg-green-500',
-    [STATUS.ERROR]: 'bg-red-500',
-    [STATUS.WARNING]: 'bg-yellow-500'
-  };
+
 
   useEffect(() => {
     const timer = setTimeout(() => {

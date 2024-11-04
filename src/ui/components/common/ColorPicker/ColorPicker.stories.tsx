@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { mockProducts } from '@/mocks';
 
-import ColorPicker from '@/ui/components/common/ColorPicker';
+import { ColorPicker } from '@/ui/components';
 
 const meta: Meta<typeof ColorPicker> = {
   component: ColorPicker,

@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CarouselCategories should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="[object Object] flex gap-4"
+  >
+    <div
+      class="relative flex justify-start items-center"
+    >
+      <div
+        class="absolute -left-5"
+      >
+        <button
+          class="relative inline-flex items-center justify-center"
+        >
+          <img
+            alt="icon arrow left"
+            class="bg-second p-1 z-10"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="40"
+            src="/arrow-b-left.svg"
+            style="color: transparent;"
+            width="40"
+          />
+        </button>
+      </div>
+      <div
+        class="relative inline-flex items-center justify-center"
+      >
+        <img
+          alt="t-shirt"
+          class="transition-transform duration-300 ease-in-out w-slide-sm h-slide-sm"
+          data-nimg="1"
+          decoding="async"
+          height="230"
+          loading="lazy"
+          src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FvBk4PRS%2Ft-shirt-7.webp&w=750&q=75"
+          srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FvBk4PRS%2Ft-shirt-7.webp&w=384&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2FvBk4PRS%2Ft-shirt-7.webp&w=750&q=75 2x"
+          style="color: transparent; object-fit: cover; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+          width="360"
+        />
+      </div>
+      <div
+        class="absolute -right-5"
+      >
+        <button
+          class="relative inline-flex items-center justify-center"
+        >
+          <img
+            alt="icon arrow right"
+            class="bg-second p-1 z-10"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="40"
+            src="/arrow-b-right.svg"
+            style="color: transparent;"
+            width="40"
+          />
+        </button>
+      </div>
+      <p
+        class="capitalize font-semibold absolute top-3 right-5 bg-second text-white px-3 py-1"
+      >
+        t-shirt
+      </p>
+    </div>
+    <div
+      class="flex items-center justify-center ml-4"
+    >
+      <div
+        class="transition-all duration-300 ease-in-out mb-2 relative"
+      >
+        <div
+          class="relative inline-flex items-center justify-center"
+        >
+          <img
+            alt="jacket"
+            class="cursor-pointer w-52 h-32"
+            data-nimg="1"
+            decoding="async"
+            height="130"
+            loading="lazy"
+            src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FSKPcmwg%2Fjacket-6.webp&w=640&q=75"
+            srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FSKPcmwg%2Fjacket-6.webp&w=256&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2FSKPcmwg%2Fjacket-6.webp&w=640&q=75 2x"
+            style="color: transparent; object-fit: cover; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+            width="200"
+          />
+        </div>
+        <p
+          class="capitalize font-medium absolute top-3 right-2 text-sm bg-second text-white px-3 py-1"
+        >
+          jacket
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

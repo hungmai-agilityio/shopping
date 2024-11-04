@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List component Should match snapshot 1`] = `
+<div>
+  <div
+    class="className"
+  >
+    <h4
+      class="font-bold text-white lg:text-lg text-sm capitalize"
+    >
+      Home
+    </h4>
+    <div
+      class="mt-5"
+    >
+      <a
+        class="text-white block mb-4 capitalize text-sm cursor-pointer hover:text-purple-700"
+        href="/"
+      >
+        Product
+      </a>
+      <a
+        class="text-white block mb-4 capitalize text-sm cursor-pointer hover:text-purple-700"
+        href="/"
+      >
+        Categories
+      </a>
+      <a
+        class="text-white block mb-4 capitalize text-sm cursor-pointer hover:text-purple-700"
+        href="/signIn"
+      >
+        Login
+      </a>
+    </div>
+  </div>
+</div>
+`;

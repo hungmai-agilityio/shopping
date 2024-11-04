@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Brand component should be render match to snapshot 1`] = `
+<div>
+  <img
+    alt="brand"
+    class="lg:w-44 lg:h-16 w-20 h-16"
+    data-nimg="1"
+    decoding="async"
+    fetchpriority="high"
+    height="70"
+    src="brand-1.svg"
+    style="color: transparent;"
+    width="180"
+  />
+</div>
+`;

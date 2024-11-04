@@ -14,20 +14,16 @@ import {
   popping,
   TAG,
   SIZE,
-  mada
+  mada,
+  QUERY
 } from '@/constants';
 
 // Interfaces
 import { IProduct, ICart } from '@/interfaces';
 
-// Libs
-import {
-  fetchDataId,
-  useUserStore,
-  postData,
-  updateData,
-  useCartStore
-} from '@/libs';
+// Libs + stores
+import { useUserStore, useCartStore } from '@/stores';
+import { getUserCart, updateCart, addCartData } from '@/libs';
 
 // Components
 import {
@@ -40,6 +36,9 @@ import {
   Modal
 } from '@/ui/components';
 
+// Hooks
+import { useModal } from '@/hooks';
+
 interface DetailProps {
   product: IProduct;
 }
@@ -47,27 +46,23 @@ interface DetailProps {
 const ProductDetail = ({ product }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>('');
-  const [showModal, setShowModal] = useState<boolean>(false);
 
   const queryClient = useQueryClient();
   const { addToCart } = useCartStore();
   const { user } = useUserStore();
   const { push } = useRouter();
-
+  const { isOpen, closeModal, openModal } = useModal();
   // Fetch cart items
   const { data: cartItems = [] } = useQuery<ICart[]>({
-    queryKey: ['cart', user?.id],
-    queryFn: () =>
-      fetchDataId({ endpoint: `${END_POINT.CART}?userId=`, id: user?.id }),
-    staleTime: 1000 * 60 * 5,
+    queryKey: [QUERY.CART, user?.id],
+    queryFn: () => getUserCart(user!.id),
     enabled: !!user?.id
   });
 
   const addToCartMutation = useMutation({
-    mutationFn: (cartData: ICart) =>
-      postData({ endpoint: END_POINT.CART, data: cartData }),
+    mutationFn: (cartData: ICart) => addCartData(cartData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY.CART] });
     }
   });
 
@@ -81,19 +76,16 @@ const ProductDetail = ({ product }: DetailProps) => {
     setColor(newColor);
   }, []);
 
-  // Handle close modal
-  const handleCloseModal = () => setShowModal(false);
-
   // Handle confirm for redirect to sign in page
   const handleConfirm = () => {
     push(END_POINT.SIGN_IN);
-    handleCloseModal();
+    closeModal();
   };
 
   // Handle add product to cart
   const handleAddToCart = useCallback(async () => {
     if (!user) {
-      setShowModal(true);
+      openModal();
       return;
     }
 
@@ -103,11 +95,8 @@ const ProductDetail = ({ product }: DetailProps) => {
     );
 
     if (existingItem) {
-      await updateData({
-        endpoint: END_POINT.CART,
-        id: existingItem.id,
-        data: { quantity: existingItem.quantity + quantity },
-        updateMethod: 'PATCH'
+      await updateCart(existingItem.id, {
+        quantity: existingItem.quantity + quantity
       });
     } else {
       const cartData: ICart = {
@@ -118,13 +107,16 @@ const ProductDetail = ({ product }: DetailProps) => {
         quantity: quantity,
         note: ''
       };
+
+      console.log('cartData', cartData);
+
       addToCartMutation.mutate(cartData);
     }
   }, [product, color, quantity, addToCartMutation, cartItems, user?.id]);
 
   const handleCheckout = useCallback(() => {
     if (!user) {
-      setShowModal(true);
+      openModal();
       return;
     }
 
@@ -203,6 +195,7 @@ const ProductDetail = ({ product }: DetailProps) => {
             isTitle
             colors={product.colors!}
             onClick={handleColorChange}
+            selectedColor={color}
           />
           <div>
             <Typography fontWeight={FONT_WEIGHT.BOLD} size={FONT_SIZE.X_SMALL}>
@@ -283,8 +276,8 @@ const ProductDetail = ({ product }: DetailProps) => {
         </div>
       </div>
       <Modal
-        isOpen={showModal}
-        onClose={handleCloseModal}
+        isOpen={isOpen}
+        onClose={closeModal}
         title="Authentication request"
         buttonName="Yes"
         isConfirm

@@ -1,19 +1,25 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
-// Libs
-import { fetchDataId, useUserStore } from '@/libs';
-import { Icon, Modal } from '@/ui/components';
+// Libs + stores
+import { useUserStore } from '@/stores';
+import { getUserCart } from '@/libs';
+
+// Components
+import { Modal, UserIcon } from '@/ui/components';
 
 // Constants
-import { END_POINT } from '@/constants';
+import { END_POINT, QUERY } from '@/constants';
 
 // Interfaces
-import { ICart, IUser } from '@/interfaces';
+import { ICart } from '@/interfaces';
+
+// Hooks
+import { useModal } from '@/hooks';
 
 interface UserActionProps {
   styles?: string;
@@ -22,22 +28,21 @@ interface UserActionProps {
 const UserAction = ({ styles }: UserActionProps) => {
   const router = useRouter();
   const { user, clearUser } = useUserStore();
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const [showModalSignOut, setShowModalSignOut] = useState<boolean>(false);
+
+  const authModal = useModal();
+  const signOutModal = useModal();
 
   // Fetch cart data for the current user
   const { data: cartData = [] } = useQuery<ICart[]>({
-    queryKey: ['cart'],
-    queryFn: () =>
-      fetchDataId({ endpoint: `${END_POINT.CART}?userId=`, id: user?.id }),
-    staleTime: 1000 * 60 * 5,
+    queryKey: [QUERY.CART],
+    queryFn: () => getUserCart(user!.id),
     enabled: !!user
   });
 
   // Handle check currentUser and redirect to profile page
   const handleRedirectProfile = () => {
     if (!user) {
-      setShowModal(true);
+      authModal.openModal();
       return;
     }
     router.push(END_POINT.PROFILE);
@@ -46,26 +51,22 @@ const UserAction = ({ styles }: UserActionProps) => {
   // Handle check currentUser and redirect to cart page
   const handleRedirectCart = () => {
     if (!user) {
-      setShowModal(true);
+      authModal.openModal();
       return;
     }
     router.push(END_POINT.CART);
   };
 
-  const handleCloseModal = () => setShowModal(false);
-
-  const handleToggleModal = () => setShowModalSignOut((prev) => !prev);
-
   // Handle confirm for redirect to sign in page
   const handleConfirm = () => {
     router.push(END_POINT.SIGN_IN);
-    handleCloseModal();
+    authModal.closeModal();
   };
 
   // Handle check currentUser and redirect to wishlist page
   const handleRedirectWishList = () => {
     if (!user) {
-      setShowModal(true);
+      authModal.openModal();
       return;
     }
     router.push(END_POINT.WISHLIST);
@@ -74,40 +75,31 @@ const UserAction = ({ styles }: UserActionProps) => {
   const handleSignOut = () => {
     clearUser();
     router.push(END_POINT.SIGN_IN);
-    handleToggleModal();
+    signOutModal.closeModal();
   };
 
   return (
     <div className={styles}>
-      <Icon
+      <UserIcon
         src="/bag.svg"
         alt="cart icon"
-        width={24}
-        height={24}
         isBadge
         badgeCount={user ? cartData.length : 0}
         onClick={handleRedirectCart}
-        priority
       />
-      <Icon
+      <UserIcon
         src="/heart.svg"
         alt="heart icon"
-        width={24}
-        height={24}
         onClick={handleRedirectWishList}
-        priority
       />
-      <Icon
+      <UserIcon
         src="/user.svg"
         alt="user icon"
-        width={24}
-        height={24}
         onClick={handleRedirectProfile}
-        priority
       />
       <Modal
-        isOpen={showModal}
-        onClose={handleCloseModal}
+        isOpen={authModal.isOpen}
+        onClose={authModal.closeModal}
         title="Authentication request"
         buttonName="Yes"
         isConfirm
@@ -128,8 +120,8 @@ const UserAction = ({ styles }: UserActionProps) => {
         </div>
       </Modal>
       <Modal
-        isOpen={showModalSignOut}
-        onClose={handleToggleModal}
+        isOpen={signOutModal.isOpen}
+        onClose={signOutModal.closeModal}
         title="Confirm sign out"
         buttonName="Sign out"
         isConfirm
@@ -150,13 +142,10 @@ const UserAction = ({ styles }: UserActionProps) => {
         </div>
       </Modal>
       {user && (
-        <Icon
+        <UserIcon
           src="/logout.webp"
           alt="logout icon"
-          width={30}
-          height={30}
-          priority
-          onClick={handleToggleModal}
+          onClick={signOutModal.openModal}
         />
       )}
     </div>

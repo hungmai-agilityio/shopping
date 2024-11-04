@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import Image from 'next/image';
 
 // Constants
-import { TYPE } from '@/constants';
+import { inputTypeClasses, TYPE } from '@/constants';
 
 interface InputProps
   extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
@@ -37,17 +37,13 @@ const Input = forwardRef<HTMLTextAreaElement | HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const typeClasses = {
-      [TYPE.PRIMARY]: 'focus:border focus:border-green-300 h-12',
-      [TYPE.SECOND]: 'border border-gray-400 h-12',
-      [TYPE.THIRD]: `border border-gray-400 resize-none`
-    };
+
 
     const commonClasses = clsx(
       'w-full mt-1.5 font-bold outline-none font-lg text-dark-gray px-2',
       { ' pr-10': icon }
     );
-    const typeClass = typeClasses[variant || TYPE.PRIMARY];
+    const typeClass = inputTypeClasses[variant || TYPE.PRIMARY];
 
     return (
       <div className="mb-3">

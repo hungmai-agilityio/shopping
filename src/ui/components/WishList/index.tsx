@@ -13,9 +13,9 @@ import {
   Icon,
   Row,
   Table,
-  Typography
-} from '@/ui/components/common';
-import CardImage from '@/ui/components/Card/Image';
+  Typography,
+  CardImage
+} from '@/ui/components';
 
 // Interfaces
 import { IWishlist, IProduct } from '@/interfaces';

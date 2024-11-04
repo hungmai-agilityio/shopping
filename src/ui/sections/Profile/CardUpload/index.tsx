@@ -3,17 +3,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
-// Libs
-import { useUserStore, updateData, postAvatar, fetchDataId } from '@/libs';
+// Libs + store
+import { postAvatar, getUserId, updateUser } from '@/libs';
+import { useUserStore } from '@/stores';
 
 // Constants
-import {
-  END_POINT,
-  MESSAGE_API,
-  MESSAGE_VALID,
-  STATUS,
-  VALID_IMAGE
-} from '@/constants';
+import { MESSAGE_API, MESSAGE_VALID, QUERY, STATUS, VALID_IMAGE } from '@/constants';
 
 // Interfaces
 import { IUser } from '@/interfaces';
@@ -31,10 +26,8 @@ const CardUpload = () => {
   const { user, setUser } = useUserStore();
 
   const { data, isLoading } = useQuery<IUser>({
-    queryKey: ['users'],
-    queryFn: () =>
-      fetchDataId({ endpoint: `${END_POINT.USERS}/`, id: user?.id }),
-    staleTime: 1000 * 60 * 5,
+    queryKey: [QUERY.USER],
+    queryFn: () => getUserId(user!.id),
     enabled: !!user
   });
 
@@ -66,11 +59,7 @@ const CardUpload = () => {
         updated_at: new Date().toISOString()
       };
 
-      const response = await updateData({
-        endpoint: END_POINT.USERS,
-        id: user.id,
-        data: updatedUser
-      });
+      const response = await updateUser(user.id, updatedUser);
 
       if (response.data) {
         setUser(updatedUser);
@@ -94,7 +83,7 @@ const CardUpload = () => {
   return (
     <>
       {isLoading ? (
-        <Spinner/>
+        <Spinner />
       ) : (
         <CardProfile
           photo={uploadImage || data?.avatar}

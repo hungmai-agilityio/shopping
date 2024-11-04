@@ -4,7 +4,8 @@ const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/ui/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/constants/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
@@ -52,7 +53,7 @@ const config: Config = {
         'img-sm': '180px'
       },
       maxHeight: {
-        'hero': '428px'
+        hero: '428px'
       },
       fontSize: {
         heading: '40px'

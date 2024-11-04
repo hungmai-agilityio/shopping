@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Skeleton Card product component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full gap-6 my-0 mx-auto"
+  >
+    <div
+      class="animate-pulse w-card-product overflow-hidden"
+    >
+      <div
+        class="h-card-img bg-gray-300"
+      />
+      <div
+        class="py-4"
+      >
+        <div
+          class="h-4 bg-gray-300 mb-2"
+        />
+        <div
+          class="h-3 bg-gray-300 w-1/2 mb-2"
+        />
+        <div
+          class="h-3 bg-gray-300 w-1/4"
+        />
+      </div>
+    </div>
+    <div
+      class="animate-pulse w-card-product overflow-hidden"
+    >
+      <div
+        class="h-card-img bg-gray-300"
+      />
+      <div
+        class="py-4"
+      >
+        <div
+          class="h-4 bg-gray-300 mb-2"
+        />
+        <div
+          class="h-3 bg-gray-300 w-1/2 mb-2"
+        />
+        <div
+          class="h-3 bg-gray-300 w-1/4"
+        />
+      </div>
+    </div>
+    <div
+      class="animate-pulse w-card-product overflow-hidden"
+    >
+      <div
+        class="h-card-img bg-gray-300"
+      />
+      <div
+        class="py-4"
+      >
+        <div
+          class="h-4 bg-gray-300 mb-2"
+        />
+        <div
+          class="h-3 bg-gray-300 w-1/2 mb-2"
+        />
+        <div
+          class="h-3 bg-gray-300 w-1/4"
+        />
+      </div>
+    </div>
+    <div
+      class="animate-pulse w-card-product overflow-hidden"
+    >
+      <div
+        class="h-card-img bg-gray-300"
+      />
+      <div
+        class="py-4"
+      >
+        <div
+          class="h-4 bg-gray-300 mb-2"
+        />
+        <div
+          class="h-3 bg-gray-300 w-1/2 mb-2"
+        />
+        <div
+          class="h-3 bg-gray-300 w-1/4"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

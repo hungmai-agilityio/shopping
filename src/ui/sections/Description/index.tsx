@@ -7,9 +7,7 @@ import Image from 'next/image';
 import { FONT_SIZE, FONT_WEIGHT, TAG } from '@/constants';
 
 // Components
-import { Typography } from '@/ui/components';
-import Tabs from '@/ui/components/Tabs';
-import { Panel } from '@/ui/components/Tabs/Panel';
+import { Panel, Tabs, Typography } from '@/ui/components';
 
 const Description = () => {
   const [selectedTab, setSelectedTab] = useState<string>('description');

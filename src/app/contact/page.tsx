@@ -12,7 +12,14 @@ import {
 } from '@/constants';
 
 // Components
-import { Button, Card, Hero, Input, Typography } from '@/ui/components';
+import {
+  Button,
+  Card,
+  Heading,
+  Hero,
+  Input,
+  Typography
+} from '@/ui/components';
 
 export const metadata: Metadata = {
   title: 'Contact'
@@ -29,14 +36,7 @@ const ContactPage = () => {
       <Hero isBreadCrumb items={breadCrumb} styles="md:h-card-lg">
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 container">
           <div className="max-w-card-sm lg:text-left text-center">
-            <Typography
-              fontWeight={FONT_WEIGHT.BOLD}
-              color="text-white"
-              tag={TAG.H1}
-              className={`${mada.className} capitalize lg:text-5xl text-4xl mt-10 mb-6`}
-            >
-              Contact
-            </Typography>
+            <Heading>Contact</Heading>
             <Typography
               color="text-white"
               className="my-8 md:block hidden"

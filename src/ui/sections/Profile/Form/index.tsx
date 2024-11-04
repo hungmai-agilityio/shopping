@@ -3,22 +3,19 @@
 import { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
 
-// Libs
-import {
-  useUserStore,
-  updateData,
-  updateProfileSchema,
-  fetchDataId
-} from '@/libs';
+// Libs + stores
+import { updateProfileSchema, getUserId, updateUser } from '@/libs';
+import { useUserStore } from '@/stores';
 
 // Constants
 import {
-  END_POINT,
   FONT_SIZE,
   FONT_WEIGHT,
   GENDER,
   MESSAGE_API,
+  QUERY,
   STATUS,
   TYPE
 } from '@/constants';
@@ -36,7 +33,6 @@ import {
 
 // Interfaces
 import { IUser } from '@/interfaces';
-import { useQuery } from '@tanstack/react-query';
 
 const ProfileForm = () => {
   const [toast, setToast] = useState<{
@@ -64,10 +60,8 @@ const ProfileForm = () => {
 
   // Fetch user with current user id
   const { data, isLoading } = useQuery<IUser>({
-    queryKey: ['users'],
-    queryFn: () =>
-      fetchDataId({ endpoint: `${END_POINT.USERS}/`, id: user?.id }),
-    staleTime: 1000 * 60 * 5,
+    queryKey: [QUERY.USER],
+    queryFn: () => getUserId(user!.id),
     enabled: !!user
   });
 
@@ -107,11 +101,7 @@ const ProfileForm = () => {
       updated_at: new Date().toISOString()
     };
 
-    const response = await updateData({
-      endpoint: END_POINT.USERS,
-      id: user.id,
-      data: updatedUser
-    });
+    const response = await await updateUser(user.id, updatedUser);
 
     if (response.data) {
       setUser(updatedUser);
@@ -127,7 +117,7 @@ const ProfileForm = () => {
   return (
     <>
       {isLoading ? (
-        <Spinner/>
+        <Spinner />
       ) : (
         <form className="container mb-28" onSubmit={handleSubmit(onSubmit)}>
           <div className="md:flex justify-between items-center gap-10 mb-4">

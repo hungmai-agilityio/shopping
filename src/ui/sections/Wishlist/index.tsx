@@ -5,29 +5,32 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 
 // Constants
-import { END_POINT, MESSAGE_API, STATUS } from '@/constants';
+import { END_POINT, MESSAGE_API, QUERY, STATUS } from '@/constants';
 
 // Interfaces
 import { IWishlist, IProduct, ICart } from '@/interfaces';
 
-// Libs
+// Libs + stores
+import { useUserStore } from '@/stores';
 import {
   deleteData,
-  fetchDataId,
-  useUserStore,
   postData,
-  updateData
+  getUserWishList,
+  getUserCart,
+  updateCart
 } from '@/libs';
 
 // Components
 import { Modal, WishList, ToastMessage } from '@/ui/components';
+
+// Hooks
+import { useModal } from '@/hooks';
 
 interface WishListSectionProps {
   products: IProduct[];
 }
 
 const WishListSection = ({ products }: WishListSectionProps) => {
-  const [isModalOpen, setModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
   const [toast, setToast] = useState<{
     status: STATUS;
@@ -36,13 +39,12 @@ const WishListSection = ({ products }: WishListSectionProps) => {
 
   const { user } = useUserStore();
   const queryClient = useQueryClient();
+  const { isOpen, closeModal, openModal } = useModal();
 
   // Fetch wishlist items
   const { data: wishlist = [], error: wishlistError } = useQuery<IWishlist[]>({
-    queryKey: ['wishlist'],
-    queryFn: () =>
-      fetchDataId({ endpoint: `${END_POINT.WISHLIST}?userId=`, id: user?.id }),
-    staleTime: 1000 * 60 * 5,
+    queryKey: [QUERY.WISHLIST],
+    queryFn: () => getUserWishList(user!.id),
     enabled: !!user
   });
 
@@ -50,23 +52,21 @@ const WishListSection = ({ products }: WishListSectionProps) => {
     mutationFn: (id: string) =>
       deleteData({ endpoint: END_POINT.WISHLIST, id }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['wishlist'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY.WISHLIST] });
     }
   });
 
   // Handle toggle modal delete product
   const handleOpenModal = (id: string) => {
     setProductToDelete(id);
-    setModalOpen(true);
+    openModal();
   };
-
-  const handleCloseModal = () => setModalOpen(false);
 
   // Handle delete product from wishlist
   const handleDeleteProduct = useCallback(() => {
     if (productToDelete) {
       removeFromWishlist.mutate(productToDelete);
-      handleCloseModal();
+      closeModal();
       setProductToDelete(null);
     }
   }, [productToDelete, removeFromWishlist]);
@@ -75,17 +75,14 @@ const WishListSection = ({ products }: WishListSectionProps) => {
     mutationFn: (item: ICart) =>
       postData({ endpoint: END_POINT.CART, data: item }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] });
+      queryClient.invalidateQueries({ queryKey: [QUERY.CART] });
     }
   });
 
   // Handle adding product to cart
   const handleAddProductCart = useCallback(
     async (item: IWishlist) => {
-      const cartItems = await fetchDataId({
-        endpoint: `${END_POINT.CART}?userId=`,
-        id: user?.id
-      });
+      const cartItems = await getUserCart(user!.id);
 
       const existingItem = cartItems.find(
         (cartItem: ICart) =>
@@ -93,11 +90,8 @@ const WishListSection = ({ products }: WishListSectionProps) => {
       );
 
       if (existingItem) {
-        await updateData({
-          endpoint: END_POINT.CART,
-          id: existingItem.id,
-          data: { quantity: existingItem.quantity + 1 },
-          updateMethod: 'PATCH'
+        await updateCart(existingItem.id, {
+          quantity: existingItem.quantity + 1
         });
 
         setToast({
@@ -139,8 +133,8 @@ const WishListSection = ({ products }: WishListSectionProps) => {
         />
       </section>
       <Modal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
+        isOpen={isOpen}
+        onClose={closeModal}
         title="Confirm Deletion"
         isConfirm
         buttonName="Delete"

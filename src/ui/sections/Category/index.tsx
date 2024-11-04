@@ -5,7 +5,7 @@ import { FONT_SIZE, FONT_WEIGHT, mada, popping } from '@/constants';
 import { ICategories } from '@/interfaces';
 
 // Components
-import { SlideCategories, Typography } from '@/ui/components';
+import { CarouselCategories, Typography } from '@/ui/components';
 
 interface CategoryProps {
   categories: ICategories[];
@@ -35,7 +35,7 @@ const CategorySection = ({ categories }: CategoryProps) => {
         </Typography>
       </div>
       <div className="lg:mt-0 mt-14 flex justify-end">
-        <SlideCategories categories={categories} />
+        <CarouselCategories categories={categories} />
       </div>
     </div>
   );

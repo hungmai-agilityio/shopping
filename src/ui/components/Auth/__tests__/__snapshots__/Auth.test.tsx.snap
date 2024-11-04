@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Auth component should be render match to snapshot 1`] = `
+<div>
+  <section
+    class="className bg-no-repeat bg-cover text-white"
+    style="background-image: url(/product.webp);"
+  >
+    <div
+      class="bg-gradient-overlay py-20"
+    >
+      <div
+        class="w-full container"
+      >
+        <div
+          class="md:max-w-card-sm"
+        >
+          <nav
+            aria-label="breadcrumb"
+            class="flex items-center space-x-2 text-white"
+          >
+            <span
+              class="flex items-center"
+            >
+              <a
+                class="hover:underline"
+                href="/"
+              >
+                Home
+              </a>
+              <span
+                class="mx-2 text-white"
+              >
+                /
+              </span>
+            </span>
+            <span
+              class="flex items-center"
+            >
+              <span
+                class="font-bold text-white"
+              >
+                My Account
+              </span>
+            </span>
+          </nav>
+          <h1
+            class="font-bold text-white text-4xl className mt-8 text-5xl"
+          >
+            My Account
+          </h1>
+          <h2
+            class="font-bold text-white text-4xl className mt-11"
+          >
+            Form
+          </h2>
+          <div
+            class="mt-6"
+          >
+            Sub form
+          </div>
+          <div
+            class="mt-10 mb-20"
+          >
+            form login
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;

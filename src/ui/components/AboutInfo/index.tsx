@@ -1,6 +1,5 @@
 import { FONT_SIZE, FONT_WEIGHT, mada, TAG } from '@/constants';
-import CardImage from '@/ui/components/Card/Image';
-import { Typography } from '@/ui/components/common';
+import { CardImage, Typography } from '@/ui/components';
 import { clsx } from 'clsx';
 
 interface AboutInfoProps {

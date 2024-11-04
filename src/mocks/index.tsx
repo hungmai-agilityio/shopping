@@ -1,3 +1,5 @@
+import { IUser } from "@/interfaces";
+
 export const mockBreadCrumb = [
   { label: 'Home', href: '/' },
   { label: 'Products', href: '/products' },
@@ -164,4 +166,20 @@ export const mockProduct = {
   rating: '9k',
   sell: 'Best quality',
   stoct: 1710
+};
+
+export const mockUser: IUser = {
+  firstName: 'User',
+  lastName: 'Client',
+  email: 'test@gmail.com',
+  password: '$2a$10$qr08KJVSJLESwuJQ78kny.UGKcaU/aNboL88SZhmHDXcDzkNnVPym',
+  confirm: '$2a$10$tx21E598PkENw7E.ai8hkeAyPiYsGbnzhJuzt5tRbS.CddTkvHo0u',
+  id: '2087f1a0-073e-408f-af40-ecf2fe20e1c8',
+  avatar: '',
+  gender: '',
+  address: '',
+  phone: '',
+  street: '',
+  created_at: '2024-04-24T15:58:05.791Z',
+  updated_at: '2024-04-24T15:58:05.791Z'
 };

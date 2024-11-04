@@ -2,13 +2,10 @@ import { Suspense } from 'react';
 import { Metadata } from 'next';
 
 // Constants
-import { END_POINT, FONT_WEIGHT, popping, TAG } from '@/constants';
-
-// Interfaces
-import { IProduct } from '@/interfaces';
+import { FONT_WEIGHT, popping, TAG } from '@/constants';
 
 // Libs
-import { fetchDataId } from '@/libs';
+import { getProductId } from '@/libs';
 
 // Components
 import { BreadCrumb, CardProductSkeleton, Typography } from '@/ui/components';
@@ -27,10 +24,8 @@ interface Params {
 const ProductDetailPage = async ({ params }: { params: Params }) => {
   const { id } = params;
 
-  const product: IProduct = await fetchDataId({
-    endpoint: `${END_POINT.PRODUCTS}/`,
-    id: id
-  });
+  const { data: product } = await getProductId(id);
+
   const queryCategory = product.category ? `?category=${product.category}` : '';
 
   const breadCrumb = [

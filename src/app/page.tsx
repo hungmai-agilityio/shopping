@@ -18,7 +18,7 @@ import {
 import { IComments, ISearchProps } from '@/interfaces';
 
 // Libs
-import { fetchData } from '@/libs';
+import { getCategories, getComments } from '@/libs';
 
 // Components
 import {
@@ -27,9 +27,10 @@ import {
   Card,
   CardImage,
   Hero,
-  SlideProduct,
-  Slideshow,
-  Typography
+  CarouselProduct,
+  Carousel,
+  Typography,
+  Heading
 } from '@/ui/components';
 
 // Sections
@@ -43,26 +44,15 @@ const ButtonRedirect = dynamic(
 );
 
 const HomePage = async ({ searchParams }: ISearchProps) => {
-  const { data: categories, error: categoryError } = await fetchData({
-    endpoint: END_POINT.CATEGORY
-  });
-  const { data: comments, error: commentsError } = await fetchData({
-    endpoint: END_POINT.COMMENT
-  });
+  const { data: categories, error: categoryError } = await getCategories();
+  const { data: comments, error: commentsError } = await getComments();
 
   return (
     <div className={`${popping.className}`}>
       <Hero>
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 container">
           <div className="my-36 lg:max-w-card-sm lg:text-left text-center">
-            <Typography
-              fontWeight={FONT_WEIGHT.BOLD}
-              color="text-white"
-              tag={TAG.H1}
-              className={`${mada.className} capitalize lg:text-5xl text-xl my-5`}
-            >
-              get the latest dress models from us
-            </Typography>
+            <Heading>get the latest dress models from us</Heading>
             <Typography
               color="text-gray-300"
               className="my-8 md:block hidden"
@@ -110,7 +100,7 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
               priority
               className="absolute top-40 left-52 xl:block hidden"
             />
-            <Slideshow images={slideImage} />
+            <Carousel images={slideImage} />
           </div>
         </div>
       </Hero>
@@ -133,7 +123,7 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
         />
       </section>
       <section className="md:flex hidden">
-        <SlideProduct products={slideProducts} />
+        <CarouselProduct products={slideProducts} />
       </section>
       {commentsError ? (
         ''
@@ -146,12 +136,9 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
           >
             Testimonials
           </Typography>
-          <div className="mt-8 w-full xl:flex justify-center gap-6">
+          <div className="mt-8 xl:flex justify-center gap-6">
             {comments.map((item: IComments) => (
-              <div
-                key={item.id}
-                className="w-full mt-4 mx-auto flex justify-center"
-              >
+              <div key={item.id} className="w-full mt-4  flex justify-center">
                 <Card
                   photo={item.avatar}
                   name={item.name}

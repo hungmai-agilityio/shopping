@@ -12,7 +12,7 @@ exports[`Color picker component should render match to snapshot 1`] = `
       class="mt-4 flex items-center gap-3"
     >
       <button
-        class="h-4 w-4 rounded-full focus:border focus:border-green-800 border border-dark ring-2 ring-green-800"
+        class="h-4 w-4 rounded-full focus:border focus:border-green-800 border border-dark"
         id="White"
         style="background-color: White;"
       />
