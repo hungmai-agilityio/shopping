@@ -1,5 +1,6 @@
 export { default as UserAction } from '@/ui/components/UserAction';
 export { default as UserIcon } from '@/ui/components/UserAction/Icon';
+export { default as ButtonRedirect } from '@/ui/components/UserAction/Redirect';
 export { default as CartProduct } from '@/ui/components/Cart/Product';
 export { default as CartItem } from '@/ui/components/Cart/Product/Item';
 export { default as CartCheckout } from '@/ui/components/Cart/Checkout';

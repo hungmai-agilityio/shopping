@@ -8,9 +8,10 @@ import { NavItem } from '@/ui/components/common/Navbar/Item';
 interface NavbarProps {
   items: Array<{ name: string; url?: string }>;
   styles?: string;
+  closeMenu?: () => void;
 }
 
-const Navbar = ({ items, styles }: NavbarProps) => {
+const Navbar = ({ items, styles, closeMenu }: NavbarProps) => {
   const pathname = usePathname();
 
   return (
@@ -21,6 +22,7 @@ const Navbar = ({ items, styles }: NavbarProps) => {
           name={item.name}
           url={item.url}
           isActive={pathname === item.url}
+          onClick={closeMenu}
         />
       ))}
     </nav>

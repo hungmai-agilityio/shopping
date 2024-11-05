@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 
 // Constants
 import {
@@ -10,7 +9,6 @@ import {
   popping,
   slideImage,
   slideProducts,
-  TAG,
   TYPE
 } from '@/constants';
 
@@ -18,7 +16,7 @@ import {
 import { IComments, ISearchProps } from '@/interfaces';
 
 // Libs
-import { getCategories, getComments } from '@/libs';
+import { checkUserLogged, getCategories, getComments } from '@/libs';
 
 // Components
 import {
@@ -30,28 +28,23 @@ import {
   CarouselProduct,
   Carousel,
   Typography,
-  Heading
+  Heading,
+  ButtonRedirect
 } from '@/ui/components';
 
 // Sections
-import { CategorySection, ProductSection } from '@/ui/sections';
-
-const ButtonRedirect = dynamic(
-  () => import('@/ui/components/UserAction/Redirect'),
-  {
-    ssr: false
-  }
-);
+import { CategorySection, ProductWrapper } from '@/ui/sections';
 
 const HomePage = async ({ searchParams }: ISearchProps) => {
   const { data: categories, error: categoryError } = await getCategories();
   const { data: comments, error: commentsError } = await getComments();
+  const isUser = await checkUserLogged();
 
   return (
     <div className={`${popping.className}`}>
       <Hero>
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 container">
-          <div className="my-32 lg:max-w-card-sm lg:text-left text-center">
+          <div className="my-36 lg:max-w-card-sm lg:text-left text-center">
             <Heading>get the latest dress models from us</Heading>
             <Typography
               color="text-gray-300"
@@ -117,7 +110,7 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
         {categoryError ? '' : <CategorySection categories={categories || []} />}
       </section>
       <section className="my-20 container">
-        <ProductSection
+        <ProductWrapper
           categories={categories || []}
           searchParams={searchParams!}
         />
@@ -169,7 +162,11 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
             ullamcorper.
           </Typography>
 
-          <ButtonRedirect name="Login" url={END_POINT.SIGN_IN} />
+          <ButtonRedirect
+            isLogged={isUser}
+            name="Login"
+            url={END_POINT.SIGN_IN}
+          />
         </div>
         <CardImage
           src="/product.webp"

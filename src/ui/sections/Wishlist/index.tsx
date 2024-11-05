@@ -1,43 +1,38 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 
 // Constants
-import { END_POINT, MESSAGE_API, QUERY, STATUS } from '@/constants';
+import { MESSAGE_API, QUERY, STATUS } from '@/constants';
 
 // Interfaces
-import { IWishlist, IProduct, ICart } from '@/interfaces';
+import { IWishlist, IProduct, ICart, IUser } from '@/interfaces';
 
 // Libs + stores
-import { useUserStore } from '@/stores';
-import {
-  deleteData,
-  postData,
-  getUserWishList,
-  getUserCart,
-  updateCart
-} from '@/libs';
+import { getUserWishList, getUserCart, updateCart } from '@/libs';
 
 // Components
 import { Modal, WishList, ToastMessage } from '@/ui/components';
 
 // Hooks
-import { useModal } from '@/hooks';
+import { useAddDataToCart, useModal, useRemoveFromWishlist } from '@/hooks';
 
 interface WishListSectionProps {
   products: IProduct[];
+  user: IUser;
 }
 
-const WishListSection = ({ products }: WishListSectionProps) => {
+const WishListSection = ({ user, products }: WishListSectionProps) => {
   const [productToDelete, setProductToDelete] = useState<string | null>(null);
   const [toast, setToast] = useState<{
     status: STATUS;
     message: string;
   } | null>(null);
 
-  const { user } = useUserStore();
+  const removeFromWishlist = useRemoveFromWishlist();
+  const addDataToCart = useAddDataToCart();
   const queryClient = useQueryClient();
   const { isOpen, closeModal, openModal } = useModal();
 
@@ -46,14 +41,6 @@ const WishListSection = ({ products }: WishListSectionProps) => {
     queryKey: [QUERY.WISHLIST],
     queryFn: () => getUserWishList(user!.id),
     enabled: !!user
-  });
-
-  const removeFromWishlist = useMutation({
-    mutationFn: (id: string) =>
-      deleteData({ endpoint: END_POINT.WISHLIST, id }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY.WISHLIST] });
-    }
   });
 
   // Handle toggle modal delete product
@@ -70,14 +57,6 @@ const WishListSection = ({ products }: WishListSectionProps) => {
       setProductToDelete(null);
     }
   }, [productToDelete, removeFromWishlist]);
-
-  const addToCart = useMutation({
-    mutationFn: (item: ICart) =>
-      postData({ endpoint: END_POINT.CART, data: item }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY.CART] });
-    }
-  });
 
   // Handle adding product to cart
   const handleAddProductCart = useCallback(
@@ -108,7 +87,7 @@ const WishListSection = ({ products }: WishListSectionProps) => {
           note: '',
           quantity: 1
         };
-        addToCart.mutate(newItem);
+        addDataToCart.mutate(newItem);
         setToast({
           status: STATUS.SUCCESS,
           message: MESSAGE_API.UPDATE_CART_SUCCESS
@@ -127,7 +106,7 @@ const WishListSection = ({ products }: WishListSectionProps) => {
         <WishList
           data={wishlist}
           products={products}
-          isDisable={addToCart.isPending}
+          isDisable={addDataToCart.isPending}
           onAddCart={handleAddProductCart}
           onDelete={handleOpenModal}
         />

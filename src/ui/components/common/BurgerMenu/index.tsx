@@ -4,22 +4,22 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 // Components
-import { Navbar } from '@/ui/components';
-import dynamic from 'next/dynamic';
-
-const UserAction = dynamic(() => import('@/ui/components/UserAction'), {
-  ssr: false
-});
+import { Navbar, UserAction } from '@/ui/components';
+import { IUser } from '@/interfaces';
 
 interface BurgerProps {
+  user: IUser;
   items: Array<{ name: string; url?: string }>;
 }
 
-const BurgerMenu = ({ items }: BurgerProps) => {
+const BurgerMenu = ({ user, items }: BurgerProps) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   // Toggle menu open/close state
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  // Close menu function
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <div>
@@ -44,9 +44,14 @@ const BurgerMenu = ({ items }: BurgerProps) => {
         <Navbar
           items={items}
           styles="flex flex-col gap-6 text-2xl text-center"
+          closeMenu={closeMenu}
         />
         <hr className="my-8" />
-        <UserAction styles="flex justify-center gap-12 mt-12" />
+        <UserAction
+          user={user}
+          styles="flex justify-center gap-12 mt-12"
+          closeMenu={closeMenu}
+        />
       </div>
     </div>
   );

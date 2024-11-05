@@ -69,3 +69,7 @@ export enum STATUS {
   ERROR = 'error',
   WARNING = 'warning'
 }
+
+export enum TIME_STATUS {
+  STALE_TIME = 1000 * 60 * 60, // milliseconds * seconds * minutes = 1 hour
+}

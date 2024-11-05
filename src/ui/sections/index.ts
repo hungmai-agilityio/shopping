@@ -1,8 +1,8 @@
 export { default as Header } from '@/ui/sections/Header';
 export { default as Footer } from '@/ui/sections/Footer';
 export { default as CategorySection } from '@/ui/sections/Category';
+export { default as ProductWrapper } from '@/ui/sections/Product/Wrapper';
 export { default as ProductSection } from '@/ui/sections/Product';
-export { default as ProductList } from '@/ui/sections/Product/List';
 export { default as ProductDetail } from '@/ui/sections/ProductDetail';
 export { default as Description } from '@/ui/sections/Description';
 export { default as CheckoutSection } from '@/ui/sections/Checkout';

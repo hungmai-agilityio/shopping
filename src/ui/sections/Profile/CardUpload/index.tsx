@@ -8,24 +8,33 @@ import { postAvatar, getUserId, updateUser } from '@/libs';
 import { useUserStore } from '@/stores';
 
 // Constants
-import { MESSAGE_API, MESSAGE_VALID, QUERY, STATUS, VALID_IMAGE } from '@/constants';
+import {
+  MESSAGE_API,
+  MESSAGE_VALID,
+  QUERY,
+  STATUS,
+  VALID_IMAGE
+} from '@/constants';
 
 // Interfaces
 import { IUser } from '@/interfaces';
 
 // Components
-import { CardProfile, Spinner, ToastMessage } from '@/ui/components';
+import { CardProfile, ToastMessage } from '@/ui/components';
 
-const CardUpload = () => {
+interface CardUploadProps {
+  user: IUser;
+}
+const CardUpload = ({ user }: CardUploadProps) => {
   const [uploadImage, setUploadImage] = useState<string>('');
   const [toast, setToast] = useState<{
     status: STATUS;
     message: string;
   } | null>(null);
 
-  const { user, setUser } = useUserStore();
+  const { setUser } = useUserStore();
 
-  const { data, isLoading } = useQuery<IUser>({
+  const { data } = useQuery<IUser>({
     queryKey: [QUERY.USER],
     queryFn: () => getUserId(user!.id),
     enabled: !!user
@@ -82,16 +91,12 @@ const CardUpload = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <CardProfile
-          photo={uploadImage || data?.avatar}
-          useName={fullName}
-          detail={<p className="text-dark-gray">{data?.email || ''}</p>}
-          onButtonClick={handleAvatarUpdate}
-        />
-      )}
+      <CardProfile
+        photo={uploadImage || data?.avatar}
+        useName={fullName}
+        detail={<p className="text-dark-gray">{data?.email || ''}</p>}
+        onButtonClick={handleAvatarUpdate}
+      />
       {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </>
   );

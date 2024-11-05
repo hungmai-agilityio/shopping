@@ -1,4 +1,6 @@
-import { END_POINT } from '@/constants';
+import { getCookie } from 'cookies-next';
+
+import { END_POINT, KEY } from '@/constants';
 import { IUser } from '@/interfaces';
 import {
   fetchData,
@@ -39,4 +41,10 @@ export const updateUser = async (id: string, data: IUser) => {
     id: id,
     data: data
   });
+};
+
+export const getUserFromCookie = async () => {
+  const { cookies } = await import('next/headers');
+  const userCookie = getCookie(KEY.USER, { cookies });
+  return userCookie ? JSON.parse(userCookie) : null;
 };

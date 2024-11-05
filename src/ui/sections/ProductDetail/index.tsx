@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 
 // Constants
@@ -23,7 +23,7 @@ import { IProduct, ICart } from '@/interfaces';
 
 // Libs + stores
 import { useUserStore, useCartStore } from '@/stores';
-import { getUserCart, updateCart, addCartData } from '@/libs';
+import { getUserCart, updateCart } from '@/libs';
 
 // Components
 import {
@@ -37,7 +37,7 @@ import {
 } from '@/ui/components';
 
 // Hooks
-import { useModal } from '@/hooks';
+import { useAddDataToCart, useModal } from '@/hooks';
 
 interface DetailProps {
   product: IProduct;
@@ -47,8 +47,9 @@ const ProductDetail = ({ product }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>('');
 
-  const queryClient = useQueryClient();
   const { addToCart } = useCartStore();
+  const addDataToCart = useAddDataToCart();
+
   const { user } = useUserStore();
   const { push } = useRouter();
   const { isOpen, closeModal, openModal } = useModal();
@@ -57,13 +58,6 @@ const ProductDetail = ({ product }: DetailProps) => {
     queryKey: [QUERY.CART, user?.id],
     queryFn: () => getUserCart(user!.id),
     enabled: !!user?.id
-  });
-
-  const addToCartMutation = useMutation({
-    mutationFn: (cartData: ICart) => addCartData(cartData),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY.CART] });
-    }
   });
 
   // Handle set quantity
@@ -110,9 +104,9 @@ const ProductDetail = ({ product }: DetailProps) => {
 
       console.log('cartData', cartData);
 
-      addToCartMutation.mutate(cartData);
+      addDataToCart.mutate(cartData);
     }
-  }, [product, color, quantity, addToCartMutation, cartItems, user?.id]);
+  }, [product, color, quantity, addDataToCart, cartItems, user?.id]);
 
   const handleCheckout = useCallback(() => {
     if (!user) {
@@ -263,7 +257,7 @@ const ProductDetail = ({ product }: DetailProps) => {
             size={SIZE.SMALL}
             style={{ paddingLeft: '6px' }}
             onClick={handleAddToCart}
-            disabled={addToCartMutation.isPending}
+            disabled={addDataToCart.isPending}
           >
             <Image
               src="/bag-second.svg"

@@ -2,6 +2,8 @@ import bcrypt from 'bcryptjs';
 
 // Libs
 import { getUserEmail } from '@/libs';
+import { hasCookie } from 'cookies-next';
+import { KEY } from '@/constants';
 
 /**
  * Check user by email
@@ -29,4 +31,9 @@ export const checkPassword = async (
   hashedPassword: string
 ): Promise<boolean> => {
   return await bcrypt.compare(inputPassword, hashedPassword);
+};
+
+export const checkUserLogged = async () => {
+  const { cookies } = await import('next/headers');
+  return hasCookie(KEY.USER, { cookies });
 };

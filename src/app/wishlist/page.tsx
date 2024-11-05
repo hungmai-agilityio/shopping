@@ -1,23 +1,20 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 
 // Constants
 import { FONT_SIZE, FONT_WEIGHT, popping } from '@/constants';
 
 // Components
 import { Heading, Hero, Typography } from '@/ui/components';
-import { getProducts } from '@/libs';
+import { getProducts, getUserFromCookie } from '@/libs';
+import WishListSection from '@/ui/sections/Wishlist';
 
 export const metadata: Metadata = {
   title: 'Whish list'
 };
 
-const WishListSection = dynamic(() => import('@/ui/sections/Wishlist'), {
-  ssr: false
-});
-
 const WishListPage = async () => {
   const { data, error } = await getProducts();
+  const user = await getUserFromCookie();
 
   const breadCrumb = [
     { label: 'Home', href: '/' },
@@ -51,7 +48,7 @@ const WishListPage = async () => {
           Unable to load wish list data, try again later
         </Typography>
       ) : (
-        <WishListSection products={data} />
+        <WishListSection user={user} products={data} />
       )}
     </div>
   );

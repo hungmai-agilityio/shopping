@@ -8,11 +8,17 @@ interface NavItemProps {
   name: string;
   url?: string;
   isActive?: boolean;
+  onClick?: () => void;
 }
 
-export const NavItem = ({ name, url, isActive = false }: NavItemProps) => {
+export const NavItem = ({
+  name,
+  url,
+  isActive = false,
+  onClick
+}: NavItemProps) => {
   return (
-    <div className="relative">
+    <div className="relative" onClick={onClick}>
       <Link
         href={url || '#'}
         className={clsx(`${mada.className}  lg:text-lg text-base capitalize`, {

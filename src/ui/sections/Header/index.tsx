@@ -1,15 +1,18 @@
+// Constants
 import { navItems } from '@/constants';
-import { BurgerMenu, Logo, Navbar } from '@/ui/components';
-import dynamic from 'next/dynamic';
 
-const UserAction = dynamic(() => import('@/ui/components/UserAction'), {
-  ssr: false
-});
+// Components
+import { BurgerMenu, Logo, Navbar, UserAction } from '@/ui/components';
 
-const Header = () => {
+// Libs
+import { getUserFromCookie } from '@/libs';
+
+const Header = async () => {
+  const user = await getUserFromCookie();
+
   return (
     <header className="bg-white h-20 shadow-header">
-      <div className="container py-6 flex justify-between lg:items-start items-center ">
+      <div className="container py-6 flex justify-between lg:items-start items-center">
         <Logo
           src="/logo.svg"
           alt="logo-home"
@@ -18,11 +21,11 @@ const Header = () => {
           title="mangcoding Store"
         />
         <div className="lg:hidden block">
-          <BurgerMenu items={navItems} />
+          <BurgerMenu user={user} items={navItems} />
         </div>
         <div className="lg:flex hidden gap-10 items-start">
           <Navbar items={navItems} styles="flex gap-10" />
-          <UserAction styles="flex gap-10" />
+          <UserAction styles="flex gap-10" user={user} />
         </div>
       </div>
     </header>

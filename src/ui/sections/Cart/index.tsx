@@ -15,7 +15,12 @@ import { ICart, IProduct } from '@/interfaces';
 import { ProductPayment } from '@/ui/sections';
 
 // Hooks
-import { useCartActions } from '@/hooks';
+import {
+  useClearUserCart,
+  useRemoveFromCart,
+  useSaveNote,
+  useUpdateQuantity
+} from '@/hooks';
 import { QUERY } from '@/constants';
 
 interface CartSectionProps {
@@ -30,8 +35,10 @@ const CartSection = memo(({ productData }: CartSectionProps) => {
     enabled: !!user
   });
 
-  const { removeFromCart, clearUserCart, saveNote, updateQuantity } =
-    useCartActions({ cartData });
+  const removeFromCart = useRemoveFromCart();
+  const clearUserCart = useClearUserCart({ cartData });
+  const saveNote = useSaveNote();
+  const updateQuantity = useUpdateQuantity();
 
   // Total price (update when change quantity and remove product)
   const totalPrice = useMemo(() => {

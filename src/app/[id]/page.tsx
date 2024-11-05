@@ -11,7 +11,7 @@ import { getProductId } from '@/libs';
 import { BreadCrumb, CardProductSkeleton, Typography } from '@/ui/components';
 
 // Sections
-import { ProductList, ProductDetail, Description } from '@/ui/sections';
+import { ProductSection, ProductDetail, Description } from '@/ui/sections';
 
 export const metadata: Metadata = {
   title: 'Product Detail'
@@ -50,7 +50,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
         </Typography>
         <div className="mt-10">
           <Suspense key={product.category} fallback={<CardProductSkeleton />}>
-            <ProductList query={queryCategory} isShowMore />
+            <ProductSection query={queryCategory} isShowMore />
           </Suspense>
         </div>
       </section>

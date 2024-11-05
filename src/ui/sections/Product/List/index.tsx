@@ -1,32 +1,152 @@
-// Libs
-import { getProducts } from '@/libs';
+'use client';
+
+import { useCallback, useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import { v4 as uuidv4 } from 'uuid';
+
+// Constants
+import { END_POINT, FONT_SIZE, QUERY } from '@/constants';
+
+// Interfaces
+import { IProduct, IWishlist } from '@/interfaces';
+
+// Libs + stores
+import { useUserStore } from '@/stores';
+import { getUserWishList } from '@/libs';
 
 // Components
-import { Typography } from '@/ui/components';
+import { Button, CardProduct, Modal, Typography } from '@/ui/components';
 
-//Sections
-import CardProductList from '@/ui/sections/Product/Card';
+// Hooks
+import { useAddToWishlist, useModal, useRemoveFromWishlist } from '@/hooks';
 
-interface ProductListProps {
-  query?: string;
+interface CardProductListProps {
+  products: IProduct[];
   isShowMore?: boolean;
 }
-const ProductList = async ({ query, isShowMore }: ProductListProps) => {
-  const param = query ? query : '';
+const CardProductList = ({ products, isShowMore }: CardProductListProps) => {
+  const [visibleCount, setVisibleCount] = useState<number>(8);
 
-  const { data, error } = await getProducts(param);
+  const { push } = useRouter();
+  const removeFromWishlist = useRemoveFromWishlist();
+  const addToWishlist = useAddToWishlist();
+
+  const { user } = useUserStore();
+  const { isOpen, closeModal, openModal } = useModal();
+
+  // Get Data Wishlist
+  const { data: wishlist = [] } = useQuery<IWishlist[]>({
+    queryKey: [QUERY.WISHLIST],
+    queryFn: () => getUserWishList(user!.id),
+    enabled: !!user
+  });
+
+  /**
+   * Check if this product is in your favorites list?
+   * @param {string} productId
+   */
+  const isProductInWishlist = (productId: string) =>
+    wishlist.some((item: IWishlist) => item.productId === productId);
+
+  /**
+   * Handle toggle add/remove product with Wishlist
+   * @param {IProduct} product
+   */
+  const handleToggleFavorite = useCallback(
+    (product: IProduct) => {
+      if (!user) {
+        openModal();
+        return;
+      }
+      if (isProductInWishlist(product.id)) {
+        const wishlistItem = wishlist.find(
+          (item: IWishlist) => item.productId === product.id
+        );
+        if (wishlistItem) {
+          removeFromWishlist.mutate(wishlistItem.id);
+        }
+        return;
+      }
+
+      const newItem: IWishlist = {
+        id: uuidv4(),
+        userId: user!.id,
+        productId: product.id,
+        color: 'White'
+      };
+
+      addToWishlist.mutate(newItem);
+    },
+    [removeFromWishlist, addToWishlist]
+  );
+
+  const handleRedirectSignIn = () => {
+    push(END_POINT.SIGN_IN);
+    closeModal();
+  };
+
+  const handleRedirectPreview = (id: string) => {
+    push(`${id}`);
+  };
+
+  const handleShowMore = () => {
+    setVisibleCount((prev) => prev + 4);
+  };
+
+  const filtered = products as IProduct[];
+  const data = filtered.slice(0, visibleCount);
 
   return (
     <>
-      {error ? (
-        <Typography color="text-red-500" className="text-center">
-          Unable to load products! Try later
-        </Typography>
-      ) : (
-        <CardProductList products={data!} isShowMore={isShowMore} />
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full gap-6 mx-auto">
+        {data.map((item: IProduct) => (
+          <CardProduct
+            key={item.id}
+            id={item.id}
+            photo={item.image}
+            name={item.name}
+            onClick={handleRedirectPreview}
+            onFavorite={handleToggleFavorite.bind(null, item)}
+            price={item.price}
+            rating={item.rating}
+            sell={item.sell}
+            isFavorite={isProductInWishlist(item.id)}
+          />
+        ))}
+        <Modal
+          isOpen={isOpen}
+          onClose={closeModal}
+          title="Authentication request"
+          buttonName="Yes"
+          isConfirm
+          onConfirm={handleRedirectSignIn}
+        >
+          <Typography size={FONT_SIZE.X_SMALL}>
+            To perform this action, you need to log in, press the{' '}
+            <strong>"Yes"</strong> button to proceed with login
+            <div className="my-5">
+              <Image
+                src="/auth-stop.webp"
+                alt="stop action"
+                width={150}
+                height={150}
+                className="mx-auto"
+              />
+            </div>
+          </Typography>
+        </Modal>
+      </div>
+      {isShowMore && (
+        <div className="mt-10 text-center">
+          {visibleCount < filtered!.length && (
+            <Button onClick={handleShowMore}>See More</Button>
+          )}
+        </div>
       )}
     </>
   );
 };
 
-export default ProductList;
+export default CardProductList;

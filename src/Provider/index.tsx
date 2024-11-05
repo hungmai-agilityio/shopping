@@ -2,12 +2,13 @@
 
 import React from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { TIME_STATUS } from '@/constants';
 
 export function QueryProvider({ children }: React.PropsWithChildren) {
   const client = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 1000 * 60 * 60,
+        staleTime: TIME_STATUS.STALE_TIME,
         refetchOnWindowFocus: false
       }
     }

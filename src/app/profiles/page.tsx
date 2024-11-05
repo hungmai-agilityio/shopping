@@ -1,25 +1,22 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 
 // Constants
 import { FONT_SIZE, popping } from '@/constants';
 
 // Components
 import { Heading, Hero, Typography } from '@/ui/components';
+import { CardUpload, ProfileForm } from '@/ui/sections';
 
-// Lazy load the CardUpload and ProfileForm components
-const CardUpload = dynamic(() => import('@/ui/sections/Profile/CardUpload'), {
-  ssr: false
-});
-const ProfileForm = dynamic(() => import('@/ui/sections/Profile/Form'), {
-  ssr: false
-});
+// Libs
+import { getUserFromCookie } from '@/libs';
 
 export const metadata: Metadata = {
   title: 'Profile'
 };
 
-const ProfilePage = () => {
+const ProfilePage = async () => {
+  const user = await getUserFromCookie();
+
   const breadCrumb = [
     { label: 'Home', href: '/' },
     { label: 'My Account', href: '' }
@@ -42,11 +39,11 @@ const ProfilePage = () => {
             </Typography>
           </div>
           <div className="md:block flex justify-center">
-            <CardUpload />
+            <CardUpload user={user} />
           </div>
         </div>
       </Hero>
-      <ProfileForm />
+      <ProfileForm user={user} />
     </div>
   );
 };

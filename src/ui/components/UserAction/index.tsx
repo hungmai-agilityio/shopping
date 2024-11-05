@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -16,18 +15,20 @@ import { Modal, UserIcon } from '@/ui/components';
 import { END_POINT, QUERY } from '@/constants';
 
 // Interfaces
-import { ICart } from '@/interfaces';
+import { ICart, IUser } from '@/interfaces';
 
 // Hooks
 import { useModal } from '@/hooks';
 
 interface UserActionProps {
+  user: IUser;
   styles?: string;
+  closeMenu?: () => void;
 }
 
-const UserAction = ({ styles }: UserActionProps) => {
+const UserAction = ({ user, styles, closeMenu }: UserActionProps) => {
   const router = useRouter();
-  const { user, clearUser } = useUserStore();
+  const { clearUser } = useUserStore();
 
   const authModal = useModal();
   const signOutModal = useModal();
@@ -41,6 +42,7 @@ const UserAction = ({ styles }: UserActionProps) => {
 
   // Handle check currentUser and redirect to profile page
   const handleRedirectProfile = () => {
+    closeMenu?.();
     if (!user) {
       authModal.openModal();
       return;
@@ -50,6 +52,7 @@ const UserAction = ({ styles }: UserActionProps) => {
 
   // Handle check currentUser and redirect to cart page
   const handleRedirectCart = () => {
+    closeMenu?.();
     if (!user) {
       authModal.openModal();
       return;
@@ -65,6 +68,7 @@ const UserAction = ({ styles }: UserActionProps) => {
 
   // Handle check currentUser and redirect to wishlist page
   const handleRedirectWishList = () => {
+    closeMenu?.();
     if (!user) {
       authModal.openModal();
       return;
@@ -73,6 +77,7 @@ const UserAction = ({ styles }: UserActionProps) => {
   };
 
   const handleSignOut = () => {
+    closeMenu?.();
     clearUser();
     router.push(END_POINT.SIGN_IN);
     signOutModal.closeModal();
