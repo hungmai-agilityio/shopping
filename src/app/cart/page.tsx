@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 
 // Libs
-import { getProducts } from '@/libs';
+import { getProducts, getUserFromCookie } from '@/libs';
 
 // Components
 import { Heading, Hero, Typography } from '@/ui/components';
@@ -23,6 +23,7 @@ const CartPage = async () => {
   ];
 
   const { data, error } = await getProducts();
+  const user = await getUserFromCookie();
 
   return (
     <>
@@ -51,7 +52,7 @@ const CartPage = async () => {
           Unable to load cart data, try again later
         </Typography>
       ) : (
-        <CartSection productData={data!} />
+        <CartSection productData={data!} user={user} />
       )}
     </>
   );

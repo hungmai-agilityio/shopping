@@ -9,7 +9,7 @@ import { useUserStore } from '@/stores';
 import { getUserCart } from '@/libs';
 
 // Interfaces
-import { ICart, IProduct } from '@/interfaces';
+import { ICart, IProduct, IUser } from '@/interfaces';
 
 // Sections
 import { ProductPayment } from '@/ui/sections';
@@ -25,10 +25,10 @@ import { QUERY } from '@/constants';
 
 interface CartSectionProps {
   productData: IProduct[];
+  user: IUser;
 }
 
-const CartSection = memo(({ productData }: CartSectionProps) => {
-  const { user } = useUserStore();
+const CartSection = memo(({ productData, user }: CartSectionProps) => {
   const { data: cartData = [] } = useQuery<ICart[]>({
     queryKey: [QUERY.CART],
     queryFn: () => getUserCart(user!.id),

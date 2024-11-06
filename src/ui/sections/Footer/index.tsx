@@ -61,7 +61,7 @@ const Footer = async () => {
             heading="Categories"
             items={itemsCategories}
           />
-          <div className="">
+          <div>
             <List color="text-white" heading="Contact" items={itemsContact} />
             <div className="flex mt-5 gap-5">
               <Icon

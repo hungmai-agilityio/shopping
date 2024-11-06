@@ -48,7 +48,7 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
             <Heading>get the latest dress models from us</Heading>
             <Typography
               color="text-gray-300"
-              className="my-8 md:block hidden"
+              className="my-8 md:block hidden "
               size={FONT_SIZE.X_SMALL}
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget

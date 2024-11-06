@@ -136,7 +136,7 @@ const ProductPayment = memo(
               if (!product) return null;
 
               return (
-                <div key={item.id} className="mt-2 flex justify-between gap-5">
+                <div key={item.id} className="mt-2 grid grid-cols-3 gap-5 text-center">
                   <Typography size={FONT_SIZE.MIMI}>
                     <strong>Product:</strong> {product.name}
                   </Typography>

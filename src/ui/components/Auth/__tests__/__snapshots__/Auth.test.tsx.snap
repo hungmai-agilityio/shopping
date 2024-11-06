@@ -45,7 +45,7 @@ exports[`Auth component should be render match to snapshot 1`] = `
             </span>
           </nav>
           <h1
-            class="font-bold text-white text-2xl className capitalize lg:text-heading text-xl my-5"
+            class="font-bold text-white text-2xl className capitalize lg:text-heading text-xl my-5 leading-normal"
           >
             My Account
           </h1>
