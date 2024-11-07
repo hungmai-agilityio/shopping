@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { FONT_WEIGHT, popping, TAG } from '@/constants';
 
 // Libs
-import { getProductId } from '@/libs';
+import { getProductId, getUserFromCookie } from '@/libs';
 
 // Components
 import { BreadCrumb, CardProductSkeleton, Typography } from '@/ui/components';
@@ -25,6 +25,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
   const { id } = params;
 
   const { data: product } = await getProductId(id);
+  const user = await getUserFromCookie();
 
   const queryCategory = product.category ? `?category=${product.category}` : '';
 
@@ -37,7 +38,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
     <div className={`${popping.className} mt-10`}>
       <div className="container">
         <BreadCrumb items={breadCrumb} styles="my-10" />
-        <ProductDetail product={product} />
+        <ProductDetail product={product} user={user} />
       </div>
       <Description />
       <section className="my-20 container">
@@ -50,7 +51,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
         </Typography>
         <div className="mt-10">
           <Suspense key={product.category} fallback={<CardProductSkeleton />}>
-            <ProductSection query={queryCategory} isShowMore />
+            <ProductSection query={queryCategory} isShowMore user={user} />
           </Suspense>
         </div>
       </section>

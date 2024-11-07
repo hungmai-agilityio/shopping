@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 
 // Constants
@@ -19,10 +19,10 @@ import {
 } from '@/constants';
 
 // Interfaces
-import { IProduct, ICart } from '@/interfaces';
+import { IProduct, ICart, IUser } from '@/interfaces';
 
 // Libs + stores
-import { useUserStore, useCartStore } from '@/stores';
+import { useCartStore } from '@/stores';
 import { getUserCart, updateCart } from '@/libs';
 
 // Components
@@ -41,16 +41,16 @@ import { useAddDataToCart, useModal } from '@/hooks';
 
 interface DetailProps {
   product: IProduct;
+  user: IUser | null;
 }
 
-const ProductDetail = ({ product }: DetailProps) => {
+const ProductDetail = ({ product, user }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>('');
 
   const { addToCart } = useCartStore();
   const addDataToCart = useAddDataToCart();
 
-  const { user } = useUserStore();
   const { push } = useRouter();
   const { isOpen, closeModal, openModal } = useModal();
   // Fetch cart items
@@ -101,8 +101,6 @@ const ProductDetail = ({ product }: DetailProps) => {
         quantity: quantity,
         note: ''
       };
-
-      console.log('cartData', cartData);
 
       addDataToCart.mutate(cartData);
     }

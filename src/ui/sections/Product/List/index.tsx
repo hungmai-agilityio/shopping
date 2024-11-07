@@ -10,10 +10,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { END_POINT, FONT_SIZE, QUERY } from '@/constants';
 
 // Interfaces
-import { IProduct, IWishlist } from '@/interfaces';
+import { IProduct, IUser, IWishlist } from '@/interfaces';
 
 // Libs + stores
-import { useUserStore } from '@/stores';
 import { getUserWishList } from '@/libs';
 
 // Components
@@ -25,15 +24,19 @@ import { useAddToWishlist, useModal, useRemoveFromWishlist } from '@/hooks';
 interface CardProductListProps {
   products: IProduct[];
   isShowMore?: boolean;
+  user: IUser | null;
 }
-const CardProductList = ({ products, isShowMore }: CardProductListProps) => {
+const CardProductList = ({
+  products,
+  isShowMore,
+  user
+}: CardProductListProps) => {
   const [visibleCount, setVisibleCount] = useState<number>(8);
 
   const { push } = useRouter();
   const removeFromWishlist = useRemoveFromWishlist();
   const addToWishlist = useAddToWishlist();
 
-  const { user } = useUserStore();
   const { isOpen, closeModal, openModal } = useModal();
 
   // Get Data Wishlist

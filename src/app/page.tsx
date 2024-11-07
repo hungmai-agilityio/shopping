@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
 // Constants
 import {
@@ -16,7 +17,12 @@ import {
 import { IComments, ISearchProps } from '@/interfaces';
 
 // Libs
-import { checkUserLogged, getCategories, getComments } from '@/libs';
+import {
+  checkUserLogged,
+  getCategories,
+  getComments,
+  getUserFromCookie
+} from '@/libs';
 
 // Components
 import {
@@ -28,17 +34,23 @@ import {
   CarouselProduct,
   Carousel,
   Typography,
-  Heading,
-  ButtonRedirect
+  Heading
 } from '@/ui/components';
 
 // Sections
 import { CategorySection, ProductWrapper } from '@/ui/sections';
 
+const ButtonRedirect = dynamic(
+  () => import('@/ui/components/UserAction/Redirect'),
+  {
+    ssr: false
+  }
+);
+
 const HomePage = async ({ searchParams }: ISearchProps) => {
   const { data: categories, error: categoryError } = await getCategories();
   const { data: comments, error: commentsError } = await getComments();
-  const isUser = await checkUserLogged();
+  const user = await getUserFromCookie();
 
   return (
     <div className={`${popping.className}`}>
@@ -113,6 +125,7 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
         <ProductWrapper
           categories={categories || []}
           searchParams={searchParams!}
+          user={user}
         />
       </section>
       <section className="md:flex hidden">
@@ -162,11 +175,7 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
             ullamcorper.
           </Typography>
 
-          <ButtonRedirect
-            isLogged={isUser}
-            name="Login"
-            url={END_POINT.SIGN_IN}
-          />
+          <ButtonRedirect name="Login" url={END_POINT.SIGN_IN} />
         </div>
         <CardImage
           src="/product.webp"

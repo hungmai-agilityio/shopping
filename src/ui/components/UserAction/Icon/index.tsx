@@ -3,7 +3,7 @@ import { Icon } from '@/ui/components';
 interface UserIconProps {
   src: string;
   alt: string;
-  onClick: () => void;
+  onClick?: () => void;
   isBadge?: boolean;
   badgeCount?: number;
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -15,20 +16,21 @@ import { Modal, UserIcon } from '@/ui/components';
 import { END_POINT, QUERY } from '@/constants';
 
 // Interfaces
-import { ICart, IUser } from '@/interfaces';
+import { ICart } from '@/interfaces';
 
 // Hooks
 import { useModal } from '@/hooks';
 
 interface UserActionProps {
-  user: IUser;
   styles?: string;
   closeMenu?: () => void;
 }
 
-const UserAction = ({ user, styles, closeMenu }: UserActionProps) => {
+const UserAction = ({ styles, closeMenu }: UserActionProps) => {
+  const { user, clearUser } = useUserStore();
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
   const router = useRouter();
-  const { clearUser } = useUserStore();
 
   const authModal = useModal();
   const signOutModal = useModal();
@@ -40,7 +42,26 @@ const UserAction = ({ user, styles, closeMenu }: UserActionProps) => {
     enabled: !!user
   });
 
-  // Handle check currentUser and redirect to profile page
+  useEffect(() => {
+    setIsMounted(true);
+  }, [user]);
+
+  if (!isMounted) {
+    return (
+      <div className={styles}>
+        <UserIcon
+          src="/bag.svg"
+          alt="cart icon"
+          isBadge
+          badgeCount={user ? cartData.length : 0}
+        />
+        <UserIcon src="/heart.svg" alt="heart icon" />
+        <UserIcon src="/user.svg" alt="user icon" />
+      </div>
+    );
+  }
+
+  // Handle check user and redirect to profile page
   const handleRedirectProfile = () => {
     closeMenu?.();
     if (!user) {
@@ -50,7 +71,7 @@ const UserAction = ({ user, styles, closeMenu }: UserActionProps) => {
     router.push(END_POINT.PROFILE);
   };
 
-  // Handle check currentUser and redirect to cart page
+  // Handle check user and redirect to cart page
   const handleRedirectCart = () => {
     closeMenu?.();
     if (!user) {
@@ -66,7 +87,7 @@ const UserAction = ({ user, styles, closeMenu }: UserActionProps) => {
     authModal.closeModal();
   };
 
-  // Handle check currentUser and redirect to wishlist page
+  // Handle check user and redirect to wishlist page
   const handleRedirectWishList = () => {
     closeMenu?.();
     if (!user) {

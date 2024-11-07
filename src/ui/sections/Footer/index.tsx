@@ -1,3 +1,5 @@
+import dynamic from 'next/dynamic';
+
 // Constants
 import {
   END_POINT,
@@ -10,15 +12,17 @@ import {
   TYPE
 } from '@/constants';
 
-// Libs
-import { checkUserLogged } from '@/libs';
-
 // Components
-import { ButtonRedirect, Icon, List, Logo, Typography } from '@/ui/components';
+import { Icon, List, Logo, Typography } from '@/ui/components';
+
+const ButtonRedirect = dynamic(
+  () => import('@/ui/components/UserAction/Redirect'),
+  {
+    ssr: false
+  }
+);
 
 const Footer = async () => {
-  const isUser = await checkUserLogged();
-
   return (
     <footer className="bg-dark text-white">
       <div className="container grid lg:grid-cols-2 grid-cols-1 py-20 gap-10">
@@ -46,7 +50,6 @@ const Footer = async () => {
 
           <div className="mt-8">
             <ButtonRedirect
-              isLogged={isUser}
               name="Login Now"
               url={END_POINT.SIGN_IN}
               variant={TYPE.SECOND}

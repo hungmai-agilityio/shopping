@@ -7,16 +7,15 @@ import { TYPE } from '@/constants';
 
 // Components
 import { Button } from '@/ui/components';
+import { useUserStore } from '@/stores';
 
 interface RedirectProps {
-  isLogged: boolean;
   url: string;
   name: string;
   variant?: TYPE.PRIMARY | TYPE.SECOND | TYPE.THIRD;
 }
 
 const ButtonRedirect = ({
-  isLogged,
   url,
   name,
   variant = TYPE.PRIMARY
@@ -25,10 +24,11 @@ const ButtonRedirect = ({
   const handleRedirect = () => {
     router.push(url);
   };
+  const { user } = useUserStore();
 
   return (
     <>
-      {!isLogged && (
+      {!user && (
         <Button variant={variant} onClick={handleRedirect}>
           {name}
         </Button>

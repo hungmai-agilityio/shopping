@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import Image from 'next/image';
 
 // Libs + stores
-import { useUserStore, useCartStore } from '@/stores';
+import { useCartStore } from '@/stores';
 
 // Interfaces
 import { IProduct } from '@/interfaces';
@@ -15,9 +15,8 @@ import { ProductPayment } from '@/ui/sections';
 interface OrderProps {
   products: IProduct[];
 }
-const OrderSection = ({ products }: OrderProps) => {
-  const { user } = useUserStore();
 
+const OrderSection = ({ products }: OrderProps) => {
   const { cart, updateQuantity, clearCart, totalItems, totalPrice } =
     useCartStore();
 
@@ -37,7 +36,7 @@ const OrderSection = ({ products }: OrderProps) => {
   // Handle confirm checkout
   const handleCheckoutCart = useCallback(() => {
     clearCart();
-  }, [user]);
+  }, []);
 
   if (!cart.length) {
     return (

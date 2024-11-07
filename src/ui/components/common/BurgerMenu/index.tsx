@@ -8,11 +8,10 @@ import { Navbar, UserAction } from '@/ui/components';
 import { IUser } from '@/interfaces';
 
 interface BurgerProps {
-  user: IUser;
   items: Array<{ name: string; url?: string }>;
 }
 
-const BurgerMenu = ({ user, items }: BurgerProps) => {
+const BurgerMenu = ({ items }: BurgerProps) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   // Toggle menu open/close state
@@ -48,7 +47,6 @@ const BurgerMenu = ({ user, items }: BurgerProps) => {
         />
         <hr className="my-8" />
         <UserAction
-          user={user}
           styles="flex justify-center gap-12 mt-12"
           closeMenu={closeMenu}
         />
