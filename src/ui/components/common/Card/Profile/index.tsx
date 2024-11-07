@@ -52,7 +52,6 @@ const CardProfile = ({
           autoSize
           className="rounded-full bg-gray-300 cursor-pointer"
           isBlur
-          priority={true}
         />
         <label
           htmlFor="upload-image"

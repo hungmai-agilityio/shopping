@@ -123,7 +123,7 @@ describe('API Utility Functions', () => {
       const response = await postAvatar(mockFile);
 
       expect(fetch).toHaveBeenCalledWith(
-        `${process.env.NEXT_PUBLIC_AVATAR}?key=${process.env.NEXT_PUBLIC_API_KEY}`,
+        `${process.env.NEXT_PUBLIC_AVATAR}?key=${process.env.NEXT_PUBLIC_API}`,
         {
           method: 'POST',
           body: expect.any(FormData)

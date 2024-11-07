@@ -1,10 +1,9 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 // Libs + store
-import { postAvatar, getUserId, updateUser } from '@/libs';
+import { postAvatar, updateUser } from '@/libs';
 import { useUserStore } from '@/stores';
 
 // Constants
@@ -25,22 +24,14 @@ import { CardProfile, ToastMessage } from '@/ui/components';
 interface CardUploadProps {
   user: IUser;
 }
+
 const CardUpload = ({ user }: CardUploadProps) => {
-  const [uploadImage, setUploadImage] = useState<string>('');
   const [toast, setToast] = useState<{
     status: STATUS;
     message: string;
   } | null>(null);
 
   const { setUser } = useUserStore();
-
-  const { data } = useQuery<IUser>({
-    queryKey: [QUERY.USER],
-    queryFn: () => getUserId(user!.id),
-    enabled: !!user
-  });
-
-  if (!user) return null;
 
   const handleAvatarUpdate = async (file?: File) => {
     if (file) {
@@ -72,7 +63,6 @@ const CardUpload = ({ user }: CardUploadProps) => {
 
       if (response.data) {
         setUser(updatedUser);
-        setUploadImage(imageUrl);
 
         setToast({
           status: STATUS.SUCCESS,
@@ -86,15 +76,14 @@ const CardUpload = ({ user }: CardUploadProps) => {
       });
     }
   };
-
-  const fullName = `${data?.firstName || ''} ${data?.lastName || ''}`.trim();
+  const fullName = `${user?.firstName} ${user?.lastName}`.trim();
 
   return (
     <>
       <CardProfile
-        photo={uploadImage || data?.avatar}
+        photo={user?.avatar}
         useName={fullName}
-        detail={<p className="text-dark-gray">{data?.email || ''}</p>}
+        detail={<p className="text-dark-gray">{user?.email}</p>}
         onButtonClick={handleAvatarUpdate}
       />
       {toast && <ToastMessage status={toast.status} message={toast.message} />}

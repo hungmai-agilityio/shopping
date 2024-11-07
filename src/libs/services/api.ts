@@ -61,7 +61,7 @@ export const postAvatar = async (file: File) => {
     formData.append('image', file);
     formData.append('expiration', expirationTime.toString());
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_AVATAR}?key=${process.env.NEXT_PUBLIC_API_KEY}`,
+      `${process.env.NEXT_PUBLIC_AVATAR}?key=${process.env.NEXT_PUBLIC_API}`,
       {
         method: 'POST',
         body: formData

@@ -2,7 +2,7 @@ import { setCookie, getCookie, deleteCookie } from 'cookies-next';
 import { act, renderHook } from '@testing-library/react';
 
 // Constants
-import { KEY } from '@/constants';
+import { KEY, TIME_STATUS } from '@/constants';
 
 // Libs + stores
 import { useUserStore } from '@/stores';
@@ -37,7 +37,7 @@ describe('useUserStore', () => {
 
     expect(result.current.user).toEqual(mockUser);
     expect(setCookie).toHaveBeenCalledWith(KEY.USER, JSON.stringify(mockUser), {
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: TIME_STATUS.COOKIE_TIME,
       path: '/',
     });
   });

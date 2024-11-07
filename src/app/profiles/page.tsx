@@ -8,7 +8,7 @@ import { Heading, Hero, Typography } from '@/ui/components';
 import { CardUpload, ProfileForm } from '@/ui/sections';
 
 // Libs
-import { getUserFromCookie } from '@/libs';
+import { getUserFromCookie, getUserId } from '@/libs';
 
 export const metadata: Metadata = {
   title: 'Profile'
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 
 const ProfilePage = async () => {
   const user = await getUserFromCookie();
+  const data = await getUserId(user.id);
 
   const breadCrumb = [
     { label: 'Home', href: '/' },
@@ -39,11 +40,11 @@ const ProfilePage = async () => {
             </Typography>
           </div>
           <div className="md:block flex justify-center">
-            <CardUpload user={user} />
+            <CardUpload user={data} />
           </div>
         </div>
       </Hero>
-      <ProfileForm user={user} />
+      <ProfileForm user={data} />
     </div>
   );
 };

@@ -3,10 +3,9 @@
 import { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useQuery } from '@tanstack/react-query';
 
 // Libs + stores
-import { updateProfileSchema, getUserId, updateUser } from '@/libs';
+import { updateProfileSchema, updateUser } from '@/libs';
 import { useUserStore } from '@/stores';
 
 // Constants
@@ -15,7 +14,6 @@ import {
   FONT_WEIGHT,
   GENDER,
   MESSAGE_API,
-  QUERY,
   STATUS,
   TYPE
 } from '@/constants';
@@ -61,21 +59,16 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
   const { setUser } = useUserStore();
 
   // Fetch user with current user id
-  const { data } = useQuery<IUser>({
-    queryKey: [QUERY.USER],
-    queryFn: () => getUserId(user!.id),
-    enabled: !!user
-  });
 
   useEffect(() => {
-    if (data) {
-      setValue('firstName', data.firstName || '');
-      setValue('street', data.street || '');
-      setValue('address', data.address || '');
-      setValue('phone', data.phone || '');
-      setValue('gender', data.gender || '');
+    if (user) {
+      setValue('firstName', user.firstName);
+      setValue('street', user.street);
+      setValue('address', user.address);
+      setValue('phone', user.phone);
+      setValue('gender', user.gender);
     }
-  }, [setValue, data]);
+  }, [user]);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -103,7 +96,7 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
       updated_at: new Date().toISOString()
     };
 
-    const response = await await updateUser(user.id, updatedUser);
+    const response = await updateUser(user.id, updatedUser);
 
     if (response.data) {
       setUser(updatedUser);
@@ -113,8 +106,6 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
       });
     }
   };
-
-  if (!user) return null;
 
   return (
     <>

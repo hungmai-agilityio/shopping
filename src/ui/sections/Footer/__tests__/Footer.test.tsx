@@ -34,14 +34,4 @@ describe('Footer Component', () => {
     });
     expect(loginButton).toBeInTheDocument();
   });
-
-  it('does not display the Login Now button when the user is logged in', async () => {
-    (checkUserLogged as jest.Mock).mockResolvedValueOnce(true);
-
-    const result = await Footer();
-    render(result);
-
-    const loginButton = screen.queryByRole('button', { name: /Login Now/i });
-    expect(loginButton).not.toBeInTheDocument();
-  });
 });

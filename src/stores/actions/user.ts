@@ -1,7 +1,7 @@
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
 
 // Constants
-import { KEY } from "@/constants";
+import { KEY, TIME_STATUS } from "@/constants";
 
 // Interfaces
 import { IUser } from "@/interfaces";
@@ -21,7 +21,7 @@ export const getCurrentUser = (): IUser | null => {
 // Set the current user in a cookie
 export const setUserCookie = (user: object) => {
   setCookie(KEY.USER, JSON.stringify(user), {
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: TIME_STATUS.COOKIE_TIME,
     path: '/'
   });
 };
