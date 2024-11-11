@@ -22,7 +22,7 @@ import {
 import { IProduct, ICart, IUser } from '@/interfaces';
 
 // Libs + stores
-import { useCartStore } from '@/stores';
+import { useCartStore, useUserStore } from '@/stores';
 import { getUserCart, updateCart } from '@/libs';
 
 // Components
@@ -41,14 +41,14 @@ import { useAddDataToCart, useModal } from '@/hooks';
 
 interface DetailProps {
   product: IProduct;
-  user: IUser | null;
 }
 
-const ProductDetail = ({ product, user }: DetailProps) => {
+const ProductDetail = ({ product }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>('');
 
   const { addToCart } = useCartStore();
+  const { user } = useUserStore();
   const addDataToCart = useAddDataToCart();
 
   const { push } = useRouter();

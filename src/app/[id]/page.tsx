@@ -38,7 +38,7 @@ const ProductDetailPage = async ({ params }: { params: Params }) => {
     <div className={`${popping.className} mt-10`}>
       <div className="container">
         <BreadCrumb items={breadCrumb} styles="my-10" />
-        <ProductDetail product={product} user={user} />
+        <ProductDetail product={product} />
       </div>
       <Description />
       <section className="my-20 container">

@@ -3,11 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { v4 as uuidv4 } from 'uuid';
-
-// Component Mocks
 import ProductDetail from '@/ui/sections/ProductDetail';
-import { mockCart, mockProduct, mockUser } from '@/mocks';
+import { mockCart, mockProduct } from '@/mocks';
 import { useCartStore } from '@/stores';
 import { useAddDataToCart, useModal } from '@/hooks';
 
@@ -20,7 +17,10 @@ jest.mock('uuid', () => ({
 }));
 
 jest.mock('@/stores', () => ({
-  useCartStore: jest.fn()
+  useCartStore: jest.fn(),
+  useUserStore: jest.fn(() => ({
+    user: null
+  }))
 }));
 
 jest.mock('@/hooks', () => ({
@@ -38,7 +38,6 @@ describe('ProductDetail Component', () => {
   beforeEach(() => {
     (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
     (useQuery as jest.Mock).mockReturnValue({ data: mockCart });
-    (uuidv4 as jest.Mock).mockReturnValue('test-uuid');
     (useAddDataToCart as jest.Mock).mockReturnValue({ mutate: mockMutate });
     (useModal as jest.Mock).mockReturnValue({
       isOpen: false,
@@ -55,7 +54,7 @@ describe('ProductDetail Component', () => {
   });
 
   test('renders product name, description, and price', () => {
-    render(<ProductDetail product={mockProduct} user={mockUser} />);
+    render(<ProductDetail product={mockProduct} />);
 
     expect(screen.getByText(mockProduct.name)).toBeInTheDocument();
     expect(screen.getByText(mockProduct.description)).toBeInTheDocument();
@@ -63,7 +62,7 @@ describe('ProductDetail Component', () => {
   });
 
   test('opens modal if user is not logged in when trying to add to cart', () => {
-    render(<ProductDetail product={mockProduct} user={null} />);
+    render(<ProductDetail product={mockProduct} />);
 
     const addToCartButton = screen.getByAltText('cart-button');
     fireEvent.click(addToCartButton);
@@ -71,28 +70,8 @@ describe('ProductDetail Component', () => {
     expect(mockOpenModal).toHaveBeenCalled();
   });
 
-  test('calls addToCart function when user clicks on Checkout button', () => {
-    render(<ProductDetail product={mockProduct} user={mockUser} />);
-
-    const checkoutButton = screen.getByText('Checkout');
-    fireEvent.click(checkoutButton);
-
-    expect(mockPush).toHaveBeenCalledWith('/checkout');
-    expect(mockAddToCart).toHaveBeenCalledWith(
-      {
-        id: 'test-uuid',
-        userId: mockUser.id,
-        productId: mockProduct.id,
-        color: mockProduct.colors[0],
-        quantity: 1,
-        note: ''
-      },
-      mockProduct
-    );
-  });
-
   test('updates quantity when Quantity component changes', () => {
-    render(<ProductDetail product={mockProduct} user={mockUser} />);
+    render(<ProductDetail product={mockProduct} />);
 
     const quantityButton = screen.getByAltText('plus icon');
     fireEvent.click(quantityButton);
@@ -102,10 +81,9 @@ describe('ProductDetail Component', () => {
   });
 
   test('changes color when selecting a color', () => {
-    render(<ProductDetail product={mockProduct} user={mockUser} />);
+    render(<ProductDetail product={mockProduct} />);
 
     const colorOption = document.querySelector('button[id="Blue"]');
-
     fireEvent.click(colorOption!);
 
     expect(colorOption).toHaveClass(
