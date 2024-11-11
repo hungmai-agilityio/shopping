@@ -50,6 +50,7 @@ const ColorPicker = memo(
         <div className="mt-4 flex items-center gap-3">
           {colors?.map((color) => (
             <Button
+              aria-label={`${color}-picker`}
               id={color}
               key={color}
               onClick={handleColorClick.bind(null, color)}
