@@ -54,6 +54,7 @@ const SignInForm = () => {
 
     setUser(user);
     push(END_POINT.HOME);
+    window.location.reload();
   };
 
   // Toggle password visibility

@@ -103,6 +103,7 @@ const SignUpForm = () => {
       setUser(newData);
       setTimeout(() => {
         push(END_POINT.HOME);
+        window.location.reload();
       }, 2000);
       return;
     }
