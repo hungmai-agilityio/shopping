@@ -27,7 +27,7 @@ import { useUserStore } from '@/stores';
 import { IUser } from '@/interfaces';
 
 const SignUpForm = () => {
-  const { push } = useRouter();
+  const router = useRouter();
   const { setUser } = useUserStore();
   const [formData, setFormData] = useState<IUser>({
     id: '',
@@ -102,8 +102,8 @@ const SignUpForm = () => {
 
       setUser(newData);
       setTimeout(() => {
-        push(END_POINT.HOME);
-        window.location.reload();
+        router.push(END_POINT.HOME);
+        router.refresh();
       }, 2000);
       return;
     }

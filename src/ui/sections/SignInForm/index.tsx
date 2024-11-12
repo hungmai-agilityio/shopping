@@ -21,7 +21,7 @@ import {
 } from '@/ui/components';
 
 const SignInForm = () => {
-  const { push } = useRouter();
+  const router = useRouter();
   const { setUser } = useUserStore();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [toast, setToast] = useState<{
@@ -53,8 +53,8 @@ const SignInForm = () => {
     }
 
     setUser(user);
-    push(END_POINT.HOME);
-    window.location.reload();
+    router.push(END_POINT.HOME);
+    router.refresh();
   };
 
   // Toggle password visibility
