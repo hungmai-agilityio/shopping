@@ -102,7 +102,6 @@ const UserAction = ({ styles, closeMenu }: UserActionProps) => {
     clearUser();
     router.push(END_POINT.SIGN_IN);
     signOutModal.closeModal();
-    router.refresh();
   };
 
   return (
