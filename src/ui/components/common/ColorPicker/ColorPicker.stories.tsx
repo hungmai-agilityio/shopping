@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { mockProducts } from '@/mocks';
 
@@ -13,16 +14,17 @@ const meta: Meta<typeof ColorPicker> = {
     colors: {
       description: 'List colors'
     },
-    isTitle: {
-      description: 'Check to show title',
-      control: 'boolean'
+    labelColor: {
+      description: 'Set color for label',
+      control: 'text'
     },
-    titleColor: {
-      description: 'Set color for title',
+    selectedColor: {
+      description: 'Color that is currently selected',
       control: 'text'
     },
     onClick: {
-      description: 'Handles color selection'
+      description: 'Callback when color changes',
+      action: 'colorChanged'
     }
   }
 };
@@ -32,8 +34,21 @@ export default meta;
 type Story = StoryObj<typeof ColorPicker>;
 
 export const Default: Story = {
-  args: {
-    colors: mockProducts[0].colors,
-    isTitle: true
+  render: () => {
+    const [selectedColor, setSelectedColor] = useState<string>(
+      mockProducts[0].colors[0]
+    );
+
+    const handleColorChange = (color: string) => {
+      setSelectedColor(color);
+    };
+
+    return (
+      <ColorPicker
+        colors={mockProducts[0].colors}
+        selectedColor={selectedColor}
+        onClick={handleColorChange}
+      />
+    );
   }
 };

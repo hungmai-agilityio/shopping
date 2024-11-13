@@ -1,7 +1,5 @@
-'use client';
-
 import { clsx } from 'clsx';
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 
 // Constants
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
@@ -10,37 +8,26 @@ import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import { Button, Typography } from '@/ui/components';
 
 interface IProps {
-  isTitle?: boolean;
   colors: string[];
-  onClick?: (color: string) => void;
-  titleColor?: string;
+  labelColor?: string;
   selectedColor?: string;
+  onClick?: (color: string) => void;
 }
 
 const ColorPicker = memo(
-  ({
-    isTitle,
-    colors,
-    onClick,
-    titleColor = 'text-black',
-    selectedColor
-  }: IProps) => {
-    useEffect(() => {
-      if (colors.length > 0) {
-        onClick?.(colors[0]);
-      }
-    }, [colors, onClick]);
-
+  ({ colors, labelColor = 'text-black', selectedColor, onClick }: IProps) => {
     // Handler for color selection
-    const handleColorClick = (color: string) => {
-      onClick?.(color);
+    const handleChange = (color: string) => {
+      if (onClick) {
+        onClick(color);
+      }
     };
 
     return (
       <div>
-        {isTitle && (
+        {labelColor && (
           <Typography
-            color={titleColor}
+            color={labelColor}
             fontWeight={FONT_WEIGHT.BOLD}
             size={FONT_SIZE.X_SMALL}
           >
@@ -53,7 +40,7 @@ const ColorPicker = memo(
               aria-label={`${color}-picker`}
               id={color}
               key={color}
-              onClick={handleColorClick.bind(null, color)}
+              onClick={handleChange.bind(null, color)}
               className={clsx(
                 `h-4 w-4 rounded-full focus:border focus:border-green-800`,
                 {
@@ -62,7 +49,7 @@ const ColorPicker = memo(
                 }
               )}
               style={{ backgroundColor: color }}
-            ></Button>
+            />
           ))}
         </div>
       </div>

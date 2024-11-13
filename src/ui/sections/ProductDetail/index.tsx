@@ -19,7 +19,7 @@ import {
 } from '@/constants';
 
 // Interfaces
-import { IProduct, ICart, IUser } from '@/interfaces';
+import { IProduct, ICart } from '@/interfaces';
 
 // Libs + stores
 import { useCartStore, useUserStore } from '@/stores';
@@ -45,7 +45,7 @@ interface DetailProps {
 
 const ProductDetail = ({ product }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
-  const [color, setColor] = useState<string>('');
+  const [color, setColor] = useState<string>(product.colors[0]);
 
   const { addToCart } = useCartStore();
   const { user } = useUserStore();
@@ -53,6 +53,7 @@ const ProductDetail = ({ product }: DetailProps) => {
 
   const { push } = useRouter();
   const { isOpen, closeModal, openModal } = useModal();
+
   // Fetch cart items
   const { data: cartItems = [] } = useQuery<ICart[]>({
     queryKey: [QUERY.CART, user?.id],
@@ -184,7 +185,6 @@ const ProductDetail = ({ product }: DetailProps) => {
         </div>
         <div className="mt-7 flex justify-between">
           <ColorPicker
-            isTitle
             colors={product.colors!}
             onClick={handleColorChange}
             selectedColor={color}

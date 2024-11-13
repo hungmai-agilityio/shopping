@@ -125,11 +125,7 @@ const CarouselProduct = ({ products, onOrder }: CarouselProductProps) => {
           {currentProduct.name}
         </Typography>
         <div className="flex justify-between mb-6">
-          <ColorPicker
-            isTitle
-            colors={currentProduct.colors}
-            titleColor="text-white"
-          />
+          <ColorPicker colors={currentProduct.colors} labelColor="text-white" />
           {currentProduct.rating && (
             <div className="ml-4 flex items-center">
               <Icon src="star.svg" alt="rating" width={152} height={24} />

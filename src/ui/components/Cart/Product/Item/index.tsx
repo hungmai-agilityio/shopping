@@ -39,11 +39,11 @@ const CartItem = memo(
     onQuantityChange
   }: CartItemProps) => {
     const [currentNote, setCurrentNote] = useState<string>(note);
-    const [isNoteVisible, setIsNoteVisible] = useState<boolean>(false);
+    const [isOpen, setVisible] = useState<boolean>(false);
 
     // Handle save note for product
     const handleSaveNote = () => {
-      setIsNoteVisible(false);
+      setVisible(false);
       onSaveNote && onSaveNote(id, currentNote);
     };
 
@@ -60,8 +60,8 @@ const CartItem = memo(
           </div>
           <Dropdown
             styles="absolute bottom-5"
-            isNoteVisible={isNoteVisible}
-            setIsNoteVisible={setIsNoteVisible}
+            isOpen={isOpen}
+            setVisible={setVisible}
           >
             <div className="absolute z-10 bg-white p-2 rounded shadow-lg mt-2 w-96 text-base font-thin">
               <Input

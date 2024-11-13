@@ -3,43 +3,40 @@
 import { ReactNode, useRef } from 'react';
 import { clsx } from 'clsx';
 
+// Components
 import { Icon } from '@/ui/components';
+
+// Hooks
 import { useOutsideClick } from '@/hooks';
 
 interface DropdownProps {
   children: ReactNode;
   styles?: string;
-  setIsNoteVisible?: (visible: boolean) => void;
-  isNoteVisible?: boolean;
+  setVisible: (visible: boolean) => void;
+  isOpen?: boolean;
 }
-const Dropdown = ({
-  children,
-  styles,
-  setIsNoteVisible,
-  isNoteVisible
-}: DropdownProps) => {
+const Dropdown = ({ children, styles, setVisible, isOpen }: DropdownProps) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const toggleNoteVisibility = () =>
-    setIsNoteVisible && setIsNoteVisible(!isNoteVisible);
+  const toggleVisibility = () => setVisible(!isOpen);
 
   useOutsideClick({
     ref: dropdownRef,
-    handler: () => setIsNoteVisible && setIsNoteVisible(false)
+    handler: () => setVisible(false)
   });
 
   return (
     <div ref={dropdownRef}>
       <div
         className={clsx('flex gap-5 items-center', styles)}
-        onClick={toggleNoteVisibility}
+        onClick={toggleVisibility}
       >
         <p className="text-second text-lg font-bold cursor-pointer lowercase">
           products notes
         </p>
         <Icon src="/arrow.svg" alt="arrow icon" width={24} height={24} />
       </div>
-      {isNoteVisible && children}
+      {isOpen && children}
     </div>
   );
 };

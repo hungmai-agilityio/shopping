@@ -17,11 +17,7 @@ describe('Dropdown Component', () => {
 
   const renderDropdown = (props = {}) =>
     render(
-      <Dropdown
-        setIsNoteVisible={mockSetIsNoteVisible}
-        isNoteVisible={true}
-        {...props}
-      >
+      <Dropdown setVisible={mockSetIsNoteVisible} isOpen={true} {...props}>
         <div data-testid="dropdown-content">Dropdown Content</div>
       </Dropdown>
     );
@@ -34,7 +30,7 @@ describe('Dropdown Component', () => {
   });
 
   test('toggles visibility on label click', () => {
-    renderDropdown({ isNoteVisible: false });
+    renderDropdown({ isOpen: false });
 
     const label = screen.getByText('products notes');
     fireEvent.click(label);
@@ -42,14 +38,14 @@ describe('Dropdown Component', () => {
     expect(mockSetIsNoteVisible).toHaveBeenCalledWith(true);
   });
 
-  test('shows children when isNoteVisible is true', () => {
-    renderDropdown({ isNoteVisible: true });
+  test('shows children when isOpen is true', () => {
+    renderDropdown({ isOpen: true });
 
     expect(screen.getByTestId('dropdown-content')).toBeInTheDocument();
   });
 
-  test('does not show children when isNoteVisible is false', () => {
-    renderDropdown({ isNoteVisible: false });
+  test('does not show children when isOpen is false', () => {
+    renderDropdown({ isOpen: false });
 
     expect(screen.queryByTestId('dropdown-content')).not.toBeInTheDocument();
   });

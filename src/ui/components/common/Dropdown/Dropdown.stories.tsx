@@ -19,11 +19,11 @@ const meta: Meta<typeof Dropdown> = {
       description: 'Content inside the dropdown',
       control: 'text'
     },
-    isNoteVisible: {
+    isOpen: {
       description: 'Controls visibility of the dropdown',
       control: 'boolean'
     },
-    setIsNoteVisible: {
+    setVisible: {
       description: 'Function to toggle dropdown visibility'
     }
   }
@@ -35,14 +35,10 @@ type Story = StoryObj<typeof Dropdown>;
 
 export const Default: Story = {
   render: (args) => {
-    const [isNoteVisible, setIsNoteVisible] = useState<boolean>(false);
+    const [isOpen, setVisible] = useState<boolean>(false);
 
     return (
-      <Dropdown
-        {...args}
-        isNoteVisible={isNoteVisible}
-        setIsNoteVisible={setIsNoteVisible}
-      >
+      <Dropdown {...args} isOpen={isOpen} setVisible={setVisible}>
         <p>{args.children}</p>
       </Dropdown>
     );

@@ -1,11 +1,18 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
+
+// Sections
 import ProductDetail from '@/ui/sections/ProductDetail';
+
+// Mock
 import { mockCart, mockProduct } from '@/mocks';
+
+// Stores
 import { useCartStore } from '@/stores';
+
+// Hooks
 import { useAddDataToCart, useModal } from '@/hooks';
 
 jest.mock('next/navigation');
