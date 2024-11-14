@@ -1,6 +1,6 @@
 'use client';
 
-import { MouseEvent } from 'react';
+import { MouseEvent, useState, useEffect } from 'react';
 import { clsx } from 'clsx';
 import Image from 'next/image';
 
@@ -28,6 +28,23 @@ const CardProduct = ({
   isFavorite = false,
   ...props
 }: CardProductProps) => {
+  const [isFavoriteVisible, setIsFavoriteVisible] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  // Check mobile size to render
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 900);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Toggle display favorite icon
+  const handleMobileToggleFavorite = (e: MouseEvent) => {
+    e.stopPropagation();
+    if (isMobile) setIsFavoriteVisible(!isFavoriteVisible);
+  };
+
   /**
    * Handle add favorite product to wishlist
    * @param id
@@ -35,9 +52,7 @@ const CardProduct = ({
    */
   const handleClickFavorite = (id: string, e: MouseEvent) => {
     e.stopPropagation();
-    if (onFavorite) {
-      onFavorite(id);
-    }
+    onFavorite?.(id);
   };
 
   /**
@@ -65,22 +80,25 @@ const CardProduct = ({
         }
         className="w-full h-card-img"
         {...props}
+        onClick={isMobile ? handleMobileToggleFavorite : undefined}
       />
 
-      <div className="absolute bg-dark opacity-50 w-full h-10 bottom-product-icon px-3 pt-1 group-hover:block hidden">
-        <Image
-          src={isFavorite ? '/heart-red.svg' : '/heart-white.svg'}
-          alt="heart icon"
-          width={32}
-          height={32}
-          className={clsx('float-right cursor-pointer', {
-            'border border-red-500 p-1': isFavorite
-          })}
-          style={{ objectFit: 'cover' }}
-          onClick={(e) => handleClickFavorite(id, e)}
-          priority
-        />
-      </div>
+      {(isFavoriteVisible || !isMobile) && (
+        <div className="absolute bg-dark opacity-50 w-full h-10 bottom-product-icon px-3 pt-1 group-hover:block hidden">
+          <Image
+            src={isFavorite ? '/heart-red.svg' : '/heart-white.svg'}
+            alt="heart icon"
+            width={32}
+            height={32}
+            className={clsx('float-right cursor-pointer', {
+              'border border-red-500 p-1': isFavorite
+            })}
+            style={{ objectFit: 'cover' }}
+            onClick={(e) => handleClickFavorite(id, e)}
+            priority
+          />
+        </div>
+      )}
 
       <div className="flex justify-between p-4">
         <div className="text-left">
