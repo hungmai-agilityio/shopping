@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { ReactNode } from 'react';
+import { clsx } from 'clsx';
 
 interface IProps {
   children: ReactNode;
@@ -13,7 +13,7 @@ export const Row = ({ children, id, isTD, styles }: IProps) => {
     <tr
       data-id={id}
       className={clsx(
-        'capitalize',
+        'lg:table-row flex flex-col border lg:border-none mb-4',
         {
           'bg-gray-light': isTD
         },

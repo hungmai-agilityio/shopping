@@ -21,17 +21,11 @@ const meta: Meta<typeof Icon> = {
     width: {
       description: 'Width for images'
     },
+
     height: {
       description: 'Height for images'
     },
 
-    isBadge: {
-      description: 'Attribute for users to choose whether to show badges or not'
-    },
-
-    badgeCount: {
-      description: 'The number that the badge shows'
-    },
     onClick: {
       description: 'Handle the event when clicking on the button'
     }
@@ -48,20 +42,6 @@ export const Default: Story = {
     alt: 'Cart Icon',
     width: 24,
     height: 24,
-    onClick: () => {
-      alert(123);
-    }
-  }
-};
-
-export const HasBadge: Story = {
-  args: {
-    src: '/bag.svg',
-    alt: 'Cart Icon',
-    width: 24,
-    height: 24,
-    isBadge: true,
-    badgeCount: 3,
     onClick: () => {
       alert(123);
     }

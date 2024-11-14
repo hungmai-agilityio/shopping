@@ -5,8 +5,8 @@ exports[`Quantity component should be render match to snapshot 1`] = `
   <div
     class="flex items-center gap-4 font-bold bg-white w-36 h-12 justify-center className"
   >
-    <button
-      class="relative inline-flex items-center justify-center"
+    <div
+      class="relative inline-flex items-center justify-center cursor-pointer"
     >
       <img
         alt="minus icon"
@@ -18,14 +18,14 @@ exports[`Quantity component should be render match to snapshot 1`] = `
         style="color: transparent;"
         width="24"
       />
-    </button>
+    </div>
     <span
       class="px-2"
     >
       3
     </span>
-    <button
-      class="relative inline-flex items-center justify-center"
+    <div
+      class="relative inline-flex items-center justify-center cursor-pointer"
     >
       <img
         alt="plus icon"
@@ -37,7 +37,7 @@ exports[`Quantity component should be render match to snapshot 1`] = `
         style="color: transparent;"
         width="24"
       />
-    </button>
+    </div>
   </div>
 </div>
 `;

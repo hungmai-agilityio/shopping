@@ -3,20 +3,23 @@
 exports[`CartProduct component should be render match to snapshot 1`] = `
 <div>
   <div
-    class="className h-table overflow-y-auto scrollbar"
+    class="className lg:h-table h-full overflow-y-auto scrollbar"
   >
     <table
-      class="border-separate border-spacing-y-tb-md text-dark"
+      class="w-full border-separate border-spacing-y-tb-md text-dark"
     >
       <tbody
         class="relative max-h-96"
       >
         <tr
-          class="capitalize bg-gray-light relative h-60"
+          class="lg:table-row flex flex-col border lg:border-none mb-4 bg-gray-light relative lg:h-60 h-full"
         >
           <td
-            class="lg:text-2xl md:text-lg text-xs p-3 w-tb-sm px-10"
+            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm px-10"
           >
+            <span
+              class="lg:hidden font-semibold mr-2"
+            />
             <div
               class="w-32 h-32"
             >
@@ -37,14 +40,14 @@ exports[`CartProduct component should be render match to snapshot 1`] = `
             </div>
             <div>
               <div
-                class="flex gap-5 items-center absolute bottom-5"
+                class="flex gap-5 items-center absolute bottom-5 lg:flex hidden"
               >
                 <p
                   class="text-second text-lg font-bold cursor-pointer lowercase"
                 >
-                  products notes
+                  products note
                 </p>
-                <button
+                <div
                   class="relative inline-flex items-center justify-center"
                 >
                   <img
@@ -57,66 +60,79 @@ exports[`CartProduct component should be render match to snapshot 1`] = `
                     style="color: transparent;"
                     width="24"
                   />
-                </button>
+                </div>
               </div>
             </div>
           </td>
           <td
-            class="lg:text-2xl md:text-lg text-xs p-3 w-tb-md"
+            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md"
           >
+            <span
+              class="lg:hidden font-semibold mr-2"
+            />
             <p
-              class="font-bold text-black text-2xl"
+              class="font-bold text-black md:text-2xl text-md"
             >
               Basic T-Shirt
             </p>
             <span
-              class="font-normal text-gray-500 text-2xl md:text-lg text-xs"
+              class="font-normal text-gray-500 lg:text-lg text-sm"
             >
               Color: 
               White
             </span>
           </td>
           <td
-            class="lg:text-2xl md:text-lg text-xs p-3 w-tb-md text-center"
+            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md text-center"
           >
+            <span
+              class="lg:hidden font-semibold mr-2"
+            />
             <p
-              class="font-bold text-black text-2xl"
+              class="font-bold text-black md:text-2xl text-md"
             >
               $ 
               15
                USD
             </p>
             <span
-              class="font-normal text-gray-500 text-2xl md:text-lg text-xs"
+              class="font-normal text-gray-500 lg:text-lg text-sm"
             >
               Price
             </span>
           </td>
           <td
-            class="lg:text-2xl md:text-lg text-xs p-3 w-tb-md text-center"
+            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md text-center"
           >
+            <span
+              class="lg:hidden font-semibold mr-2"
+            />
             <p
-              class="font-bold text-black text-2xl"
+              class="font-bold text-black md:text-2xl text-md"
             >
               1710
             </p>
             <span
-              class="font-normal text-gray-500 text-2xl md:text-lg text-xs"
+              class="font-normal text-gray-500 lg:text-lg text-sm"
             >
               In Stock
             </span>
           </td>
           <td
-            class="lg:text-2xl md:text-lg text-xs p-3 w-tb-sm text-center"
+            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm text-center"
           >
+            <span
+              class="lg:hidden font-semibold mr-2"
+            />
             <div
-              class="w-6 h-6 relative"
+              class="w-6 h-6 relative flex justify-between"
             >
-              <button
-                class="relative inline-flex items-center justify-center"
+              <div
+                class="relative inline-flex items-center justify-center cursor-pointer"
               >
                 <img
                   alt="Delete"
+                  class="w-6 h-6"
                   data-nimg="1"
                   decoding="async"
                   fetchpriority="high"
@@ -125,13 +141,13 @@ exports[`CartProduct component should be render match to snapshot 1`] = `
                   style="color: transparent;"
                   width="24"
                 />
-              </button>
+              </div>
             </div>
             <div
-              class="flex items-center gap-4 font-bold bg-white w-36 h-12 justify-center className absolute bottom-5 right-20"
+              class="flex items-center gap-4 font-bold bg-white w-36 h-12 justify-center className lg:absolute bottom-5 right-20"
             >
-              <button
-                class="relative inline-flex items-center justify-center"
+              <div
+                class="relative inline-flex items-center justify-center cursor-pointer"
               >
                 <img
                   alt="minus icon"
@@ -143,14 +159,14 @@ exports[`CartProduct component should be render match to snapshot 1`] = `
                   style="color: transparent;"
                   width="24"
                 />
-              </button>
+              </div>
               <span
                 class="px-2"
               >
                 2
               </span>
-              <button
-                class="relative inline-flex items-center justify-center"
+              <div
+                class="relative inline-flex items-center justify-center cursor-pointer"
               >
                 <img
                   alt="plus icon"
@@ -162,16 +178,19 @@ exports[`CartProduct component should be render match to snapshot 1`] = `
                   style="color: transparent;"
                   width="24"
                 />
-              </button>
+              </div>
             </div>
           </td>
         </tr>
         <tr
-          class="capitalize bg-gray-light relative h-60"
+          class="lg:table-row flex flex-col border lg:border-none mb-4 bg-gray-light relative lg:h-60 h-full"
         >
           <td
-            class="lg:text-2xl md:text-lg text-xs p-3 w-tb-sm px-10"
+            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm px-10"
           >
+            <span
+              class="lg:hidden font-semibold mr-2"
+            />
             <div
               class="w-32 h-32"
             >
@@ -192,14 +211,14 @@ exports[`CartProduct component should be render match to snapshot 1`] = `
             </div>
             <div>
               <div
-                class="flex gap-5 items-center absolute bottom-5"
+                class="flex gap-5 items-center absolute bottom-5 lg:flex hidden"
               >
                 <p
                   class="text-second text-lg font-bold cursor-pointer lowercase"
                 >
-                  products notes
+                  products note
                 </p>
-                <button
+                <div
                   class="relative inline-flex items-center justify-center"
                 >
                   <img
@@ -212,66 +231,79 @@ exports[`CartProduct component should be render match to snapshot 1`] = `
                     style="color: transparent;"
                     width="24"
                   />
-                </button>
+                </div>
               </div>
             </div>
           </td>
           <td
-            class="lg:text-2xl md:text-lg text-xs p-3 w-tb-md"
+            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md"
           >
+            <span
+              class="lg:hidden font-semibold mr-2"
+            />
             <p
-              class="font-bold text-black text-2xl"
+              class="font-bold text-black md:text-2xl text-md"
             >
               Sporty T-Shirt
             </p>
             <span
-              class="font-normal text-gray-500 text-2xl md:text-lg text-xs"
+              class="font-normal text-gray-500 lg:text-lg text-sm"
             >
               Color: 
               Blue
             </span>
           </td>
           <td
-            class="lg:text-2xl md:text-lg text-xs p-3 w-tb-md text-center"
+            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md text-center"
           >
+            <span
+              class="lg:hidden font-semibold mr-2"
+            />
             <p
-              class="font-bold text-black text-2xl"
+              class="font-bold text-black md:text-2xl text-md"
             >
               $ 
               25
                USD
             </p>
             <span
-              class="font-normal text-gray-500 text-2xl md:text-lg text-xs"
+              class="font-normal text-gray-500 lg:text-lg text-sm"
             >
               Price
             </span>
           </td>
           <td
-            class="lg:text-2xl md:text-lg text-xs p-3 w-tb-md text-center"
+            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md text-center"
           >
+            <span
+              class="lg:hidden font-semibold mr-2"
+            />
             <p
-              class="font-bold text-black text-2xl"
+              class="font-bold text-black md:text-2xl text-md"
             >
               1118
             </p>
             <span
-              class="font-normal text-gray-500 text-2xl md:text-lg text-xs"
+              class="font-normal text-gray-500 lg:text-lg text-sm"
             >
               In Stock
             </span>
           </td>
           <td
-            class="lg:text-2xl md:text-lg text-xs p-3 w-tb-sm text-center"
+            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm text-center"
           >
+            <span
+              class="lg:hidden font-semibold mr-2"
+            />
             <div
-              class="w-6 h-6 relative"
+              class="w-6 h-6 relative flex justify-between"
             >
-              <button
-                class="relative inline-flex items-center justify-center"
+              <div
+                class="relative inline-flex items-center justify-center cursor-pointer"
               >
                 <img
                   alt="Delete"
+                  class="w-6 h-6"
                   data-nimg="1"
                   decoding="async"
                   fetchpriority="high"
@@ -280,14 +312,13 @@ exports[`CartProduct component should be render match to snapshot 1`] = `
                   style="color: transparent;"
                   width="24"
                 />
-              </button>
+              </div>
             </div>
             <div
-              class="flex items-center gap-4 font-bold bg-white w-36 h-12 justify-center className absolute bottom-5 right-20"
+              class="flex items-center gap-4 font-bold bg-white w-36 h-12 justify-center className lg:absolute bottom-5 right-20"
             >
-              <button
-                class="relative inline-flex items-center justify-center opacity-20"
-                disabled=""
+              <div
+                class="relative inline-flex items-center justify-center opacity-20 cursor-pointer"
               >
                 <img
                   alt="minus icon"
@@ -299,14 +330,14 @@ exports[`CartProduct component should be render match to snapshot 1`] = `
                   style="color: transparent;"
                   width="24"
                 />
-              </button>
+              </div>
               <span
                 class="px-2"
               >
                 1
               </span>
-              <button
-                class="relative inline-flex items-center justify-center"
+              <div
+                class="relative inline-flex items-center justify-center cursor-pointer"
               >
                 <img
                   alt="plus icon"
@@ -318,7 +349,7 @@ exports[`CartProduct component should be render match to snapshot 1`] = `
                   style="color: transparent;"
                   width="24"
                 />
-              </button>
+              </div>
             </div>
           </td>
         </tr>

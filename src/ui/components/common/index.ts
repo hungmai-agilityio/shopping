@@ -1,5 +1,6 @@
 export { default as BreadCrumb } from '@/ui/components/common/BreadCrumb';
 export { default as Button } from '@/ui/components/common/Button';
+export { default as Badge } from '@/ui/components/common/Badge';
 export { default as RadioButton } from '@/ui/components/common/RadioButton';
 export { default as Icon } from '@/ui/components/common/Icon';
 export { default as Input } from '@/ui/components/common/Input';
@@ -13,7 +14,10 @@ export { default as ToastMessage } from '@/ui/components/common/ToastMessage';
 export { default as Spinner } from '@/ui/components/common/Loading/Spinner'
 export { default as Brand } from '@/ui/components/common/Brand'
 export { default as Modal } from '@/ui/components/common/Modal';
+export { default as ModalDelete } from '@/ui/components/common/Modal/Delete';
+export { default as ModalAuth } from '@/ui/components/common/Modal/Auth';
 export { default as Dropdown } from '@/ui/components/common/Dropdown';
+export { default as DropdownNote } from '@/ui/components/common/Dropdown/Note';
 export { default as CardProductSkeleton } from '@/ui/components/common/Skeleton/CardProduct';
 export { default as Carousel } from '@/ui/components/common/Carousel';
 export { default as CarouselCategories } from '@/ui/components/common/Carousel/Categories';

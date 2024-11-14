@@ -5,7 +5,7 @@ interface IProps {
 }
 const Table = ({ children }: IProps) => {
   return (
-    <table className="border-separate border-spacing-y-tb-md text-dark">
+    <table className="w-full border-separate border-spacing-y-tb-md text-dark">
       {children}
     </table>
   );

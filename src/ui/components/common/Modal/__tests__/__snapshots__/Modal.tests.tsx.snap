@@ -72,11 +72,6 @@ exports[`Modal component should be render match to snapshot with confirm button 
         >
           Close
         </button>
-        <button
-          class="truncate md:h-12 h-8 md:text-lg md:w-btn-md w-28 text-xs bg-gradient-primary text-white font-bold"
-        >
-          Confirm
-        </button>
       </div>
     </div>
   </div>

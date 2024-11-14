@@ -14,7 +14,7 @@ import { IWishlist, IProduct, ICart, IUser } from '@/interfaces';
 import { getUserWishList, getUserCart, updateCart } from '@/libs';
 
 // Components
-import { Modal, WishList, ToastMessage } from '@/ui/components';
+import { ModalDelete, WishList, ToastMessage } from '@/ui/components';
 
 // Hooks
 import { useAddDataToCart, useModal, useRemoveFromWishlist } from '@/hooks';
@@ -111,16 +111,11 @@ const WishListSection = ({ user, products }: WishListSectionProps) => {
           onDelete={handleOpenModal}
         />
       </section>
-      <Modal
+      <ModalDelete
+        onClick={handleDeleteProduct}
         isOpen={isOpen}
         onClose={closeModal}
-        title="Confirm Deletion"
-        isConfirm
-        buttonName="Delete"
-        onConfirm={handleDeleteProduct}
-      >
-        <p>Are you sure you want to delete this item from your wishlist?</p>
-      </Modal>
+      />
       {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </>
   );

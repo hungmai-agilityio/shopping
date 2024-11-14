@@ -23,9 +23,9 @@ export const inputTypeClasses = {
 
 // Table
 export const cellSizeClasses = {
-  [SIZE.SMALL]: 'w-tb-sm',
-  [SIZE.MEDIUM]: 'w-tb-md',
-  [SIZE.LARGE]: 'w-tb-xl'
+  [SIZE.SMALL]: 'lg:w-tb-sm',
+  [SIZE.MEDIUM]: 'lg:w-tb-md',
+  [SIZE.LARGE]: 'lg:w-tb-xl'
 };
 
 // Toast

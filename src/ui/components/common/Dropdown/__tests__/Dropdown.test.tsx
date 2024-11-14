@@ -9,15 +9,15 @@ jest.mock('@/hooks', () => ({
 }));
 
 describe('Dropdown Component', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+  const mockSetVisible = jest.fn();
 
-  const mockSetIsNoteVisible = jest.fn();
-
-  const renderDropdown = (props = {}) =>
+  const renderDropdown = (isOpen = true) =>
     render(
-      <Dropdown setVisible={mockSetIsNoteVisible} isOpen={true} {...props}>
+      <Dropdown
+        setVisible={mockSetVisible}
+        isOpen={isOpen}
+        label="products notes"
+      >
         <div data-testid="dropdown-content">Dropdown Content</div>
       </Dropdown>
     );
@@ -29,30 +29,25 @@ describe('Dropdown Component', () => {
     expect(screen.getByAltText('arrow icon')).toBeInTheDocument();
   });
 
-  test('toggles visibility on label click', () => {
-    renderDropdown({ isOpen: false });
-
-    const label = screen.getByText('products notes');
-    fireEvent.click(label);
-
-    expect(mockSetIsNoteVisible).toHaveBeenCalledWith(true);
-  });
-
   test('shows children when isOpen is true', () => {
-    renderDropdown({ isOpen: true });
-
+    renderDropdown(true);
     expect(screen.getByTestId('dropdown-content')).toBeInTheDocument();
   });
 
   test('does not show children when isOpen is false', () => {
-    renderDropdown({ isOpen: false });
-
+    renderDropdown(false);
     expect(screen.queryByTestId('dropdown-content')).not.toBeInTheDocument();
   });
 
-  test('should be render match to snapshot', () => {
-    const { container } = renderDropdown();
+  test('calls setVisible with true on label click when initially closed', () => {
+    renderDropdown(false);
+    fireEvent.click(screen.getByText('products notes'));
+    expect(mockSetVisible).toHaveBeenCalledWith(true);
+  });
 
-    expect(container).toMatchSnapshot();
+  test('calls setVisible with false on label click when initially open', () => {
+    renderDropdown(true);
+    fireEvent.click(screen.getByText('products notes'));
+    expect(mockSetVisible).toHaveBeenCalledWith(false);
   });
 });

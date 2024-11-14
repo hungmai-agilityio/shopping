@@ -3,14 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 
 // Libs + stores
 import { useUserStore } from '@/stores';
 import { getUserCart } from '@/libs';
 
 // Components
-import { Modal, UserIcon } from '@/ui/components';
+import { Badge, Icon, ModalAuth, UserIcon } from '@/ui/components';
 
 // Constants
 import { END_POINT, QUERY } from '@/constants';
@@ -49,12 +48,9 @@ const UserAction = ({ styles, closeMenu }: UserActionProps) => {
   if (!isMounted) {
     return (
       <div className={styles}>
-        <UserIcon
-          src="/bag.svg"
-          alt="cart icon"
-          isBadge
-          badgeCount={user ? cartData.length : 0}
-        />
+        <Badge quantity={0}>
+          <Icon src="/bag.svg" alt="cart icon" width={24} height={24} />
+        </Badge>
         <UserIcon src="/heart.svg" alt="heart icon" />
         <UserIcon src="/user.svg" alt="user icon" />
       </div>
@@ -106,13 +102,15 @@ const UserAction = ({ styles, closeMenu }: UserActionProps) => {
 
   return (
     <div className={styles}>
-      <UserIcon
-        src="/bag.svg"
-        alt="cart icon"
-        isBadge
-        badgeCount={user ? cartData.length : 0}
-        onClick={handleRedirectCart}
-      />
+      <Badge quantity={user ? cartData.length : 0}>
+        <Icon
+          src="/bag.svg"
+          alt="cart icon"
+          width={24}
+          height={24}
+          onClick={handleRedirectCart}
+        />
+      </Badge>
       <UserIcon
         src="/heart.svg"
         alt="heart icon"
@@ -123,50 +121,17 @@ const UserAction = ({ styles, closeMenu }: UserActionProps) => {
         alt="user icon"
         onClick={handleRedirectProfile}
       />
-      <Modal
+      <ModalAuth
+        onClick={handleConfirm}
         isOpen={authModal.isOpen}
         onClose={authModal.closeModal}
-        title="Authentication request"
-        buttonName="Yes"
-        isConfirm
-        onConfirm={handleConfirm}
-      >
-        <div>
-          To perform this action, you need to log in, press the{' '}
-          <strong>"Yes"</strong> button to proceed with login.
-          <div className="my-5">
-            <Image
-              src="/auth-stop.webp"
-              alt="stop action"
-              width={150}
-              height={150}
-              className="mx-auto"
-            />
-          </div>
-        </div>
-      </Modal>
-      <Modal
+      />
+      <ModalAuth
+        onClick={handleSignOut}
+        isLogged
         isOpen={signOutModal.isOpen}
         onClose={signOutModal.closeModal}
-        title="Confirm sign out"
-        buttonName="Sign out"
-        isConfirm
-        onConfirm={handleSignOut}
-      >
-        <div>
-          Would you like to log out? Click <strong>Sign out</strong> to return
-          to the login page.
-          <div className="my-5">
-            <Image
-              src="/auth-stop.webp"
-              alt="stop action"
-              width={150}
-              height={150}
-              className="mx-auto"
-            />
-          </div>
-        </div>
-      </Modal>
+      />
       {user && (
         <UserIcon
           src="/logout.webp"

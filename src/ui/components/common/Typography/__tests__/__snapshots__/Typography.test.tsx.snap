@@ -3,7 +3,7 @@
 exports[`Typography component should be render match to snapshot 1`] = `
 <div>
   <p
-    class="font-normal text-black text-2xl"
+    class="font-normal text-black md:text-2xl text-md"
   >
     This is a default paragraph text.
   </p>

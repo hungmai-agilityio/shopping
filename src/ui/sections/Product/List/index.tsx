@@ -1,13 +1,12 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 
 // Constants
-import { END_POINT, FONT_SIZE, QUERY } from '@/constants';
+import { END_POINT, QUERY } from '@/constants';
 
 // Interfaces
 import { IProduct, IUser, IWishlist } from '@/interfaces';
@@ -16,7 +15,7 @@ import { IProduct, IUser, IWishlist } from '@/interfaces';
 import { getUserWishList } from '@/libs';
 
 // Components
-import { Button, CardProduct, Modal, Typography } from '@/ui/components';
+import { Button, CardProduct, ModalAuth } from '@/ui/components';
 
 // Hooks
 import { useAddToWishlist, useModal, useRemoveFromWishlist } from '@/hooks';
@@ -118,28 +117,11 @@ const CardProductList = ({
             isFavorite={isProductInWishlist(item.id)}
           />
         ))}
-        <Modal
+        <ModalAuth
+          onClick={handleRedirectSignIn}
           isOpen={isOpen}
           onClose={closeModal}
-          title="Authentication request"
-          buttonName="Yes"
-          isConfirm
-          onConfirm={handleRedirectSignIn}
-        >
-          <Typography size={FONT_SIZE.X_SMALL}>
-            To perform this action, you need to log in, press the{' '}
-            <strong>"Yes"</strong> button to proceed with login
-            <div className="my-5">
-              <Image
-                src="/auth-stop.webp"
-                alt="stop action"
-                width={150}
-                height={150}
-                className="mx-auto"
-              />
-            </div>
-          </Typography>
-        </Modal>
+        />
       </div>
       {isShowMore && (
         <div className="mt-10 text-center">

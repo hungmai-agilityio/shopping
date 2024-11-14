@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 // Constants
-import { CELL, FONT_WEIGHT, mada, SIZE, TAG } from '@/constants';
+import { CELL, FONT_SIZE, FONT_WEIGHT, mada, SIZE, TAG } from '@/constants';
 
 // Components
 import {
@@ -39,8 +39,8 @@ const WishList = memo(
       if (!product) return null;
 
       return (
-        <Row key={item.id} isTD styles="h-40">
-          <Cell size={SIZE.SMALL} type={CELL.TD} styles="text-center">
+        <Row key={item.id} isTD styles="lg:h-40 h-full">
+          <Cell size={SIZE.SMALL} type={CELL.TD}>
             <div className="lg:block hidden">
               <Icon
                 src="/delete.svg"
@@ -71,38 +71,38 @@ const WishList = memo(
               />
             </div>
           </Cell>
-          <Cell size={SIZE.LARGE} type={CELL.TD}>
+          <Cell size={SIZE.LARGE} type={CELL.TD} label="Name">
             <Typography fontWeight={FONT_WEIGHT.BOLD}>
               {product.name}
             </Typography>
             <Typography
               color="text-gray-500"
               tag={TAG.SPAN}
-              className="md:text-lg text-xs"
+              size={FONT_SIZE.X_SMALL}
             >
               Color: {item.color}
             </Typography>
           </Cell>
-          <Cell size={SIZE.MEDIUM} type={CELL.TD} styles="text-center">
+          <Cell size={SIZE.MEDIUM} type={CELL.TD} label="Price">
             <Typography fontWeight={FONT_WEIGHT.BOLD}>
               ${product.price} USD
             </Typography>
             <Typography
               color="text-gray-500"
               tag={TAG.SPAN}
-              className="md:text-lg text-xs"
+              size={FONT_SIZE.X_SMALL}
             >
               Price
             </Typography>
           </Cell>
-          <Cell size={SIZE.MEDIUM} type={CELL.TD} styles="text-center">
+          <Cell size={SIZE.MEDIUM} type={CELL.TD} label="Stock Status">
             <Typography fontWeight={FONT_WEIGHT.BOLD}>
               {product.stoct}
             </Typography>
             <Typography
               color="text-gray-500"
               tag={TAG.SPAN}
-              className="md:text-lg text-xs"
+              size={FONT_SIZE.X_SMALL}
             >
               In Stock
             </Typography>
@@ -120,16 +120,16 @@ const WishList = memo(
       <div className={`${mada.className} h-table overflow-y-auto scrollbar`}>
         <Table>
           <Head>
-            <Row>
+            <Row styles="lg:flex hidden">
               <Cell size={SIZE.SMALL} type={CELL.TH}></Cell>
               <Cell size={SIZE.SMALL} type={CELL.TH}>
                 Product
               </Cell>
               <Cell size={SIZE.LARGE} type={CELL.TH}></Cell>
-              <Cell size={SIZE.MEDIUM} type={CELL.TH} styles="text-center">
+              <Cell size={SIZE.MEDIUM} type={CELL.TH}>
                 Price
               </Cell>
-              <Cell size={SIZE.MEDIUM} type={CELL.TH} styles="text-center">
+              <Cell size={SIZE.MEDIUM} type={CELL.TH}>
                 Stock Status
               </Cell>
               <Cell size={SIZE.MEDIUM} type={CELL.TH}></Cell>

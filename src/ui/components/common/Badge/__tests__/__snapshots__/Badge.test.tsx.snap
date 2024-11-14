@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge component should be render match to snapshot 1`] = `
+<div>
+  <div
+    class="relative"
+  >
+    <div
+      class="absolute -top-2 -right-2 h-5 w-5 rounded-full flex justify-center items-center bg-red-400 text-white text-xs cursor-pointer z-10 overflow-hidden"
+    >
+      10
+    </div>
+    <div
+      class="relative inline-flex items-center justify-center"
+    >
+      <img
+        alt="cart"
+        data-nimg="1"
+        decoding="async"
+        height="24"
+        loading="lazy"
+        src="/cart.svg"
+        style="color: transparent;"
+        width="24"
+      />
+    </div>
+  </div>
+</div>
+`;

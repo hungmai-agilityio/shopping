@@ -26,18 +26,4 @@ describe('UserIcon component', () => {
 
     expect(defaultProps.onClick).toHaveBeenCalledTimes(1);
   });
-
-  it('renders badge count when isBadge is true', () => {
-    render(<UserIcon {...defaultProps} isBadge={true} badgeCount={5} />);
-
-    const badge = screen.getByText('5');
-    expect(badge).toBeInTheDocument();
-  });
-
-  it('does not render badge count when isBadge is false', () => {
-    render(<UserIcon {...defaultProps} isBadge={false} />);
-
-    const badge = screen.queryByText('5');
-    expect(badge).not.toBeInTheDocument();
-  });
 });

@@ -33,7 +33,7 @@ import {
   Typography,
   ColorPicker,
   CardImage,
-  Modal
+  ModalAuth
 } from '@/ui/components';
 
 // Hooks
@@ -267,28 +267,7 @@ const ProductDetail = ({ product }: DetailProps) => {
           </Button>
         </div>
       </div>
-      <Modal
-        isOpen={isOpen}
-        onClose={closeModal}
-        title="Authentication request"
-        buttonName="Yes"
-        isConfirm
-        onConfirm={handleConfirm}
-      >
-        <div>
-          To perform this action, you need to log in, press the{' '}
-          <strong>"Yes"</strong> button to proceed with login.
-          <div className="my-5">
-            <Image
-              src="/auth-stop.webp"
-              alt="stop action"
-              width={150}
-              height={150}
-              className="mx-auto"
-            />
-          </div>
-        </div>
-      </Modal>
+      <ModalAuth onClick={handleConfirm} isOpen={isOpen} onClose={closeModal} />
     </section>
   );
 };

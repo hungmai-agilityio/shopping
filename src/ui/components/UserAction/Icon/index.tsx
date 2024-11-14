@@ -4,17 +4,9 @@ interface UserIconProps {
   src: string;
   alt: string;
   onClick?: () => void;
-  isBadge?: boolean;
-  badgeCount?: number;
 }
 
-const UserIcon = ({
-  src,
-  alt,
-  onClick,
-  isBadge = false,
-  badgeCount = 0
-}: UserIconProps) => {
+const UserIcon = ({ src, alt, onClick }: UserIconProps) => {
   return (
     <Icon
       src={src}
@@ -22,8 +14,6 @@ const UserIcon = ({
       width={24}
       height={24}
       onClick={onClick}
-      isBadge={isBadge}
-      badgeCount={badgeCount}
       priority
     />
   );

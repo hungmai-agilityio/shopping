@@ -2,8 +2,8 @@
 
 exports[`Icon component should be render match to snapshot 1`] = `
 <div>
-  <button
-    class="relative inline-flex items-center justify-center"
+  <div
+    class="relative inline-flex items-center justify-center cursor-pointer"
   >
     <img
       alt="Cart Icon"
@@ -15,6 +15,6 @@ exports[`Icon component should be render match to snapshot 1`] = `
       style="color: transparent;"
       width="24"
     />
-  </button>
+  </div>
 </div>
 `;

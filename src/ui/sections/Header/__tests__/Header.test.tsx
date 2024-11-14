@@ -47,9 +47,7 @@ describe('Header Component', () => {
       <QueryClientProvider client={queryClient}>{result}</QueryClientProvider>
     );
 
-    const userActions = await screen.getAllByRole('button', {
-      name: /user icon/i
-    });
+    const userActions = await screen.getAllByAltText('user icon');
 
     expect(userActions.length).toBeGreaterThan(0);
     expect(userActions[0]).toBeInTheDocument();

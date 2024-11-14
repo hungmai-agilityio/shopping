@@ -25,6 +25,9 @@ const meta: Meta<typeof Dropdown> = {
     },
     setVisible: {
       description: 'Function to toggle dropdown visibility'
+    },
+    label: {
+      description: 'Label name'
     }
   }
 };
@@ -44,6 +47,7 @@ export const Default: Story = {
     );
   },
   args: {
-    children: 'Content inside the dropdown'
+    children: 'Content inside the dropdown',
+    label: 'dropdown'
   }
 };

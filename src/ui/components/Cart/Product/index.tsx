@@ -26,7 +26,7 @@ const CartProduct = memo(
     onQuantityChange
   }: CartProductProps) => {
     return (
-      <div className={`${mada.className} h-table overflow-y-auto scrollbar`}>
+      <div className={`${mada.className} lg:h-table h-full overflow-y-auto scrollbar`}>
         <Table>
           <Body>
             {carts.map((cart) => {

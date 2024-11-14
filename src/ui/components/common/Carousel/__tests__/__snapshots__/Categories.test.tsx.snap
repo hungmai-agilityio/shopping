@@ -11,8 +11,8 @@ exports[`CarouselCategories should be render match to snapshot 1`] = `
       <div
         class="absolute -left-5"
       >
-        <button
-          class="relative inline-flex items-center justify-center"
+        <div
+          class="relative inline-flex items-center justify-center cursor-pointer"
         >
           <img
             alt="icon arrow left"
@@ -25,7 +25,7 @@ exports[`CarouselCategories should be render match to snapshot 1`] = `
             style="color: transparent;"
             width="40"
           />
-        </button>
+        </div>
       </div>
       <div
         class="relative inline-flex items-center justify-center"
@@ -46,8 +46,8 @@ exports[`CarouselCategories should be render match to snapshot 1`] = `
       <div
         class="absolute -right-5"
       >
-        <button
-          class="relative inline-flex items-center justify-center"
+        <div
+          class="relative inline-flex items-center justify-center cursor-pointer"
         >
           <img
             alt="icon arrow right"
@@ -60,7 +60,7 @@ exports[`CarouselCategories should be render match to snapshot 1`] = `
             style="color: transparent;"
             width="40"
           />
-        </button>
+        </div>
       </div>
       <p
         class="capitalize font-semibold absolute top-3 right-5 bg-second text-white px-3 py-1"

@@ -5,16 +5,12 @@ const meta: Meta<typeof Modal> = {
   component: Modal,
   tags: ['autodocs'],
   argTypes: {
-    buttonName: {
+    btnSecond: {
       description: 'name of Button confirm',
       control: 'text'
     },
     children: {
       description: 'Content in modal'
-    },
-    isConfirm: {
-      description: 'A confirmation button will be displayed',
-      control: 'boolean'
     },
     isOpen: {
       description: 'Open modal',
@@ -23,7 +19,7 @@ const meta: Meta<typeof Modal> = {
     onClose: {
       description: 'Handle to close modal'
     },
-    onConfirm: {
+    onClick: {
       description: 'Handle the action for the confirm button'
     },
     title: {
@@ -51,8 +47,7 @@ export const Confirm: Story = {
     children: 'This is content',
     isOpen: true,
     title: 'Modal Title',
-    buttonName: 'Confirm',
-    isConfirm: true,
-    onConfirm: () => alert('Confirm')
+    btnSecond: 'Confirm',
+    onClick: () => alert('Confirm')
   }
 };

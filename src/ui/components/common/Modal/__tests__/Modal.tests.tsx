@@ -17,7 +17,7 @@ describe('Modal component', () => {
 
   test('should be render match to snapshot with confirm button', () => {
     const { container } = render(
-      <Modal {...defaultProps} isConfirm buttonName="Confirm" />
+      <Modal {...defaultProps} btnSecond="Confirm" />
     );
 
     expect(container).toMatchSnapshot();

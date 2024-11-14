@@ -6,9 +6,8 @@ interface ModalProps {
   onClose: () => void;
   title?: string;
   children: ReactNode;
-  isConfirm?: boolean;
-  buttonName?: string;
-  onConfirm?: () => void;
+  btnSecond?: string;
+  onClick?: () => void;
 }
 
 const Modal = ({
@@ -16,9 +15,8 @@ const Modal = ({
   onClose,
   title,
   children,
-  isConfirm,
-  buttonName,
-  onConfirm
+  btnSecond,
+  onClick
 }: ModalProps) => {
   if (!isOpen) return null;
 
@@ -40,7 +38,7 @@ const Modal = ({
           >
             Close
           </Button>
-          {isConfirm && <Button onClick={onConfirm}>{buttonName}</Button>}
+          {onClick && <Button onClick={onClick}>{btnSecond}</Button>}
         </div>
       </div>
     </div>

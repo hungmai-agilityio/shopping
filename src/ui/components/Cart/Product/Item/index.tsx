@@ -3,13 +3,14 @@
 import { memo, useState } from 'react';
 
 // Constants
-import { CELL, FONT_WEIGHT, SIZE, TAG, TYPE } from '@/constants';
+import { CELL, FONT_SIZE, FONT_WEIGHT, SIZE, TAG, TYPE } from '@/constants';
 
 // Components
 import { Dropdown, CardImage } from '@/ui/components';
 import {
   Button,
   Cell,
+  DropdownNote,
   Icon,
   Input,
   Quantity,
@@ -53,34 +54,26 @@ const CartItem = memo(
     };
 
     return (
-      <Row key={id} isTD styles="relative h-60">
+      <Row key={id} isTD styles="relative lg:h-60 h-full">
         <Cell size={SIZE.SMALL} type={CELL.TD} styles="px-10">
           <div className="w-32 h-32">
             <CardImage src={product.image} alt={product.name} autoSize isBlur />
           </div>
-          <Dropdown
-            styles="absolute bottom-5"
+          <DropdownNote
             isOpen={isOpen}
+            styles="absolute bottom-5 lg:flex hidden"
             setVisible={setVisible}
-          >
-            <div className="absolute z-10 bg-white p-2 rounded shadow-lg mt-2 w-96 text-base font-thin">
-              <Input
-                variant={TYPE.THIRD}
-                value={currentNote}
-                placeholder="writing your note"
-                className="text-sm"
-                onChange={(e) => setCurrentNote(e.target.value)}
-              />
-              <Button onClick={handleSaveNote}>Save</Button>
-            </div>
-          </Dropdown>
+            value={currentNote}
+            onChange={(e) => setCurrentNote(e.target.value)}
+            onClick={handleSaveNote}
+          />
         </Cell>
         <Cell size={SIZE.MEDIUM} type={CELL.TD}>
           <Typography fontWeight={FONT_WEIGHT.BOLD}>{product.name}</Typography>
           <Typography
             color="text-gray-500"
             tag={TAG.SPAN}
-            className="md:text-lg text-xs"
+            size={FONT_SIZE.X_SMALL}
           >
             Color: {color}
           </Typography>
@@ -92,7 +85,7 @@ const CartItem = memo(
           <Typography
             color="text-gray-500"
             tag={TAG.SPAN}
-            className="md:text-lg text-xs"
+            size={FONT_SIZE.X_SMALL}
           >
             Price
           </Typography>
@@ -102,13 +95,13 @@ const CartItem = memo(
           <Typography
             color="text-gray-500"
             tag={TAG.SPAN}
-            className="md:text-lg text-xs"
+            size={FONT_SIZE.X_SMALL}
           >
             In Stock
           </Typography>
         </Cell>
         <Cell size={SIZE.SMALL} type={CELL.TD} styles="text-center">
-          <div className="w-6 h-6 relative">
+          <div className="w-6 h-6 relative flex justify-between">
             <Icon
               src="/delete.svg"
               alt="Delete"
@@ -116,11 +109,12 @@ const CartItem = memo(
               height={24}
               onClick={() => onDelete(id)}
               priority
+              className="w-6 h-6"
             />
           </div>
           <Quantity
             value={quantity}
-            styles="absolute bottom-5 right-20"
+            styles="lg:absolute bottom-5 right-20"
             onQuantityChange={handleQuantityChange}
           />
         </Cell>

@@ -48,8 +48,8 @@ exports[`CarouselProduct should be render match to snapshot 1`] = `
           <div
             class="absolute left-10"
           >
-            <button
-              class="relative inline-flex items-center justify-center"
+            <div
+              class="relative inline-flex items-center justify-center cursor-pointer"
             >
               <img
                 alt="icon arrow left"
@@ -62,7 +62,7 @@ exports[`CarouselProduct should be render match to snapshot 1`] = `
                 style="color: transparent;"
                 width="40"
               />
-            </button>
+            </div>
           </div>
           <div
             class="mt-5"
@@ -98,8 +98,8 @@ exports[`CarouselProduct should be render match to snapshot 1`] = `
           <div
             class="absolute right-10"
           >
-            <button
-              class="relative inline-flex items-center justify-center"
+            <div
+              class="relative inline-flex items-center justify-center cursor-pointer"
             >
               <img
                 alt="icon arrow right"
@@ -112,7 +112,7 @@ exports[`CarouselProduct should be render match to snapshot 1`] = `
                 style="color: transparent;"
                 width="40"
               />
-            </button>
+            </div>
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@ exports[`CarouselProduct should be render match to snapshot 1`] = `
       class="flex-1 ml-10 flex flex-col justify-center max-w-card-sm"
     >
       <h2
-        class="font-bold text-white text-2xl className xl:text-5xl text-4xl"
+        class="font-bold text-white md:text-2xl text-md className xl:text-5xl text-4xl"
       >
         Basic T-Shirt
       </h2>
@@ -160,7 +160,7 @@ exports[`CarouselProduct should be render match to snapshot 1`] = `
         <div
           class="ml-4 flex items-center"
         >
-          <button
+          <div
             class="relative inline-flex items-center justify-center"
           >
             <img
@@ -173,7 +173,7 @@ exports[`CarouselProduct should be render match to snapshot 1`] = `
               style="color: transparent;"
               width="152"
             />
-          </button>
+          </div>
           <span
             class="font-thin text-white text-sm"
           >
@@ -215,7 +215,7 @@ exports[`CarouselProduct should be render match to snapshot 1`] = `
           </div>
         </div>
         <span
-          class="font-semibold text-white text-2xl className xl:text-heading text-4xl"
+          class="font-semibold text-white md:text-2xl text-md className xl:text-heading text-4xl"
         >
           15
           $

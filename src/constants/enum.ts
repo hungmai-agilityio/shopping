@@ -30,7 +30,7 @@ export enum TAG {
 export enum FONT_SIZE {
   LARGE = 'text-heading',
   MEDIUM = 'text-4xl',
-  SMALL = 'text-2xl',
+  SMALL = 'md:text-2xl text-md',
   X_SMALL = 'lg:text-lg text-sm',
   MIMI = 'text-sm'
 }
@@ -73,4 +73,11 @@ export enum STATUS {
 export enum TIME_STATUS {
   STALE_TIME = 1000 * 60 * 60, // milliseconds * seconds * minutes = 1 hour
   COOKIE_TIME = 60 * 60 * 24 * 2 // seconds * minutes * hour * day
+}
+
+export enum POSITION {
+  TOP_RIGHT = 'top-right',
+  TOP_LEFT = 'top-left',
+  BOT_RIGHT = 'bottom-right',
+  BOT_LEFT = 'bottom-left'
 }

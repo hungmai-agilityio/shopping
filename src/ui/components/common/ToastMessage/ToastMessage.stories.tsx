@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import ToastMessage from '.';
-import { STATUS } from '@/constants';
+import { POSITION, STATUS } from '@/constants';
 
 const meta: Meta<typeof ToastMessage> = {
   component: ToastMessage,
@@ -11,6 +11,9 @@ const meta: Meta<typeof ToastMessage> = {
     },
     message: {
       description: 'Message to show'
+    },
+    position: {
+      description: 'Set the position for Toast to display'
     }
   }
 };
@@ -22,20 +25,31 @@ type Story = StoryObj<typeof ToastMessage>;
 export const Success: Story = {
   args: {
     status: STATUS.SUCCESS,
-    message: 'show message success'
+    message: 'show message success',
+    position: POSITION.TOP_RIGHT
   }
 };
 
 export const Error: Story = {
   args: {
     status: STATUS.ERROR,
-    message: 'show message error'
+    message: 'show message error',
+    position: POSITION.TOP_LEFT
   }
 };
 
-export const Warning: Story = {
+export const WarningRight: Story = {
   args: {
     status: STATUS.WARNING,
-    message: 'show message warning'
+    message: 'show message warning',
+    position: POSITION.BOT_RIGHT
+  }
+};
+
+export const WarningLeft: Story = {
+  args: {
+    status: STATUS.WARNING,
+    message: 'show message warning',
+    position: POSITION.BOT_LEFT
   }
 };

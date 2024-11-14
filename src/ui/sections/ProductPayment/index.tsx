@@ -10,7 +10,7 @@ import { FONT_SIZE, FONT_WEIGHT, TAG } from '@/constants';
 import { ICart, IProduct } from '@/interfaces';
 
 // Components
-import { Typography, Modal } from '@/ui/components';
+import { Typography, Modal, ModalDelete } from '@/ui/components';
 
 // Sections
 import { CheckoutSection } from '@/ui/sections';
@@ -102,23 +102,18 @@ const ProductPayment = memo(
             title={title}
           />
         </div>
-        <Modal
+        <ModalDelete
+          onClick={handleDeleteProduct}
           isOpen={cartModal.isOpen}
           onClose={cartModal.closeModal}
-          title="Confirm Deletion"
-          isConfirm
-          buttonName="Delete"
-          onConfirm={handleDeleteProduct}
-        >
-          <p>Are you sure you want to delete this item from your cart?</p>
-        </Modal>
+        />
+
         <Modal
           isOpen={checkoutModal.isOpen}
           onClose={checkoutModal.closeModal}
           title="Confirm Checkout"
-          isConfirm
-          buttonName="Checkout"
-          onConfirm={handleCheckoutCart}
+          btnSecond="Checkout"
+          onClick={handleCheckoutCart}
         >
           <div className="border border-dark mx-auto h-full p-4">
             <Typography
@@ -136,7 +131,10 @@ const ProductPayment = memo(
               if (!product) return null;
 
               return (
-                <div key={item.id} className="mt-2 grid grid-cols-3 gap-5 text-center">
+                <div
+                  key={item.id}
+                  className="mt-2 grid grid-cols-3 gap-5 text-center"
+                >
                   <Typography size={FONT_SIZE.MIMI}>
                     <strong>Product:</strong> {product.name}
                   </Typography>
