@@ -31,7 +31,7 @@ const ToastMessage = ({ status, message, position }: ToastProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
-    }, 300000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);

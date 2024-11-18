@@ -5,7 +5,7 @@ import { Tabs } from '@/ui/components';
 import { ITab } from '@/ui/components/common/Tabs/Tab';
 
 describe('Tabs', () => {
-  const listTabUsers: Omit<ITab, 'index' | 'onClick'>[] = [
+  const listTabUsers: Omit<ITab, 'selected' | 'onClick'>[] = [
     {
       title: 'Option 1',
       value: '1'
@@ -22,7 +22,7 @@ describe('Tabs', () => {
 
   const propsDefault = {
     list: listTabUsers,
-    index: '1',
+    selected: '1',
     onClick: jest.fn()
   };
 
@@ -35,7 +35,8 @@ describe('Tabs', () => {
 
   it('render when click tab', () => {
     render(<Tabs {...propsDefault} />);
-    const element = screen.getAllByRole('button');
+    const element = screen.getAllByRole('button');clear
+    
     fireEvent.click(element[0]);
 
     expect(propsDefault.onClick).toBeCalledTimes(1);

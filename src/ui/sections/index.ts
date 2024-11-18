@@ -9,3 +9,5 @@ export { default as CheckoutSection } from '@/ui/sections/Checkout';
 export { default as ProductPayment } from '@/ui/sections/ProductPayment';
 export { default as ProfileForm } from '@/ui/sections/Profile/Form';
 export { default as CardUpload } from '@/ui/sections/Profile/CardUpload';
+export { default as CommentsSection } from '@/ui/sections/Comments';
+export { default as ModelSection } from '@/ui/sections/Models';

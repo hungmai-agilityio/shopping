@@ -1,26 +1,41 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 // Components
-import WishList from '@/ui/components/WishList';
-import { mockProducts, mockWishlist } from '@/mocks';
+import { WishList } from '@/ui/components';
+
+// Mock Data
+import { mockProduct, mockWishlist } from '@/mocks';
 
 const meta: Meta<typeof WishList> = {
   component: WishList,
   tags: ['autodocs'],
-
   argTypes: {
-    data: {
-      description: 'List of products displayed in wishlist'
+    id: {
+      description: 'Unique identifier for the wishlist item'
     },
-    products: {
-      description: 'List products for find and render data info'
+    productId: {
+      description: 'Unique identifier for the product'
+    },
+    image: {
+      description: 'URL of the product image'
+    },
+    nameProduct: {
+      description: 'Name of the product'
+    },
+    price: {
+      description: 'Price of the product in USD'
+    },
+    stoct: {
+      description: 'Stock status of the product'
+    },
+    isDisable: {
+      description: 'Disables the "Add to Cart" button if true'
     },
     onAddCart: {
-      description: 'Function to handle when clicking the "Add to Cart" button'
+      description: 'Function to handle adding the product to the cart'
     },
     onDelete: {
-      description:
-        'Function to handle when clicking on the product deletion icon'
+      description: 'Function to handle deleting the product from the wishlist'
     }
   }
 };
@@ -31,17 +46,27 @@ type Story = StoryObj<typeof WishList>;
 
 export const Default: Story = {
   args: {
-    data: mockWishlist,
-    products: mockProducts,
+    id: mockWishlist[0].id,
+    productId: mockWishlist[0].productId,
+    image: mockProduct.image,
+    nameProduct: mockProduct.name,
+    price: mockProduct.price,
+    stoct: mockProduct.stoct,
+    isDisable: false,
     onAddCart: (id) => console.log(`Add to cart: ${id}`),
     onDelete: (id) => console.log(`Delete item: ${id}`)
   }
 };
 
-export const Empty: Story = {
+export const Disabled: Story = {
   args: {
-    data: [],
-    products: mockProducts,
+    id: mockWishlist[0].id,
+    productId: mockWishlist[0].productId,
+    image: mockProduct.image,
+    nameProduct: mockProduct.name,
+    price: mockProduct.price,
+    stoct: mockProduct.stoct,
+    isDisable: true,
     onAddCart: (id) => console.log(`Add to cart: ${id}`),
     onDelete: (id) => console.log(`Delete item: ${id}`)
   }

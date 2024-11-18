@@ -9,8 +9,8 @@ describe('Cart checkout component', () => {
   });
 
   const defaultProps = {
-    total: 160,
-    products: 4,
+    price: 160,
+    quantity: 4,
     onCheckout: jest.fn()
   };
   it('render with default props', () => {

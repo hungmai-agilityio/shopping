@@ -1,17 +1,17 @@
 import { clsx } from 'clsx';
 
 export interface ITab {
-  index: string;
+  selected: string;
   value: string;
   title: string;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const Tab = ({ value, index, title, onClick }: ITab) => (
+export const Tab = ({ value, selected, title, onClick }: ITab) => (
   <button
     value={value}
     className={clsx('h-14 font-base lg:text-2xl text-lg text-dark-gray', {
-      'border-b-2 border-b-second text-second font-bold': index === value
+      'border-b-2 border-b-second text-second font-bold': selected === value
     })}
     onClick={onClick}
   >

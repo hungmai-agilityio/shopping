@@ -25,6 +25,19 @@ export const useAddDataToCart = () => {
   });
 };
 
+export const useUpdateDataToCart = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ id, data }: { id: string; data: Partial<ICart> }) =>
+      updateCart(id, data),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: [QUERY.CART] }),
+    onError: (error) => {
+      alert(`${error}. Please try again`);
+    }
+  });
+};
+
 export const useRemoveFromCart = () => {
   const queryClient = useQueryClient();
 

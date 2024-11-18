@@ -5,7 +5,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 
 // Constants
-import { MESSAGE_API, QUERY, STATUS } from '@/constants';
+import { CELL, mada, MESSAGE_API, QUERY, SIZE, STATUS } from '@/constants';
 
 // Interfaces
 import { IWishlist, IProduct, ICart, IUser } from '@/interfaces';
@@ -14,10 +14,25 @@ import { IWishlist, IProduct, ICart, IUser } from '@/interfaces';
 import { getUserWishList, getUserCart, updateCart } from '@/libs';
 
 // Components
-import { ModalDelete, WishList, ToastMessage } from '@/ui/components';
+import {
+  ModalDelete,
+  WishList,
+  ToastMessage,
+  Empty,
+  Body,
+  Cell,
+  Head,
+  Row,
+  Table
+} from '@/ui/components';
 
 // Hooks
-import { useAddDataToCart, useModal, useRemoveFromWishlist } from '@/hooks';
+import {
+  useAddDataToCart,
+  useModal,
+  useRemoveFromWishlist,
+  useUpdateDataToCart
+} from '@/hooks';
 
 interface WishListSectionProps {
   products: IProduct[];
@@ -33,6 +48,8 @@ const WishListSection = ({ user, products }: WishListSectionProps) => {
 
   const removeFromWishlist = useRemoveFromWishlist();
   const addDataToCart = useAddDataToCart();
+  const updateDataToCart = useUpdateDataToCart();
+
   const queryClient = useQueryClient();
   const { isOpen, closeModal, openModal } = useModal();
 
@@ -60,19 +77,19 @@ const WishListSection = ({ user, products }: WishListSectionProps) => {
 
   // Handle adding product to cart
   const handleAddProductCart = useCallback(
-    async (item: IWishlist) => {
+    async (productId: string) => {
       const cartItems = await getUserCart(user!.id);
 
       const existingItem = cartItems.find(
         (cartItem: ICart) =>
-          cartItem.productId === item.productId && cartItem.userId === user?.id
+          cartItem.productId === productId && cartItem.userId === user?.id
       );
 
       if (existingItem) {
-        await updateCart(existingItem.id, {
-          quantity: existingItem.quantity + 1
+        updateDataToCart.mutate({
+          id: existingItem.id,
+          data: { quantity: existingItem.quantity + 1 }
         });
-
         setToast({
           status: STATUS.SUCCESS,
           message: MESSAGE_API.UPDATE_CART_SUCCESS
@@ -82,7 +99,7 @@ const WishListSection = ({ user, products }: WishListSectionProps) => {
         const newItem: ICart = {
           id: uuidv4(),
           userId: user!.id,
-          productId: item.productId,
+          productId: productId,
           color: 'White',
           note: '',
           quantity: 1
@@ -90,7 +107,7 @@ const WishListSection = ({ user, products }: WishListSectionProps) => {
         addDataToCart.mutate(newItem);
         setToast({
           status: STATUS.SUCCESS,
-          message: MESSAGE_API.UPDATE_CART_SUCCESS
+          message: MESSAGE_API.ADD_PRODUCT_SUCCESS
         });
       }
     },
@@ -99,17 +116,51 @@ const WishListSection = ({ user, products }: WishListSectionProps) => {
 
   if (wishlistError)
     return <p>Error loading wishlist: {wishlistError.message}</p>;
+  const renderRowEmpty = <Empty />;
+  const renderRowData = wishlist.map((item) => {
+    const product = products.find((p) => p.id === item.productId);
 
+    if (!product) return null;
+
+    return (
+      <WishList
+        key={item.id}
+        id={item.id}
+        productId={product.id}
+        image={product.image}
+        nameProduct={product.name}
+        isDisable={addDataToCart.isPending}
+        price={product.price}
+        stoct={product.stoct}
+        onAddCart={handleAddProductCart}
+        onDelete={handleOpenModal}
+      />
+    );
+  });
   return (
     <>
       <section className="my-20 container">
-        <WishList
-          data={wishlist}
-          products={products}
-          isDisable={addDataToCart.isPending}
-          onAddCart={handleAddProductCart}
-          onDelete={handleOpenModal}
-        />
+        <div className={`${mada.className} h-table overflow-y-auto scrollbar`}>
+          <Table>
+            <Head>
+              <Row styles="lg:flex hidden">
+                <Cell size={SIZE.SMALL} type={CELL.TH}></Cell>
+                <Cell size={SIZE.SMALL} type={CELL.TH}>
+                  Product
+                </Cell>
+                <Cell size={SIZE.LARGE} type={CELL.TH}></Cell>
+                <Cell size={SIZE.MEDIUM} type={CELL.TH}>
+                  Price
+                </Cell>
+                <Cell size={SIZE.MEDIUM} type={CELL.TH}>
+                  Stock Status
+                </Cell>
+                <Cell size={SIZE.MEDIUM} type={CELL.TH}></Cell>
+              </Row>
+            </Head>
+            <Body>{!wishlist.length ? renderRowEmpty : renderRowData}</Body>
+          </Table>
+        </div>
       </section>
       <ModalDelete
         onClick={handleDeleteProduct}

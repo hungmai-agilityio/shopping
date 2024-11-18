@@ -45,22 +45,22 @@ const ProductPayment = memo(
     const cartModal = useModal();
     const checkoutModal = useModal();
 
-    const handleOpenModal = (productId: string) => {
+    const handleOpenModal = useCallback((productId: string) => {
       setProductToDelete(productId);
       cartModal.openModal();
-    };
+    }, []);
 
-    const handleOpenModalCheckout = () => {
+    const handleOpenModalCheckout = useCallback(() => {
       checkoutModal.openModal();
-    };
+    }, []);
 
     // Handle delete product from cart
-    const handleDeleteProduct = () => {
+    const handleDeleteProduct = useCallback(() => {
       if (productToDelete) {
         onDelete(productToDelete);
         cartModal.closeModal();
       }
-    };
+    }, []);
 
     // Handle confirm checkout
     const handleCheckoutCart = useCallback(() => {
@@ -68,11 +68,12 @@ const ProductPayment = memo(
       checkoutModal.closeModal();
     }, []);
 
-    const handleSaveNote = (id: string, note: string) => {
+    const handleSaveNote = useCallback((id: string, note: string) => {
       if (onSaveNote) {
         onSaveNote(id, note);
       }
-    };
+    }, []);
+
     if (!cartData.length) {
       return (
         <div className="flex justify-center my-20">
@@ -97,7 +98,7 @@ const ProductPayment = memo(
             onSaveNote={handleSaveNote}
             onCheckout={handleOpenModalCheckout}
             onQuantityChange={onQuantityChange}
-            total={price}
+            price={price}
             quantity={quantity}
             title={title}
           />

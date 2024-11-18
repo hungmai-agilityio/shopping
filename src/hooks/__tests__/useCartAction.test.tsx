@@ -7,6 +7,7 @@ import {
   useClearUserCart,
   useRemoveFromCart,
   useSaveNote,
+  useUpdateDataToCart,
   useUpdateQuantity
 } from '@/hooks';
 
@@ -67,6 +68,33 @@ describe('useCartActions Hook', () => {
     expect(fetch).toHaveBeenCalledWith(
       expect.stringContaining('5370g6022-55k087152-6438fh211'),
       expect.objectContaining({ method: 'DELETE' })
+    );
+    expect(queryClient.getQueryData([QUERY.CART])).toBeUndefined();
+  });
+
+  test('should call updateCart with correct data when updateDataToCart is triggered', async () => {
+    (fetch as jest.Mock).mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({})
+    });
+
+    const { result } = renderHook(() => useUpdateDataToCart(), {
+      wrapper
+    });
+
+    await act(async () => {
+      await result.current.mutate({
+        id: '5370g6022-55k087152-6438fh211',
+        data: { color: 'White', quantity: 3 }
+      });
+    });
+
+    expect(fetch).toHaveBeenCalledWith(
+      expect.stringContaining('5370g6022-55k087152-6438fh211'),
+      expect.objectContaining({
+        method: 'PATCH',
+        body: JSON.stringify({ color: 'White', quantity: 3 })
+      })
     );
     expect(queryClient.getQueryData([QUERY.CART])).toBeUndefined();
   });

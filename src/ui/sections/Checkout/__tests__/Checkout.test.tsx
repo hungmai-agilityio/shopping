@@ -26,7 +26,7 @@ describe('CheckoutSection', () => {
     onSaveNote: mockOnSaveNote,
     onCheckout: mockOnCheckout,
     onQuantityChange: mockOnQuantityChange,
-    total: 50,
+    price: 50,
     quantity: 1
   };
 

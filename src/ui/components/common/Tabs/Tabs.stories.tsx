@@ -12,7 +12,7 @@ const meta: Meta<typeof Tabs> = {
     list: {
       description: 'Render dynamic react node children'
     },
-    index: {
+    selected: {
       description: 'Tab position order'
     },
     onClick: {
@@ -25,7 +25,7 @@ export default meta;
 
 type Story = StoryObj<typeof Tabs>;
 
-const list: Omit<ITab, 'index' | 'onClick'>[] = [
+const list: Omit<ITab, 'selected' | 'onClick'>[] = [
   {
     title: 'Tab 1',
     value: '1'
@@ -46,11 +46,11 @@ export const Default: Story = {
 
     return (
       <div>
-        <Tabs list={list} index={selectedTab} onClick={handleChangeTab} />
-        <Panel index={selectedTab} tabIndex="1">
+        <Tabs list={list} selected={selectedTab} onClick={handleChangeTab} />
+        <Panel selected={selectedTab} tabIndex="1">
           <div className="text-center">Content for Tab 1</div>
         </Panel>
-        <Panel index={selectedTab} tabIndex="2">
+        <Panel selected={selectedTab} tabIndex="2">
           <div className="text-center">Content for Tab 2</div>
         </Panel>
       </div>

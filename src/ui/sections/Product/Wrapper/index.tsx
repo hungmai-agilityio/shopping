@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 
 // Interfaces
-import { ICategories, IUser } from '@/interfaces';
+import { ICategories } from '@/interfaces';
 import { ISearchParams } from '@/types';
 
 // Constants
@@ -12,18 +12,15 @@ import { CardProductSkeleton, Category, Typography } from '@/ui/components';
 
 // Sections
 import { ProductSection } from '@/ui/sections';
+import { getCategories } from '@/libs';
 
 interface ProductSectionProps {
-  categories: ICategories[];
   searchParams: ISearchParams;
-  user: IUser;
 }
-const ProductWrapper = async ({
-  categories,
-  searchParams,
-  user
-}: ProductSectionProps) => {
-  const data = categories.map((item) => item.title);
+const ProductWrapper = async ({ searchParams }: ProductSectionProps) => {
+  const { data: categories } = await getCategories();
+
+  const data = categories.map((item: ICategories) => item.title);
   const query = searchParams?.['product-query'] ?? '';
   const queryCategory = query ? `?category=${query}` : '';
 
@@ -44,7 +41,7 @@ const ProductWrapper = async ({
       </Typography>
       <Category categories={data} queryParam="product-query" />
       <Suspense key={query} fallback={<CardProductSkeleton />}>
-        <ProductSection query={queryCategory} user={user} />
+        <ProductSection query={queryCategory} />
       </Suspense>
     </div>
   );

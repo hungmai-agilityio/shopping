@@ -10,11 +10,11 @@ const meta: Meta<typeof CartCheckout> = {
     layout: 'centered'
   },
   argTypes: {
-    products: {
+    quantity: {
       description: 'Total products',
       control: { type: 'number' }
     },
-    total: {
+    price: {
       description: 'Total price of the products',
       control: { type: 'number' }
     },
@@ -30,8 +30,8 @@ type Story = StoryObj<typeof CartCheckout>;
 
 export const Default: Story = {
   args: {
-    products: 4,
-    total: 160,
+    quantity: 4,
+    price: 160,
     onCheckout: () => alert('Checkout!')
   }
 };

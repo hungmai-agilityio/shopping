@@ -169,7 +169,7 @@ exports[`CarouselProduct should be render match to snapshot 1`] = `
               decoding="async"
               height="24"
               loading="lazy"
-              src="star.svg"
+              src="/star.svg"
               style="color: transparent;"
               width="152"
             />

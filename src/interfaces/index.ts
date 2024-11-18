@@ -12,7 +12,7 @@ export interface IProduct {
   imageDetail?: string[]
   rating?: string
   sell?: string
-  stoct?: number
+  stoct: number
 }
 
 export interface ICategories {

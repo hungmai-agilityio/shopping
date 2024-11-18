@@ -90,7 +90,7 @@ const CardProductList = ({
   };
 
   const handleRedirectPreview = (id: string) => {
-    push(`${id}`);
+    push(`${END_POINT.PRODUCTS}/${id}`);
   };
 
   const handleShowMore = () => {

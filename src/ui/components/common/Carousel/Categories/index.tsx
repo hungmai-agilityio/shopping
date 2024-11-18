@@ -20,7 +20,7 @@ const CarouselCategories = ({ categories }: CarouselCategoriesProps) => {
 
   const handlePrev = () => {
     setActive((prevIndex) =>
-      prevIndex === 0 ? categories.length - 1 : prevIndex - 1
+      !prevIndex ? categories.length - 1 : prevIndex - 1
     );
   };
 

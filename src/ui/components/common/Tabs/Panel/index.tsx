@@ -1,13 +1,13 @@
 import { memo, ReactNode } from 'react';
 
 interface PanelProps {
-  index: string;
+  selected: string;
   tabIndex: string;
   children: ReactNode;
 }
 
-export const Panel = ({ index, tabIndex, children }: PanelProps) => {
-  if (index !== tabIndex) {
+export const Panel = ({ selected, tabIndex, children }: PanelProps) => {
+  if (selected !== tabIndex) {
     return null;
   }
 

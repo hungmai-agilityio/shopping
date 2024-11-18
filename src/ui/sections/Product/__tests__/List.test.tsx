@@ -8,6 +8,7 @@ import CardProductList from '@/ui/sections/Product/List';
 
 // Mocks
 import { mockProducts, mockUser, mockWishlist } from '@/mocks';
+import { END_POINT } from '@/constants';
 
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn()
@@ -69,7 +70,7 @@ describe('CardProductList', () => {
     const product = screen.getByText(mockProducts[0].name);
     fireEvent.click(product);
 
-    expect(mockPush).toHaveBeenCalledWith(`${mockProducts[0].id}`);
+    expect(mockPush).toHaveBeenCalledWith(`${END_POINT.PRODUCTS}/${mockProducts[0].id}`);
   });
 
   test('removes product from wishlist when favorite button is clicked again', () => {

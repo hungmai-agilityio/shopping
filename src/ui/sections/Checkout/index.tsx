@@ -16,7 +16,7 @@ interface CheckoutProps {
   onSaveNote: (id: string, note: string) => void;
   onCheckout: () => void;
   onQuantityChange: (id: string, newQuantity: number) => void;
-  total: number;
+  price: number;
   title: string;
   quantity: number;
 }
@@ -29,7 +29,7 @@ const CheckoutSection = memo(
     onSaveNote,
     onCheckout,
     onQuantityChange,
-    total,
+    price,
     title,
     quantity
   }: CheckoutProps) => {
@@ -56,9 +56,9 @@ const CheckoutSection = memo(
           </div>
           <div className="lg:mt-7 mt-10 flex justify-center">
             <CartCheckout
-              products={quantity}
+              quantity={quantity}
               onCheckout={onCheckout}
-              total={total}
+              price={price}
             />
           </div>
         </div>

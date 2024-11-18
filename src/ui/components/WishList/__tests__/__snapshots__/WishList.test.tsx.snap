@@ -2,211 +2,145 @@
 
 exports[`WishList component Should match snapshot 1`] = `
 <div>
-  <div
-    class="className h-table overflow-y-auto scrollbar"
+  <tr
+    class="lg:table-row flex flex-col border lg:border-none mb-4 bg-gray-light lg:h-40 h-full"
   >
-    <table
-      class="w-full border-separate border-spacing-y-tb-md text-dark"
+    <td
+      class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm"
     >
-      <thead
-        class="text-md font-bold text-left sticky top-0 z-10 bg-white"
+      <span
+        class="lg:hidden font-semibold mr-2"
+      />
+      <div
+        class="lg:block hidden"
       >
-        <tr
-          class="lg:table-row flex flex-col border lg:border-none mb-4 lg:flex hidden"
+        <div
+          class="relative inline-flex items-center justify-center cursor-pointer"
         >
-          <th
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            />
-          </th>
-          <th
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            />
-            Product
-          </th>
-          <th
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-xl"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            />
-          </th>
-          <th
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            />
-            Price
-          </th>
-          <th
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            />
-            Stock Status
-          </th>
-          <th
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            />
-          </th>
-        </tr>
-      </thead>
-      <tbody
-        class="relative max-h-96"
+          <img
+            alt="Delete"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="24"
+            src="/delete.svg"
+            style="color: transparent;"
+            width="24"
+          />
+        </div>
+      </div>
+    </td>
+    <td
+      class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm"
+    >
+      <span
+        class="lg:hidden font-semibold mr-2"
+      />
+      <div
+        class="relative inline-flex items-center justify-center"
       >
-        <tr
-          class="lg:table-row flex flex-col border lg:border-none mb-4 bg-gray-light lg:h-40 h-full"
+        <img
+          alt="Basic T-Shirt"
+          data-nimg="1"
+          decoding="async"
+          height="80"
+          loading="lazy"
+          src="/_next/image?url=%2Fproduct.webp&w=256&q=75"
+          srcset="/_next/image?url=%2Fproduct.webp&w=96&q=75 1x, /_next/image?url=%2Fproduct.webp&w=256&q=75 2x"
+          style="color: transparent; object-fit: cover; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+          width="80"
+        />
+      </div>
+      <div
+        class="lg:hidden block text-center"
+      >
+        <div
+          class="relative inline-flex items-center justify-center cursor-pointer"
         >
-          <td
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            />
-            <div
-              class="lg:block hidden"
-            >
-              <div
-                class="relative inline-flex items-center justify-center cursor-pointer"
-              >
-                <img
-                  alt="Delete"
-                  data-nimg="1"
-                  decoding="async"
-                  fetchpriority="high"
-                  height="24"
-                  src="/delete.svg"
-                  style="color: transparent;"
-                  width="24"
-                />
-              </div>
-            </div>
-          </td>
-          <td
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            />
-            <div
-              class="relative inline-flex items-center justify-center"
-            >
-              <img
-                alt="Basic T-Shirt"
-                data-nimg="1"
-                decoding="async"
-                height="80"
-                loading="lazy"
-                src="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FnjkCQHq%2Ft-shirt-3.webp&w=256&q=75"
-                srcset="/_next/image?url=https%3A%2F%2Fi.ibb.co%2FnjkCQHq%2Ft-shirt-3.webp&w=96&q=75 1x, /_next/image?url=https%3A%2F%2Fi.ibb.co%2FnjkCQHq%2Ft-shirt-3.webp&w=256&q=75 2x"
-                style="color: transparent; object-fit: cover; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
-                width="80"
-              />
-            </div>
-            <div
-              class="lg:hidden block text-center"
-            >
-              <div
-                class="relative inline-flex items-center justify-center cursor-pointer"
-              >
-                <img
-                  alt="Delete"
-                  data-nimg="1"
-                  decoding="async"
-                  fetchpriority="high"
-                  height="24"
-                  src="/delete.svg"
-                  style="color: transparent;"
-                  width="24"
-                />
-              </div>
-            </div>
-          </td>
-          <td
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-xl"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            >
-              Name
-            </span>
-            <p
-              class="font-bold text-black md:text-2xl text-md"
-            >
-              Basic T-Shirt
-            </p>
-            <span
-              class="font-normal text-gray-500 lg:text-lg text-sm"
-            >
-              Color: 
-              Red
-            </span>
-          </td>
-          <td
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            >
-              Price
-            </span>
-            <p
-              class="font-bold text-black md:text-2xl text-md"
-            >
-              $
-              15
-               USD
-            </p>
-            <span
-              class="font-normal text-gray-500 lg:text-lg text-sm"
-            >
-              Price
-            </span>
-          </td>
-          <td
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            >
-              Stock Status
-            </span>
-            <p
-              class="font-bold text-black md:text-2xl text-md"
-            >
-              1710
-            </p>
-            <span
-              class="font-normal text-gray-500 lg:text-lg text-sm"
-            >
-              In Stock
-            </span>
-          </td>
-          <td
-            class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm"
-          >
-            <span
-              class="lg:hidden font-semibold mr-2"
-            />
-            <button
-              class="truncate md:h-12 h-8 md:text-lg md:w-btn-md w-28 text-xs bg-gradient-primary text-white font-bold"
-            >
-              Add to Cart
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+          <img
+            alt="Delete"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="24"
+            src="/delete.svg"
+            style="color: transparent;"
+            width="24"
+          />
+        </div>
+      </div>
+    </td>
+    <td
+      class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-xl"
+    >
+      <span
+        class="lg:hidden font-semibold mr-2"
+      >
+        Name
+      </span>
+      <p
+        class="font-bold text-black md:text-2xl text-md"
+      >
+        Basic T-Shirt
+      </p>
+      <span
+        class="font-normal text-gray-500 lg:text-lg text-sm"
+      >
+        Color: White
+      </span>
+    </td>
+    <td
+      class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md"
+    >
+      <span
+        class="lg:hidden font-semibold mr-2"
+      >
+        Price
+      </span>
+      <p
+        class="font-bold text-black md:text-2xl text-md"
+      >
+        $
+        20
+         USD
+      </p>
+      <span
+        class="font-normal text-gray-500 lg:text-lg text-sm"
+      >
+        Price
+      </span>
+    </td>
+    <td
+      class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-md"
+    >
+      <span
+        class="lg:hidden font-semibold mr-2"
+      >
+        Stock Status
+      </span>
+      <p
+        class="font-bold text-black md:text-2xl text-md"
+      >
+        1720
+      </p>
+      <span
+        class="font-normal text-gray-500 lg:text-lg text-sm"
+      >
+        In Stock
+      </span>
+    </td>
+    <td
+      class="flex justify-between items-center gap-3 lg:text-2xl text-md lg:table-cell w-full p-3 border-b lg:w-tb-sm"
+    >
+      <span
+        class="lg:hidden font-semibold mr-2"
+      />
+      <button
+        class="truncate md:h-12 h-8 md:text-lg md:w-btn-md w-28 text-xs bg-gradient-primary text-white font-bold"
+      >
+        Add to Cart
+      </button>
+    </td>
+  </tr>
 </div>
 `;

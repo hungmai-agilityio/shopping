@@ -128,7 +128,7 @@ const CarouselProduct = ({ products, onOrder }: CarouselProductProps) => {
           <ColorPicker colors={currentProduct.colors} labelColor="text-white" />
           {currentProduct.rating && (
             <div className="ml-4 flex items-center">
-              <Icon src="star.svg" alt="rating" width={152} height={24} />
+              <Icon src="/star.svg" alt="rating" width={152} height={24} />
               <Typography
                 color="text-white"
                 fontWeight={FONT_WEIGHT.THIN}

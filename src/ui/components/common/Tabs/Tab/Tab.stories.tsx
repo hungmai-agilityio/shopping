@@ -24,6 +24,6 @@ export const TabActive: Story = {
   args: {
     value: '1',
     title: 'Item one',
-    index: '1'
+    selected: '1'
   }
 };

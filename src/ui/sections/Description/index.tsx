@@ -27,8 +27,8 @@ const Description = () => {
   return (
     <section className="my-20 bg-gray-light">
       <div className="container py-10">
-        <Tabs list={list} index={selectedTab} onClick={handleChangeTab} />
-        <Panel index={selectedTab} tabIndex="description">
+        <Tabs list={list} selected={selectedTab} onClick={handleChangeTab} />
+        <Panel selected={selectedTab} tabIndex="description">
           <div className="mt-10">
             <Typography
               fontWeight={FONT_WEIGHT.BOLD}
@@ -50,7 +50,7 @@ const Description = () => {
             </ul>
           </div>
         </Panel>
-        <Panel index={selectedTab} tabIndex="rating">
+        <Panel selected={selectedTab} tabIndex="rating">
           <div className="mt-10 flex justify-center">
             <Image src="/star.svg" alt="star" width={106} height={18} />
           </div>

@@ -15,7 +15,9 @@ import {
   TAG,
   SIZE,
   mada,
-  QUERY
+  QUERY,
+  STATUS,
+  MESSAGE_API
 } from '@/constants';
 
 // Interfaces
@@ -33,7 +35,8 @@ import {
   Typography,
   ColorPicker,
   CardImage,
-  ModalAuth
+  ModalAuth,
+  ToastMessage
 } from '@/ui/components';
 
 // Hooks
@@ -46,6 +49,10 @@ interface DetailProps {
 const ProductDetail = ({ product }: DetailProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [color, setColor] = useState<string>(product.colors[0]);
+  const [toast, setToast] = useState<{
+    status: STATUS;
+    message: string;
+  } | null>(null);
 
   const { addToCart } = useCartStore();
   const { user } = useUserStore();
@@ -93,6 +100,10 @@ const ProductDetail = ({ product }: DetailProps) => {
       await updateCart(existingItem.id, {
         quantity: existingItem.quantity + quantity
       });
+      setToast({
+        status: STATUS.SUCCESS,
+        message: MESSAGE_API.UPDATE_CART_SUCCESS
+      });
     } else {
       const cartData: ICart = {
         id: uuidv4(),
@@ -104,6 +115,10 @@ const ProductDetail = ({ product }: DetailProps) => {
       };
 
       addDataToCart.mutate(cartData);
+       setToast({
+         status: STATUS.SUCCESS,
+         message: MESSAGE_API.ADD_PRODUCT_SUCCESS
+       });
     }
   }, [product, color, quantity, addDataToCart, cartItems, user?.id]);
 
@@ -169,7 +184,7 @@ const ProductDetail = ({ product }: DetailProps) => {
         </Typography>
         <div className="flex gap-5">
           <Icon
-            src="star.svg"
+            src="/star.svg"
             alt="icon-star"
             width={122}
             height={18}
@@ -268,6 +283,7 @@ const ProductDetail = ({ product }: DetailProps) => {
         </div>
       </div>
       <ModalAuth onClick={handleConfirm} isOpen={isOpen} onClose={closeModal} />
+      {toast && <ToastMessage status={toast.status} message={toast.message} />}
     </section>
   );
 };

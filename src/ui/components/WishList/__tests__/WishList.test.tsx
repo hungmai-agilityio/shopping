@@ -1,33 +1,28 @@
 import { render, screen } from '@testing-library/react';
 
-// Mock data
-import { mockProducts, mockWishlist } from '@/mocks';
-
 // Components
 import WishList from '@/ui/components/WishList';
 
 describe('WishList component', () => {
   const defaultProps = {
-    data: mockWishlist,
-    products: mockProducts,
+    id: 'iu129523vg-56vl90bl1-285910f46',
+    productId: 'u3k8h9f1-9g22-3h67-2g13-5k6g9k45g4t3',
+    image: '/product.webp',
+    nameProduct: 'Basic T-Shirt',
+    price: 20,
+    stoct: 1720,
     onAddCart: jest.fn(),
     onDelete: jest.fn()
   };
 
-  it('render Wish list with default props', () => {
+  test('render Wish list with default props', () => {
     render(<WishList {...defaultProps} />);
 
     const product = screen.getByText('Basic T-Shirt');
     expect(product).toBeInTheDocument();
   });
 
-  it('should render empty state when no product data is provided', () => {
-    render(<WishList {...defaultProps} data={[]} />);
-
-    expect(screen.getByAltText('cart empty')).toBeInTheDocument();
-  });
-
-  it('Should match snapshot', () => {
+  test('Should match snapshot', () => {
     const { container } = render(<WishList {...defaultProps} />);
     expect(container).toMatchSnapshot();
   });

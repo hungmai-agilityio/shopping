@@ -2,19 +2,19 @@
 import { Tab, ITab } from '@/ui/components/common/Tabs/Tab';
 
 interface TabsProps {
-  list: Omit<ITab, 'index' | 'onClick'>[];
-  index: string;
+  list: Omit<ITab, 'selected' | 'onClick'>[];
+  selected: string;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Tabs = ({ list, onClick, index }: TabsProps) => (
+const Tabs = ({ list, onClick, selected }: TabsProps) => (
   <div className="flex justify-center gap-10 items-center">
     {list.map((item) => (
       <Tab
         key={item.value}
         value={item.value}
         title={item.title}
-        index={index}
+        selected={selected}
         onClick={onClick}
       />
     ))}

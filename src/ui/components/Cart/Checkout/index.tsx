@@ -8,13 +8,13 @@ import { FONT_SIZE, FONT_WEIGHT, mada, TAG } from '@/constants';
 import { Button, Input, Typography } from '@/ui/components/common';
 
 interface CartCheckoutProps {
-  products: number;
-  total: number;
+  quantity: number;
+  price: number;
   onCheckout: () => void;
 }
 
 const CartCheckout = memo(
-  ({ products, total, onCheckout }: CartCheckoutProps) => {
+  ({ quantity, price, onCheckout }: CartCheckoutProps) => {
     const [couponCode, setCouponCode] = useState<string>('');
 
     const handleChangeCoupon = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +58,7 @@ const CartCheckout = memo(
               tag={TAG.SPAN}
               color="text-gray-400"
             >
-              {products} Product
+              {quantity} Product
             </Typography>
           </div>
           <Typography
@@ -66,7 +66,7 @@ const CartCheckout = memo(
             size={FONT_SIZE.X_SMALL}
             className="mb-1"
           >
-            $ {total} USD
+            $ {price} USD
           </Typography>
         </div>
         <hr className="border-t-2 border-dashed border-gray-300 my-6" />
@@ -84,7 +84,7 @@ const CartCheckout = memo(
             size={FONT_SIZE.X_SMALL}
             className="mb-1"
           >
-            $ {total} USD
+            $ {price} USD
           </Typography>
         </div>
 

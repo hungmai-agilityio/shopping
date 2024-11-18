@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 
 // Constants
 import {
-  END_POINT,
   FONT_SIZE,
   FONT_WEIGHT,
   mada,
@@ -14,44 +13,29 @@ import {
 } from '@/constants';
 
 // Interfaces
-import { IComments, ISearchProps } from '@/interfaces';
-
-// Libs
-import {
-  checkUserLogged,
-  getCategories,
-  getComments,
-  getUserFromCookie
-} from '@/libs';
+import { ISearchProps } from '@/interfaces';
 
 // Components
 import {
   Brand,
   Button,
-  Card,
-  CardImage,
   Hero,
   CarouselProduct,
   Carousel,
   Typography,
-  Heading
+  Heading,
+  CardSkeleton
 } from '@/ui/components';
 
 // Sections
-import { CategorySection, ProductWrapper } from '@/ui/sections';
-
-const ButtonRedirect = dynamic(
-  () => import('@/ui/components/UserAction/Redirect'),
-  {
-    ssr: false
-  }
-);
+import {
+  CategorySection,
+  ProductWrapper,
+  CommentsSection,
+  ModelSection
+} from '@/ui/sections';
 
 const HomePage = async ({ searchParams }: ISearchProps) => {
-  const { data: categories, error: categoryError } = await getCategories();
-  const { data: comments, error: commentsError } = await getComments();
-  const user = await getUserFromCookie();
-
   return (
     <div className={`${popping.className}`}>
       <Hero>
@@ -112,78 +96,23 @@ const HomePage = async ({ searchParams }: ISearchProps) => {
       <section className="md:block hidden bg-gray-light h-28">
         <div className="container flex items-center justify-between p-5 gap-5">
           <Brand src="/brand-1.svg" alt="brand-1" />
-          <Brand src="/brand-2.svg" alt="brand-1" />
-          <Brand src="/brand-3.svg" alt="brand-1" />
-          <Brand src="/brand-4.svg" alt="brand-1" />
-          <Brand src="/brand-5.svg" alt="brand-1" />
+          <Brand src="/brand-2.svg" alt="brand-2" />
+          <Brand src="/brand-3.svg" alt="brand-3" />
+          <Brand src="/brand-4.svg" alt="brand-4" />
+          <Brand src="/brand-5.svg" alt="brand-5" />
         </div>
       </section>
-      <section className="my-20">
-        {categoryError ? '' : <CategorySection categories={categories || []} />}
-      </section>
+      <CategorySection />
       <section className="my-20 container">
-        <ProductWrapper
-          categories={categories || []}
-          searchParams={searchParams!}
-          user={user}
-        />
+        <ProductWrapper searchParams={searchParams!} />
       </section>
       <section className="md:flex hidden">
         <CarouselProduct products={slideProducts} />
       </section>
-      {commentsError ? (
-        ''
-      ) : (
-        <section className="my-20 container">
-          <Typography
-            fontWeight={FONT_WEIGHT.BOLD}
-            className={`${mada.className} my-4 text-center`}
-            size={FONT_SIZE.MEDIUM}
-          >
-            Testimonials
-          </Typography>
-          <div className="mt-8 xl:flex justify-center gap-6">
-            {comments.map((item: IComments) => (
-              <div key={item.id} className="w-full mt-4  flex justify-center">
-                <Card
-                  photo={item.avatar}
-                  name={item.name}
-                  variant={TYPE.COMMENT}
-                  comment={item.comment}
-                  width={48}
-                  height={48}
-                  role={item.role}
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      <section className="container my-20 md:flex justify-between">
-        <div className="max-w-card-sm mb-5">
-          <Typography
-            fontWeight={FONT_WEIGHT.BOLD}
-            className={`${mada.className} my-4`}
-            size={FONT_SIZE.MEDIUM}
-          >
-            Look For Models Now
-          </Typography>
-          <Typography className="my-4" size={FONT_SIZE.X_SMALL}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget
-            gravida leo, nec iaculis diam. Nam bibendum mi sed sem finibus
-            ullamcorper.
-          </Typography>
-
-          <ButtonRedirect name="Login" url={END_POINT.SIGN_IN} />
-        </div>
-        <CardImage
-          src="/product.webp"
-          alt="Product-demo"
-          width={590}
-          height={349}
-        />
-      </section>
+      <Suspense fallback={<CardSkeleton quantity={2} />}>
+        <CommentsSection />
+      </Suspense>
+      <ModelSection />
     </div>
   );
 };

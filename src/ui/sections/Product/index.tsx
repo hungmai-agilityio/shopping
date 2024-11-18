@@ -1,5 +1,5 @@
 // Libs
-import { getProducts } from '@/libs';
+import { getProducts, getUserFromCookie } from '@/libs';
 
 // Components
 import { Typography } from '@/ui/components';
@@ -7,21 +7,14 @@ import { Typography } from '@/ui/components';
 //Sections
 import CardProductList from '@/ui/sections/Product/List';
 
-// Interfaces
-import { IUser } from '@/interfaces';
-
 interface ProductListProps {
   query?: string;
   isShowMore?: boolean;
-  user: IUser;
 }
-const ProductSection = async ({
-  query,
-  isShowMore,
-  user
-}: ProductListProps) => {
+const ProductSection = async ({ query, isShowMore }: ProductListProps) => {
   const param = query ? query : '';
 
+  const user = await getUserFromCookie();
   const { data, error } = await getProducts(param);
 
   return (

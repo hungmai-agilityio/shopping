@@ -19,6 +19,7 @@ export { default as ModalAuth } from '@/ui/components/common/Modal/Auth';
 export { default as Dropdown } from '@/ui/components/common/Dropdown';
 export { default as DropdownNote } from '@/ui/components/common/Dropdown/Note';
 export { default as CardProductSkeleton } from '@/ui/components/common/Skeleton/CardProduct';
+export { default as CardSkeleton } from '@/ui/components/common/Skeleton/Card';
 export { default as Carousel } from '@/ui/components/common/Carousel';
 export { default as CarouselCategories } from '@/ui/components/common/Carousel/Categories';
 export { default as CarouselProduct } from '@/ui/components/common/Carousel/Product';

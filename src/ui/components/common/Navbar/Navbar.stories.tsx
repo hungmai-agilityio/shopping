@@ -11,10 +11,7 @@ const meta: Meta<typeof Navbar> = {
   tags: ['autodocs'],
 
   parameters: {
-    layout: 'centered',
-    nextjs: {
-      appDirectory: true
-    }
+    layout: 'centered'
   },
 
   argTypes: {
