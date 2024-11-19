@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { FONT_WEIGHT, popping, TAG } from '@/constants';
 
 // Libs
-import { getProductId, getUserFromCookie } from '@/libs';
+import { getProductId } from '@/libs';
 
 // Components
 import { BreadCrumb, CardProductSkeleton, Typography } from '@/ui/components';
@@ -13,19 +13,27 @@ import { BreadCrumb, CardProductSkeleton, Typography } from '@/ui/components';
 // Sections
 import { ProductSection, ProductDetail, Description } from '@/ui/sections';
 
-export const metadata: Metadata = {
-  title: 'Product Detail'
-};
-
 interface Params {
   id: string;
 }
+
+export const generateMetadata = async ({
+  params
+}: {
+  params: Params;
+}): Promise<Metadata> => {
+  const { id } = params;
+  const { data: product } = await getProductId(id);
+
+  return {
+    title: product.name || 'Product Detail'
+  };
+};
 
 const ProductDetailPage = async ({ params }: { params: Params }) => {
   const { id } = params;
 
   const { data: product } = await getProductId(id);
-  const user = await getUserFromCookie();
 
   const queryCategory = product.category ? `?category=${product.category}` : '';
 
